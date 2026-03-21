@@ -16,12 +16,12 @@ A brutalist hacker-centric aesthetic inspired by CRT terminals and raw command-l
 
 ### Primary — Electric Green
 
-| Role                   | Hex       | Usage                              |
-| ---------------------- | --------- | ---------------------------------- |
-| `primary`              | `#00FF41` | CTAs, active states, key accents   |
-| `on-primary`           | `#003907` | Text/icons on primary backgrounds  |
-| `primary-container`    | `#00530E` | Filled badges, secondary CTAs      |
-| `on-primary-container` | `#EBFFE2` | Text on primary-container          |
+| Role                   | Hex       | Usage                             |
+| ---------------------- | --------- | --------------------------------- |
+| `primary`              | `#00FF41` | CTAs, active states, key accents  |
+| `on-primary`           | `#003907` | Text/icons on primary backgrounds |
+| `primary-container`    | `#00530E` | Filled badges, secondary CTAs     |
+| `on-primary-container` | `#EBFFE2` | Text on primary-container         |
 
 ### Secondary — Cybernetic Cyan
 
@@ -43,25 +43,25 @@ A brutalist hacker-centric aesthetic inspired by CRT terminals and raw command-l
 
 ### Surface Hierarchy
 
-| Role                      | Hex       | Usage                                    |
-| ------------------------- | --------- | ---------------------------------------- |
-| `surface`                 | `#131313` | Page background                          |
-| `surface-container-low`   | `#1C1B1B` | Card backgrounds                         |
-| `surface-container`       | `#201F1F` | Elevated panels, dialogs                 |
-| `surface-container-high`  | `#2A2A2A` | Headers, nav bars, top-bar accents       |
-| `surface-container-highest`| `#353534` | Highest-emphasis surface (active states) |
-| `on-surface`              | `#E5E2E1` | Primary text on surfaces                 |
-| `on-surface-variant`      | `#C6C6C7` | Secondary text, descriptions             |
-| `surface-dim`             | `#0E0E0E` | Backdrops, overlays                      |
+| Role                        | Hex       | Usage                                    |
+| --------------------------- | --------- | ---------------------------------------- |
+| `surface`                   | `#131313` | Page background                          |
+| `surface-container-low`     | `#1C1B1B` | Card backgrounds                         |
+| `surface-container`         | `#201F1F` | Elevated panels, dialogs                 |
+| `surface-container-high`    | `#2A2A2A` | Headers, nav bars, top-bar accents       |
+| `surface-container-highest` | `#353534` | Highest-emphasis surface (active states) |
+| `on-surface`                | `#E5E2E1` | Primary text on surfaces                 |
+| `on-surface-variant`        | `#C6C6C7` | Secondary text, descriptions             |
+| `surface-dim`               | `#0E0E0E` | Backdrops, overlays                      |
 
 ### Error — Neon Coral
 
-| Role                  | Hex       | Usage                            |
-| --------------------- | --------- | -------------------------------- |
-| `error`               | `#FFB4AB` | Error text, destructive accents  |
-| `on-error`            | `#690005` | Text on error backgrounds        |
-| `error-container`     | `#93000A` | Error badge backgrounds          |
-| `on-error-container`  | `#FFDAD6` | Text on error-container          |
+| Role                 | Hex       | Usage                           |
+| -------------------- | --------- | ------------------------------- |
+| `error`              | `#FFB4AB` | Error text, destructive accents |
+| `on-error`           | `#690005` | Text on error backgrounds       |
+| `error-container`    | `#93000A` | Error badge backgrounds         |
+| `on-error-container` | `#FFDAD6` | Text on error-container         |
 
 ### Outline & Borders
 
@@ -74,12 +74,12 @@ A brutalist hacker-centric aesthetic inspired by CRT terminals and raw command-l
 
 ## 3. Typography Rules
 
-| Role      | Font           | Weight  | Transform   | Notes                              |
-| --------- | -------------- | ------- | ----------- | ---------------------------------- |
-| Headlines | Space Grotesk  | 700     | `uppercase` | Monospace-feel geometric sans      |
-| Labels    | Space Grotesk  | 500–600 | `uppercase` | Navigation, chips, status text     |
-| Body      | Inter          | 400     | `none`      | Readable body copy, descriptions   |
-| Mono/Code | JetBrains Mono | 400     | `none`      | Fallback: `monospace`              |
+| Role      | Font           | Weight  | Transform   | Notes                            |
+| --------- | -------------- | ------- | ----------- | -------------------------------- |
+| Headlines | Space Grotesk  | 700     | `uppercase` | Monospace-feel geometric sans    |
+| Labels    | Space Grotesk  | 500–600 | `uppercase` | Navigation, chips, status text   |
+| Body      | Inter          | 400     | `none`      | Readable body copy, descriptions |
+| Mono/Code | JetBrains Mono | 400     | `none`      | Fallback: `monospace`            |
 
 **Scale:** Headings step through `3rem → 2rem → 1.5rem → 1.25rem`. Body at `1rem / 1.6` line-height.
 

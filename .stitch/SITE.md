@@ -21,7 +21,7 @@ Hacker-centric hardware build platform for Hack Club YSWS. Build open-source har
 
 - [x] `/` — Mission Control (homepage/landing)
 - [x] `/hardware` — Hardware Manifest (catalog + BOM)
-- [ ] `/streak` — Streak Tracker (contribution heat map)
+- [x] `/streak` — Streak Tracker (contribution heat map)
 - [ ] `/vault` — Vault (future)
 - [ ] `/login` — Login (Hack Club Auth)
 

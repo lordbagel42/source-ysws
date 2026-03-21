@@ -1,7 +1,3 @@
----
-page: hardware-manifest
----
+# Next Prompt
 
-The hardware manifest page. Catalog of hardware items with BOM (bill of materials) detail views.
-
-Next up: streak tracker page implementation.
+Streak Tracker page is complete. Next: build the Hardware Manifest page at `/hardware`.
