@@ -8,7 +8,10 @@ import { db } from '$lib/server/db';
 import { building } from '$app/environment';
 
 export const auth = betterAuth({
-	baseURL: env.ORIGIN || 'http://localhost:5173',
+	baseURL: {
+		allowedHosts: ['*.enderium42.workers.dev', '*raygen.dev', 'localhost:*'],
+		fallback: env.ORIGIN || 'http://localhost:5173'
+	},
 	secret: env.BETTER_AUTH_SECRET || (building ? 'build-time-secret-only' : undefined),
 	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
