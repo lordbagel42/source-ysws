@@ -18,11 +18,13 @@
 	<form class="space-y-5">
 		<div>
 			<label
+				for="vendor-source"
 				class="mb-2 block font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
 			>
 				Vendor_Source
 			</label>
 			<select
+				id="vendor-source"
 				class="w-full appearance-none border-2 border-outline-variant bg-surface-container-lowest px-3 py-2 font-mono text-xs text-on-surface outline-none focus:border-secondary"
 			>
 				<option>DIGIKEY_ELECTRONICS</option>
@@ -34,11 +36,13 @@
 
 		<div>
 			<label
+				for="component-url"
 				class="mb-2 block font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
 			>
 				Component_URL
 			</label>
 			<input
+				id="component-url"
 				type="text"
 				placeholder="HTTPS://WWW.MOUSER.COM/P/..."
 				class="w-full border-2 border-outline-variant bg-surface-container-lowest px-3 py-2 font-mono text-xs text-on-surface outline-none focus:border-secondary"
@@ -48,6 +52,7 @@
 		<div class="grid grid-cols-2 gap-4">
 			<div>
 				<label
+					for="unit-price"
 					class="mb-2 block font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
 				>
 					Unit_Price
@@ -55,6 +60,7 @@
 				<div class="relative">
 					<span class="absolute top-2 left-3 text-xs text-on-surface-variant"> $ </span>
 					<input
+						id="unit-price"
 						type="number"
 						placeholder="0.00"
 						class="w-full border-2 border-outline-variant bg-surface-container-lowest py-2 pr-3 pl-6 font-mono text-xs text-on-surface outline-none focus:border-secondary"
@@ -63,11 +69,13 @@
 			</div>
 			<div>
 				<label
+					for="quantity"
 					class="mb-2 block font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
 				>
 					Quantity
 				</label>
 				<input
+					id="quantity"
 					type="number"
 					placeholder="1"
 					class="w-full border-2 border-outline-variant bg-surface-container-lowest px-3 py-2 font-mono text-xs text-on-surface outline-none focus:border-secondary"
