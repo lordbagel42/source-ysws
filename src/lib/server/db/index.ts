@@ -1,11 +1,10 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
-import { env } from '$env/dynamic/private';
-import { building } from '$app/environment';
 
-if (!building && !env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
+// Use process.env for CLI compatibility, and fallback to empty string to avoid crashes during build if not needed
+const DATABASE_URL = process.env.DATABASE_URL || '';
 
-const client = postgres(env.DATABASE_URL || 'postgres://localhost:5432/db');
+const client = postgres(DATABASE_URL || 'postgres://localhost:5432/db');
 
 export const db = drizzle(client, { schema });
