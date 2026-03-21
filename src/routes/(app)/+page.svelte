@@ -1,9 +1,15 @@
-<div class="space-y-4">
-	<h1 class="crt-glow font-headline text-3xl font-black tracking-wider">MISSION_CONTROL</h1>
-	<p class="font-mono text-sm text-on-surface-variant">
-		Dashboard initializing<span class="blinking-cursor"></span>
-	</p>
-	<div class="mt-8 border-2 border-outline-variant bg-surface-container-low p-8 text-center">
-		<p class="font-mono text-on-surface-variant">// SYSTEM STATUS: UNDER CONSTRUCTION //</p>
-	</div>
+<script lang="ts">
+	import HeroSection from '$lib/components/site/mission/HeroSection.svelte';
+	import StreakHeatSection from '$lib/components/site/mission/StreakHeatSection.svelte';
+	import RecentShipmentsSection from '$lib/components/site/mission/RecentShipmentsSection.svelte';
+	import RewardLogSection from '$lib/components/site/mission/RewardLogSection.svelte';
+	import TerminalWindow from '$lib/components/site/mission/TerminalWindow.svelte';
+</script>
+
+<div class="-m-6">
+	<HeroSection />
+	<StreakHeatSection />
+	<RecentShipmentsSection />
+	<RewardLogSection />
+	<TerminalWindow />
 </div>

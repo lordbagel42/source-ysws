@@ -1,7 +1,7 @@
 ---
-page: mission-control
+page: hardware-manifest
 ---
 
-The main landing page for Source YSWS. Already generated — see `.stitch/designs/mission-control.html`.
+The hardware manifest page. Catalog of hardware items with BOM (bill of materials) detail views.
 
-Next up: hardware-manifest page implementation.
+Next up: streak tracker page implementation.
