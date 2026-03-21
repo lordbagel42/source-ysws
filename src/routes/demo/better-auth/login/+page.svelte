@@ -1,12 +1,19 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { authClient } from '$lib/auth-client';
 </script>
 
 <h1>Login</h1>
-<form method="post" action="?/signInOAuth" use:enhance>
-	<input type="hidden" name="providerId" value="hackclub" />
-	<input type="hidden" name="callbackURL" value="/demo/better-auth" />
-	<button class="rounded-md bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
-		>Sign in with Hack Club</button
+<div class="flex flex-col gap-4">
+	<button
+		type="button"
+		onclick={async () => {
+			await authClient.signIn.social({
+				provider: 'hackclub',
+				callbackURL: '/demo/better-auth'
+			});
+		}}
+		class="rounded-md bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
 	>
-</form>
+		Sign in with Hack Club
+	</button>
+</div>

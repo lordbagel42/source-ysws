@@ -245,3 +245,7 @@ env.HACKCLUB_CLIENT_SECRET ("(hidden)")      Environment Variable      local
 ⎔ Starting local server...
 [wrangler:info] ✨ Parsed 2 valid header rules.
 [wrangler:info] Ready on http://localhost:8787
+⎔ Reloading local server...
+[wrangler:info] ✨ Parsed 2 valid header rules.
+⎔ Local server updated and ready
+ ELIFECYCLE  Command failed.
