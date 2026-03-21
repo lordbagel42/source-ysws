@@ -1,3 +1,198 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #131313;
+  --foreground: #e5e2e1;
+  --muted: #201f1f;
+  --muted-foreground: #b9ccb2;
+  --popover: #131313;
+  --popover-foreground: #e5e2e1;
+  --card: #1c1b1b;
+  --card-foreground: #e5e2e1;
+  --border: #353534;
+  --input: #353534;
+  --primary: #ebffe2;
+  --primary-foreground: #003907;
+  --secondary: #bdf4ff;
+  --secondary-foreground: #00363d;
+  --accent: #2a2a2a;
+  --accent-foreground: #e5e2e1;
+  --destructive: #ffb4ab;
+  --destructive-foreground: #690005;
+  --ring: #00e639;
+  --radius: 0px;
+
+  /* Custom palette from design */
+  --error: #ffb4ab;
+  --surface-dim: #131313;
+  --on-secondary-fixed-variant: #004f58;
+  --surface-container-highest: #353534;
+  --on-tertiary-container: #5f6161;
+  --on-tertiary: #2f3131;
+  --on-surface-variant: #b9ccb2;
+  --outline: #84967e;
+  --error-container: #93000a;
+  --surface-container-high: #2a2a2a;
+  --on-surface: #e5e2e1;
+  --tertiary: #f9f9f9;
+  --secondary-fixed-dim: #00daf3;
+  --on-secondary: #00363d;
+  --surface-container: #201f1f;
+  --on-tertiary-fixed-variant: #454747;
+  --on-background: #e5e2e1;
+  --surface-container-low: #1c1b1b;
+  --on-primary: #003907;
+  --primary-color: #ebffe2;
+  --tertiary-fixed-dim: #c6c6c7;
+  --surface-bright: #3a3939;
+  --on-secondary-fixed: #001f24;
+  --on-primary-container: #007117;
+  --on-secondary-container: #00616d;
+  --on-tertiary-fixed: #1a1c1c;
+  --surface-tint: #00e639;
+  --primary-container: #00ff41;
+  --on-primary-fixed: #002203;
+  --tertiary-fixed: #e2e2e2;
+  --surface-container-lowest: #0e0e0e;
+  --on-error: #690005;
+  --inverse-primary: #006e16;
+  --primary-fixed-dim: #00e639;
+  --on-primary-fixed-variant: #00530e;
+  --surface: #131313;
+  --inverse-surface: #e5e2e1;
+  --surface-variant: #353534;
+  --secondary-fixed: #9cf0ff;
+  --secondary-container: #00e3fd;
+  --primary-fixed: #72ff70;
+  --outline-variant: #3b4b37;
+  --tertiary-container: #dcdddd;
+  --on-error-container: #ffdad6;
+  --inverse-on-surface: #313030;
+}
+
+/* Since design is essentially dark, we can just use :root for the dark theme as well or keep it consistent */
+.dark {
+  --background: #131313;
+  --foreground: #e5e2e1;
+  /* ... similar to :root as it is already a dark theme */
+}
+
+@theme inline {
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Space Grotesk", sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-ring: var(--ring);
+
+  /* Design specific colors */
+  --color-error: var(--error);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-on-secondary-fixed-variant: var(--on-secondary-fixed-variant);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-error-container: var(--error-container);
+  --color-on-surface: var(--on-surface);
+  --color-tertiary: var(--tertiary);
+  --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+  --color-on-secondary: var(--on-secondary);
+  --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
+  --color-on-background: var(--on-background);
+  --color-on-primary: var(--on-primary);
+  --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-on-secondary-fixed: var(--on-secondary-fixed);
+  --color-on-tertiary-fixed: var(--on-tertiary-fixed);
+  --color-surface-tint: var(--surface-tint);
+  --color-on-primary-fixed: var(--on-primary-fixed);
+  --color-tertiary-fixed: var(--tertiary-fixed);
+  --color-on-error: var(--on-error);
+  --color-inverse-primary: var(--inverse-primary);
+  --color-primary-fixed-dim: var(--primary-fixed-dim);
+  --color-on-primary-fixed-variant: var(--on-primary-fixed-variant);
+  --color-surface: var(--surface);
+  --color-inverse-surface: var(--inverse-surface);
+  --color-surface-variant: var(--surface-variant);
+  --color-secondary-fixed: var(--secondary-fixed);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-error-container: var(--on-error-container);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+@layer utilities {
+  .crt-glow {
+    background: linear-gradient(180deg, #EBFFE2 0%, #00FF41 100%);
+  }
+  .hard-shadow {
+    box-shadow: 4px 4px 0px 0px #0E0E0E;
+  }
+  .blinking-cursor::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .glass-hud {
+    background: rgba(28, 27, 27, 0.8);
+    backdrop-filter: blur(12px);
+  }
+  .heat-gradient {
+    background: linear-gradient(90deg, #ff3e00 0%, #f0ff00 50%, #00FF41 100%);
+  }
+  .scanline {
+    width: 100%;
+    height: 2px;
+    background: rgba(0, 255, 65, 0.2);
+    position: absolute;
+    animation: scan 4s linear infinite;
+  }
+  @keyframes scan {
+    from { top: 0; }
+    to { top: 100%; }
+  }
+}
