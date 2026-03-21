@@ -270,6 +270,10 @@
 	}
 }
 
+.heat-gradient {
+	background: linear-gradient(90deg, #ff3e00 0%, #f0ff00 50%, #00ff41 100%);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
 	width: 6px;
