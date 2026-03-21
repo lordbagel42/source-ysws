@@ -11,8 +11,12 @@ const handleBetterAuth: Handle = async ({ event, resolve }) => {
 		event.locals.user = session.user;
 	}
 
+	const isPublicPath = event.url.pathname === '/' ||
+		event.url.pathname === '/login' ||
+		event.url.pathname.startsWith('/api/auth');
+
 	// Protect routes
-	if (event.url.pathname !== '/login' && !event.url.pathname.startsWith('/api/auth') && !session) {
+	if (!isPublicPath && !session) {
 		throw redirect(302, '/login');
 	}
 
