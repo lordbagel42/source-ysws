@@ -1,0 +1,43 @@
+{
+  "name": "projects/14307926202671112492",
+  "projectId": "14307926202671112492",
+  "title": "Source - Rebuild the Protocol",
+  "visibility": "PUBLIC",
+  "projectType": "TEXT_TO_UI_PRO",
+  "origin": "STITCH",
+  "deviceType": "DESKTOP",
+  "designTheme": {
+    "colorMode": "DARK",
+    "font": "SPACE_GROTESK",
+    "headlineFont": "SPACE_GROTESK",
+    "bodyFont": "INTER",
+    "labelFont": "SPACE_GROTESK",
+    "customColor": "#00FF41",
+    "overridePrimaryColor": "#00FF41",
+    "overrideSecondaryColor": "#00E5FF",
+    "overrideTertiaryColor": "#FFFFFF",
+    "overrideNeutralColor": "#0D0D0D",
+    "spacingScale": 1
+  },
+  "screens": {
+    "mission-control": {
+      "id": "02e35ef0114347a586562e7dd2ed7eab",
+      "sourceScreen": "projects/14307926202671112492/screens/02e35ef0114347a586562e7dd2ed7eab",
+      "width": 1280,
+      "height": 1024,
+      "label": "SOURCE - HOMEPAGE / MISSION"
+    },
+    "hardware-manifest": {
+      "id": "3722b9475bde49dcb1b4651db423cbe5",
+      "sourceScreen": "projects/14307926202671112492/screens/3722b9475bde49dcb1b4651db423cbe5",
+      "width": 1280,
+      "height": 1112
+    },
+    "streak-tracker": {
+      "id": "0009007cbcb94741a90b12df29dd3ac4",
+      "sourceScreen": "projects/14307926202671112492/screens/0009007cbcb94741a90b12df29dd3ac4",
+      "width": 1280,
+      "height": 1385
+    }
+  }
+}
