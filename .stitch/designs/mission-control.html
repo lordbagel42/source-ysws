@@ -1,0 +1,408 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SOURCE - MISSION</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error": "#ffb4ab",
+              "surface-dim": "#131313",
+              "on-secondary-fixed-variant": "#004f58",
+              "surface-container-highest": "#353534",
+              "on-tertiary-container": "#5f6161",
+              "on-tertiary": "#2f3131",
+              "on-surface-variant": "#b9ccb2",
+              "outline": "#84967e",
+              "error-container": "#93000a",
+              "surface-container-high": "#2a2a2a",
+              "on-surface": "#e5e2e1",
+              "tertiary": "#f9f9f9",
+              "secondary-fixed-dim": "#00daf3",
+              "on-secondary": "#00363d",
+              "surface-container": "#201f1f",
+              "on-tertiary-fixed-variant": "#454747",
+              "on-background": "#e5e2e1",
+              "surface-container-low": "#1c1b1b",
+              "background": "#131313",
+              "on-primary": "#003907",
+              "primary": "#ebffe2",
+              "tertiary-fixed-dim": "#c6c6c7",
+              "surface-bright": "#3a3939",
+              "on-secondary-fixed": "#001f24",
+              "on-primary-container": "#007117",
+              "on-secondary-container": "#00616d",
+              "on-tertiary-fixed": "#1a1c1c",
+              "surface-tint": "#00e639",
+              "primary-container": "#00ff41",
+              "on-primary-fixed": "#002203",
+              "tertiary-fixed": "#e2e2e2",
+              "surface-container-lowest": "#0e0e0e",
+              "on-error": "#690005",
+              "inverse-primary": "#006e16",
+              "primary-fixed-dim": "#00e639",
+              "on-primary-fixed-variant": "#00530e",
+              "surface": "#131313",
+              "inverse-surface": "#e5e2e1",
+              "surface-variant": "#353534",
+              "secondary-fixed": "#9cf0ff",
+              "secondary-container": "#00e3fd",
+              "secondary": "#bdf4ff",
+              "primary-fixed": "#72ff70",
+              "outline-variant": "#3b4b37",
+              "tertiary-container": "#dcdddd",
+              "on-error-container": "#ffdad6",
+              "inverse-on-surface": "#313030"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .crt-glow {
+            background: linear-gradient(180deg, #EBFFE2 0%, #00FF41 100%);
+        }
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px #0E0E0E;
+        }
+        .blinking-cursor::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .glass-hud {
+            background: rgba(28, 27, 27, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .heat-gradient {
+            background: linear-gradient(90deg, #ff3e00 0%, #f0ff00 50%, #00FF41 100%);
+        }
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 255, 65, 0.2);
+            position: absolute;
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan {
+            from { top: 0; }
+            to { top: 100%; }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b4b37;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #84967e;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary min-h-screen flex">
+<!-- Side Navigation Shell (Layout from SCREEN_5) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-[#1C1B1B] border-r-2 border-[#2A2A2A] z-40 flex flex-col">
+<div class="p-6 flex flex-col h-full justify-between">
+<div class="flex flex-col gap-8">
+<!-- Logo & User Profile -->
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-4 border-b-2 border-[#2A2A2A] pb-6">
+<span class="text-2xl font-black text-[#00FF41] tracking-tighter font-headline" style="">SOURCE</span>
+</div>
+<div class="flex gap-3 items-center border-b-2 border-[#2A2A2A] pb-6">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-[#00FF41]" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDTFLK7diY2_sb86EBkz_CDLF3UXCJpgugA78oc0bTEFf0K58DA5czXlsGrXTV0xVRlMNBRNehOztG-9Qy8qvqXU11Tisd_citdnDzVTiccpL7OYOhS6CfhdEGsk80jVkiJ9kcTXIL-m634Tii3lwgemCvMlc9gTJ1ZN7CM5GMQ03H6Q_IEcOyv3WKqg86yMHNOVY_3oasqiE1WJlINZTKwbEqklAhvXAUBRzB5zWZJC9xb65bhVGPnEChLGhsVKzXiURvllGxbsoVD&quot;);"></div>
+<div class="flex flex-col overflow-hidden">
+<h1 class="text-[#00FF41] text-xs font-bold uppercase tracking-widest font-label" style="">OPERATOR_01</h1>
+<p class="text-[#84967E] text-[10px] uppercase tracking-widest font-label" style="">STATUS: ACTIVE</p>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<div class="flex items-center gap-3 bg-[#2A2A2A] text-[#00FF41] border-l-4 border-[#00FF41] px-4 py-3 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">assignment</span>
+<p class="text-xs font-label font-bold uppercase tracking-widest" style="">MISSION</p>
+</div>
+<div class="flex items-center gap-3 text-[#84967E] px-4 py-3 hover:bg-[#2A2A2A]/50 hover:text-[#EBFFE2] transition-colors cursor-pointer active:scale-[0.99]">
+<span class="material-symbols-outlined" style="">bolt</span>
+<p class="text-xs font-label font-bold uppercase tracking-widest" style="">STREAK</p>
+</div>
+<div class="flex items-center gap-3 text-[#84967E] px-4 py-3 hover:bg-[#2A2A2A]/50 hover:text-[#EBFFE2] transition-colors cursor-pointer active:scale-[0.99]">
+<span class="material-symbols-outlined" style="">memory</span>
+<p class="text-xs font-label font-bold uppercase tracking-widest" style="">HARDWARE</p>
+</div>
+<div class="flex items-center gap-3 text-[#84967E] px-4 py-3 hover:bg-[#2A2A2A]/50 hover:text-[#EBFFE2] transition-colors cursor-pointer active:scale-[0.99]">
+<span class="material-symbols-outlined" style="">inventory_2</span>
+<p class="text-xs font-label font-bold uppercase tracking-widest" style="">VAULT</p>
+</div>
+</nav>
+</div>
+<!-- Bottom Actions -->
+<div class="flex flex-col gap-4">
+<button class="flex w-full cursor-pointer items-center justify-center h-12 bg-primary-container text-on-primary text-xs font-black tracking-widest font-label border-2 border-primary-fixed hover:bg-primary-fixed-dim active:scale-[0.99] transition-all" style="">
+                INITIALIZE_BUILD
+            </button>
+<div class="flex flex-col gap-1 border-t-2 border-[#2A2A2A] pt-4">
+<div class="flex items-center gap-3 px-4 py-3 text-[#84967E] hover:text-[#EBFFE2] hover:bg-[#2A2A2A] transition-colors cursor-pointer active:scale-[0.99]">
+<span class="material-symbols-outlined text-sm" style="">settings</span>
+<p class="text-[10px] font-label font-bold uppercase tracking-widest" style="">SETTINGS</p>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-error hover:text-on-error hover:bg-[#2A2A2A] transition-colors cursor-pointer active:scale-[0.99]">
+<span class="material-symbols-outlined text-sm" style="">logout</span>
+<p class="text-[10px] font-label font-bold uppercase tracking-widest" style="">LOGOUT</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas (Hybrid layout from SCREEN_13 content) -->
+<main class="ml-64 flex-1 h-screen overflow-y-auto bg-background">
+<!-- Hero Section (Build X Get Y Deal) -->
+<section class="min-h-[85vh] flex flex-col justify-center px-8 md:px-16 border-b-2 border-outline-variant relative overflow-hidden">
+<div class="absolute top-10 right-10 text-[120px] font-black text-surface-container-high opacity-20 pointer-events-none select-none font-headline leading-none" style="">
+            0xSOURCE
+        </div>
+<div class="max-w-4xl z-10">
+<div class="mb-4 inline-block bg-surface-container-high px-3 py-1 border-2 border-outline-variant">
+<span class="text-primary font-label text-xs tracking-widest uppercase" style="">SYSTM_INITIALIZED //</span>
+</div>
+<h1 class="text-6xl md:text-9xl font-headline font-black text-on-surface leading-[0.85] tracking-tighter mb-8" style="">SOURCE&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; BUILD <span class="text-primary-container" style="">X</span><br>
+                GET <span class="text-secondary" style="">T-DECK + $275</span>
+</h1>
+<p class="text-xl md:text-2xl font-body text-on-surface-variant max-w-2xl mb-12 border-l-4 border-primary pl-6 uppercase" style="">
+                BUILD AN OPEN-SOURCE ALTERNATIVE<br>GET THE HARDWARE TO BUILD IT</p>
+<div class="flex flex-col sm:flex-row gap-6">
+<button class="px-8 py-5 text-on-primary font-headline font-black text-xl hard-shadow hover:-translate-x-1 hover:-translate-y-1 transition-transform border-2 border-primary-fixed uppercase tracking-tighter bg-primary-container" style="">
+                    INITIALIZE_HARDWARE_BUILD
+                </button>
+<div class="flex items-center gap-4 px-6 py-4 bg-surface-container-lowest border-2 border-outline-variant">
+<span class="material-symbols-outlined text-secondary animate-pulse" style="">sensors</span>
+<span class="text-outline font-label text-xs uppercase blinking-cursor" style="">Awaiting hardware schematic</span>
+</div>
+</div>
+</div>
+</section>
+<!-- STREAK_HEAT / THERMAL_BOOST Section -->
+<section class="py-24 px-8 md:px-16 border-b-2 border-outline-variant bg-[#0E0E0E] relative overflow-hidden">
+<div class="scanline"></div>
+<div class="max-w-6xl mx-auto relative z-10">
+<div class="flex flex-col lg:flex-row items-center gap-12">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined animate-pulse text-primary-container" style="">local_fire_department</span>
+<span class="font-label text-sm tracking-[0.3em] uppercase font-bold text-primary-container" style="">Thermal Overload Protocol</span>
+</div>
+<h2 class="text-5xl md:text-7xl font-headline font-black uppercase tracking-tighter mb-6 leading-none text-primary-container" style="">STREAK_HEAT</h2>
+<p class="text-xl text-on-surface-variant mb-8 font-body border-l-4 pl-6 uppercase border-primary-container" style="">
+                        MORE CONSECUTIVE BUILD DAYS = HIGHER 'HEAT' LEVEL. DON'T LET THE CORE COOL DOWN.
+                    </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+<div class="p-6 border-2 border-outline-variant bg-surface-container-low hover:border-[#ff3e00] transition-colors">
+<div class="text-primary-container font-headline font-black text-2xl mb-2" style="">ALGORITHM_PRIORITY</div>
+<p class="text-xs text-outline font-label uppercase" style="">BOOST_FACTOR: +240% // POSITION: TOP_ROW</p>
+</div>
+<div class="p-6 border-2 border-outline-variant bg-surface-container-low hover:border-[#ff3e00] transition-colors">
+<div class="text-primary-container font-headline font-black text-2xl mb-2" style="">REWARD_MULTIPLIER</div>
+<p class="text-xs text-outline font-label uppercase" style="">CURRENT_BUDGET: $275 x 2.4 = $660 MAX_POTENTIAL</p>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-96 flex flex-col items-center justify-center p-8 border-4 bg-surface-container-lowest hard-shadow relative border-primary-container">
+<div class="absolute -top-4 -left-4 text-black font-black px-4 py-1 text-xs uppercase bg-primary-container" style="">System Status</div>
+<div class="text-[10px] text-outline font-label uppercase mb-8 self-start" style="">Core_Temperature_Monitoring</div>
+<div class="relative w-full h-64 flex items-end gap-2 mb-8 bg-surface-container-high p-4 border-2 border-outline-variant overflow-hidden">
+<div class="absolute inset-0 opacity-10 pointer-events-none flex flex-col justify-between p-2">
+<div class="border-b border-outline w-full"></div>
+<div class="border-b border-outline w-full"></div>
+<div class="border-b border-outline w-full"></div>
+<div class="border-b border-outline w-full"></div>
+<div class="border-b border-outline w-full"></div>
+</div>
+<div class="flex-1 bg-[#ff3e00] h-1/4"></div>
+<div class="flex-1 bg-[#ff3e00] h-2/4"></div>
+<div class="flex-1 bg-[#f0ff00] h-3/4"></div>
+<div class="flex-1 bg-[#00FF41] h-full animate-pulse"></div>
+<div class="flex-1 bg-[#00FF41] h-full opacity-30"></div>
+<div class="flex-1 bg-[#00FF41] h-full opacity-10"></div>
+</div>
+<div class="w-full space-y-4">
+<div class="flex justify-between items-end">
+<span class="text-[10px] font-label text-outline uppercase" style="">Current_Thermal_Boost</span>
+<span class="text-4xl font-headline font-black text-primary-container" style="">x2.4</span>
+</div>
+<div class="w-full h-4 bg-surface-container-high border border-outline-variant relative">
+<div class="h-full heat-gradient w-3/4"></div>
+</div>
+<div class="text-[10px] font-label uppercase text-center animate-pulse text-primary-container" style="">Optimal state: Maximum efficiency reached</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- RECENT_SHIPMENTS -->
+<section class="py-24 px-8 md:px-16">
+<div class="flex items-end justify-between mb-12">
+<div>
+<span class="text-outline font-label text-xs tracking-widest uppercase mb-2 block" style="">Proof of Work</span>
+<h2 class="text-4xl md:text-6xl font-headline font-black uppercase tracking-tighter" style="">RECENT_SHIPMENTS</h2>
+</div>
+<div class="text-right hidden md:block">
+<div class="text-primary-container font-headline font-bold text-2xl" style="">4,291</div>
+<div class="text-outline font-label text-[10px] uppercase" style="">Validated Shipments</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Project 1 -->
+<div class="bg-surface-container-low border-2 border-outline-variant p-6 hover:border-primary transition-colors group">
+<div class="aspect-video mb-6 overflow-hidden bg-surface-container-lowest border-2 border-outline-variant relative">
+<img alt="Mechanical cyberdeck with orange keys" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Oay4BvS-4_f_ZfLpQz0y-S9X7Z0_QpG_z8_N-k3vXv_m-J-8vX_y" style="">
+</div>
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline font-bold text-xl uppercase" style="">ONYX_DECK</h3>
+<span class="material-symbols-outlined text-outline" style="">open_in_new</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 font-body" style="">Custom 40% mechanical keyboard with integrated LoRa mesh terminal.</p>
+<div class="flex gap-2">
+<span class="text-[10px] bg-surface-container-high px-2 py-1 text-outline font-label border border-outline-variant uppercase" style="">LORA</span>
+<span class="text-[10px] bg-surface-container-high px-2 py-1 text-outline font-label border border-outline-variant uppercase" style="">PCB_DESIGN</span>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="bg-surface-container-low border-2 border-outline-variant p-6 hover:border-secondary transition-colors group">
+<div class="aspect-video mb-6 overflow-hidden bg-surface-container-lowest border-2 border-outline-variant relative">
+<img alt="Sleek 3D printed robotic arm" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-z_8-J-8vX_y_m-J-8vX_y_m-J-8vX_y_m-J-8vX_y_m-J-8vX_y" style="">
+</div>
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline font-bold text-xl uppercase" style="">AXIS_06</h3>
+<span class="material-symbols-outlined text-outline" style="">open_in_new</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 font-body" style="">6-axis robotic arm with sub-millimeter precision for SMD assembly.</p>
+<div class="flex gap-2">
+<span class="text-[10px] bg-surface-container-high px-2 py-1 text-outline font-label border border-outline-variant uppercase" style="">ROBOTICS</span>
+<span class="text-[10px] bg-surface-container-high px-2 py-1 text-outline font-label border border-outline-variant uppercase" style="">STM32</span>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="bg-surface-container-low border-2 border-outline-variant p-6 hover:border-error transition-colors group">
+<div class="aspect-video mb-6 overflow-hidden bg-surface-container-lowest border-2 border-outline-variant relative">
+<img alt="Split ergonomic keyboard with RGB" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnxorM0Fbq92TNOEbdqyimxL8YngXtMwJsKnoop6UCfh6gMkm1rc05lU64Ot3eovPeaY2A4uyil80brAW28EZ76sHpQadrLpHTuB6w1ECDf_Y3T0X2UWf3tV8xxCShqQfwkJ6_KT_l7qH3_vs2qPAV9YYQrZ--qcQzhBuNDJb7LXXH6U8kQDH7r7XhUywJkelbuagihxKkA7DuwZxqwjxQ2ytJvtYpIPJpelYnuHOg52uraAA_x626tO6q0wPsnVvI3S9qZv6a1wD8" style="">
+</div>
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline font-bold text-xl uppercase" style="">VOID_SPLIT</h3>
+<span class="material-symbols-outlined text-outline" style="">open_in_new</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 font-body" style="">Wireless split ergonomic keyboard with customized ZMK firmware.</p>
+<div class="flex gap-2">
+<span class="text-[10px] bg-surface-container-high px-2 py-1 text-outline font-label border border-outline-variant uppercase" style="">BLE</span>
+<span class="text-[10px] bg-surface-container-high px-2 py-1 text-outline font-label border border-outline-variant uppercase" style="">QMK/ZMK</span>
+</div>
+</div>
+</div>
+</section>
+<!-- REWARD_LOG -->
+<section class="py-24 px-8 md:px-16 bg-surface-container-lowest border-y-2 border-outline-variant">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-5xl md:text-7xl font-headline font-black uppercase tracking-tighter mb-4" style="">REWARD_LOG</h2>
+<p class="text-outline font-label tracking-widest uppercase" style="">Target mission rewards for hardware builders</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-outline-variant border-2 border-outline-variant">
+<div class="bg-background p-8 flex items-center justify-between group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-6">
+<span class="text-4xl font-headline font-black text-outline group-hover:text-primary-container text-primary-container" style="">01</span>
+<div>
+<h4 class="text-xl font-headline font-bold uppercase" style="">LILYGO T-DECK</h4>
+<p class="text-xs text-outline font-label uppercase" style="">OPEN-SOURCE HARDWARE TERMINAL</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-primary-container text-on-primary font-black text-[10px] uppercase" style="">GUARANTEED</span>
+</div>
+<div class="bg-background p-8 flex items-center justify-between group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-6">
+<span class="text-4xl font-headline font-black text-outline group-hover:text-secondary text-primary-container" style="">02</span>
+<div>
+<h4 class="text-xl font-headline font-bold uppercase" style="">$275 HARDWARE BUDGET</h4>
+<p class="text-xs text-outline font-label uppercase" style="">REIMBURSEMENT FOR PROJECT MATERIALS</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-primary-container text-on-primary font-black text-[10px] uppercase" style="">AVAILABLE</span>
+</div>
+<div class="bg-background p-8 flex items-center justify-between group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-6">
+<span class="text-4xl font-headline font-black text-outline group-hover:text-primary-container text-primary-container" style="">03</span>
+<div>
+<h4 class="text-xl font-headline font-bold uppercase" style="">CUSTOM HARDWARE KIT</h4>
+<p class="text-xs text-outline font-label uppercase" style="">REMAINING BUDGET ALLOCATION FOR TOOLS</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-primary-container text-on-primary font-black text-[10px] uppercase" style="">AVAILABLE</span>
+</div>
+<div class="bg-background p-8 flex items-center justify-between group hover:bg-surface-container-low transition-colors opacity-50">
+<div class="flex items-center gap-6">
+<span class="text-4xl font-headline font-black text-outline text-primary-container" style="">04</span>
+<div>
+<h4 class="text-xl font-headline font-bold uppercase" style="">SYSTEM OVERRIDE</h4>
+<p class="text-xs text-outline font-label uppercase" style="">VAL: ??? // STOCK: 00</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-surface-container-high text-outline font-black text-[10px] border border-outline-variant uppercase" style="">LOCKED</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Terminal Interaction Simulation -->
+<section class="py-24 px-8 md:px-16 overflow-hidden">
+<div class="bg-surface-container-lowest border-2 border-outline-variant p-2 md:p-4 max-w-5xl mx-auto">
+<div class="bg-surface-container-high px-4 py-2 border-b-2 border-outline-variant flex items-center gap-4">
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+</div>
+<span class="text-[10px] font-label text-outline uppercase tracking-widest" style="">SOURCE_OS // HARDWARE_TERMINAL</span>
+</div>
+<div class="p-6 font-headline text-sm md:text-base space-y-2">
+<p class="text-primary-container" style=""><span class="text-outline" style="">guest@source:~$</span> ./verify_hardware_only.sh</p>
+<p class="text-on-surface" style="">Scanning submission type...</p>
+<p class="text-on-surface" style="">Checking bill of materials...</p>
+<p class="text-secondary" style="">[OK] Hardware project detected.</p>
+<p class="text-secondary" style="">[OK] Open-source schematics found.</p>
+<p class="text-on-surface" style="">Ready to allocate LilyGO T-Deck and budget.</p>
+<div class="flex items-center gap-2 pt-4">
+<span class="text-outline" style="">guest@source:~$</span>
+<span class="text-primary-container blinking-cursor font-bold" style="">ship --hardware --open-source</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Shell -->
+<footer class="bg-[#0E0E0E] text-[#00FF41] font-mono text-[10px] uppercase tracking-[0.2em] border-t-2 border-[#2A2A2A] py-8 px-10 flex justify-between items-center">
+<div class="flex items-center gap-8">
+<span class="font-black" style="">© 2024 SOURCE_REBUILD_PROTOCOL // HACK_CLUB_YSWS</span>
+</div>
+<div class="flex gap-6">
+<a class="text-[#353534] hover:text-[#00FF41] transition-colors" href="#" style="">GITHUB</a>
+<a class="text-[#353534] hover:text-[#00FF41] transition-colors" href="#" style="">DISCORD</a>
+<a class="text-[#353534] hover:text-[#00FF41] transition-colors" href="#" style="">HACK_CLUB</a>
+<a class="text-[#353534] hover:text-[#00FF41] transition-colors" href="#" style="">MANIFESTO</a>
+</div>
+</footer>
+</main>
+</body></html>
