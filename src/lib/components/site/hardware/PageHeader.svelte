@@ -10,7 +10,7 @@
 			MANIFEST_ID: 0x2A7F_HARDWARE
 		</span>
 		<h1
-			class="crt-glow font-headline text-5xl font-black uppercase leading-none tracking-tighter text-primary md:text-6xl"
+			class="crt-glow font-headline text-5xl leading-none font-black tracking-tighter text-primary uppercase md:text-6xl"
 		>
 			Hardware Catalog
 		</h1>

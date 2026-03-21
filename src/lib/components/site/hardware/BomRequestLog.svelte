@@ -45,7 +45,7 @@
 <section>
 	<div class="mb-4 flex items-center justify-between border-b border-outline-variant pb-2">
 		<h2
-			class="flex items-center gap-2 font-headline text-lg font-bold uppercase tracking-widest text-primary"
+			class="flex items-center gap-2 font-headline text-lg font-bold tracking-widest text-primary uppercase"
 		>
 			<FileText class="size-4" />
 			BOM_Request_Log
@@ -59,12 +59,30 @@
 		<Table.Root class="font-mono text-xs">
 			<Table.Header>
 				<Table.Row class="border-outline-variant">
-					<Table.Head class="font-headline text-[10px] uppercase tracking-widest text-muted-foreground">PART_ID</Table.Head>
-					<Table.Head class="font-headline text-[10px] uppercase tracking-widest text-muted-foreground">COMPONENT</Table.Head>
-					<Table.Head class="font-headline text-[10px] uppercase tracking-widest text-muted-foreground">QTY</Table.Head>
-					<Table.Head class="font-headline text-[10px] uppercase tracking-widest text-muted-foreground">UNIT_COST</Table.Head>
-					<Table.Head class="font-headline text-[10px] uppercase tracking-widest text-muted-foreground">STATUS</Table.Head>
-					<Table.Head class="font-headline text-[10px] uppercase tracking-widest text-muted-foreground">DATE</Table.Head>
+					<Table.Head
+						class="font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
+						>PART_ID</Table.Head
+					>
+					<Table.Head
+						class="font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
+						>COMPONENT</Table.Head
+					>
+					<Table.Head
+						class="font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
+						>QTY</Table.Head
+					>
+					<Table.Head
+						class="font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
+						>UNIT_COST</Table.Head
+					>
+					<Table.Head
+						class="font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
+						>STATUS</Table.Head
+					>
+					<Table.Head
+						class="font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
+						>DATE</Table.Head
+					>
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
@@ -76,15 +94,21 @@
 						<Table.Cell>${item.unitCost.toFixed(2)}</Table.Cell>
 						<Table.Cell>
 							{#if item.status === 'APPROVED'}
-								<span class="border border-primary/30 bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase text-primary">
+								<span
+									class="border border-primary/30 bg-primary/10 px-2 py-0.5 text-[10px] font-bold text-primary uppercase"
+								>
 									{item.status}
 								</span>
 							{:else if item.status === 'PENDING'}
-								<span class="border border-secondary/30 bg-secondary/10 px-2 py-0.5 text-[10px] font-bold uppercase text-secondary">
+								<span
+									class="border border-secondary/30 bg-secondary/10 px-2 py-0.5 text-[10px] font-bold text-secondary uppercase"
+								>
 									{item.status}
 								</span>
 							{:else}
-								<span class="border border-outline-variant bg-muted px-2 py-0.5 text-[10px] font-bold uppercase text-muted-foreground">
+								<span
+									class="border border-outline-variant bg-muted px-2 py-0.5 text-[10px] font-bold text-muted-foreground uppercase"
+								>
 									{item.status}
 								</span>
 							{/if}

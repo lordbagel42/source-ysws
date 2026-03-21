@@ -4,12 +4,12 @@
 
 <div class="relative border-2 border-outline bg-surface-container-low p-6">
 	<span
-		class="absolute -top-3 right-4 bg-surface px-2 font-headline text-[10px] uppercase tracking-widest text-muted-foreground"
+		class="bg-surface absolute -top-3 right-4 px-2 font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
 	>
 		Hardware_Req_v1
 	</span>
 	<h3
-		class="mb-6 flex items-center gap-2 font-headline text-lg font-bold uppercase tracking-widest text-primary"
+		class="mb-6 flex items-center gap-2 font-headline text-lg font-bold tracking-widest text-primary uppercase"
 	>
 		<PlusSquare class="size-5" />
 		Request_New_Part
@@ -18,7 +18,7 @@
 	<form class="space-y-5">
 		<div>
 			<label
-				class="mb-2 block font-headline text-[10px] uppercase tracking-widest text-muted-foreground"
+				class="mb-2 block font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
 			>
 				Vendor_Source
 			</label>
@@ -34,7 +34,7 @@
 
 		<div>
 			<label
-				class="mb-2 block font-headline text-[10px] uppercase tracking-widest text-muted-foreground"
+				class="mb-2 block font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
 			>
 				Component_URL
 			</label>
@@ -48,26 +48,22 @@
 		<div class="grid grid-cols-2 gap-4">
 			<div>
 				<label
-					class="mb-2 block font-headline text-[10px] uppercase tracking-widest text-muted-foreground"
+					class="mb-2 block font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
 				>
 					Unit_Price
 				</label>
 				<div class="relative">
-					<span
-						class="absolute left-3 top-2 text-xs text-on-surface-variant"
-					>
-						$
-					</span>
+					<span class="absolute top-2 left-3 text-xs text-on-surface-variant"> $ </span>
 					<input
 						type="number"
 						placeholder="0.00"
-						class="w-full border-2 border-outline-variant bg-surface-container-lowest py-2 pl-6 pr-3 font-mono text-xs text-on-surface outline-none focus:border-secondary"
+						class="w-full border-2 border-outline-variant bg-surface-container-lowest py-2 pr-3 pl-6 font-mono text-xs text-on-surface outline-none focus:border-secondary"
 					/>
 				</div>
 			</div>
 			<div>
 				<label
-					class="mb-2 block font-headline text-[10px] uppercase tracking-widest text-muted-foreground"
+					class="mb-2 block font-headline text-[10px] tracking-widest text-muted-foreground uppercase"
 				>
 					Quantity
 				</label>
@@ -82,14 +78,14 @@
 		<div class="border-t border-outline-variant pt-4">
 			<button
 				type="button"
-				class="mb-3 flex w-full items-center justify-center gap-2 border-2 border-primary bg-surface py-3 font-headline font-bold uppercase tracking-widest text-primary transition-all hover:bg-primary hover:text-primary-foreground active:translate-y-0.5"
+				class="bg-surface mb-3 flex w-full items-center justify-center gap-2 border-2 border-primary py-3 font-headline font-bold tracking-widest text-primary uppercase transition-all hover:bg-primary hover:text-primary-foreground active:translate-y-0.5"
 			>
 				<CheckCircle class="size-4" />
 				VERIFY_COST
 			</button>
 			<button
 				type="submit"
-				class="w-full bg-primary py-3 font-headline font-bold uppercase tracking-widest text-primary-foreground transition-all hover:bg-primary/80"
+				class="w-full bg-primary py-3 font-headline font-bold tracking-widest text-primary-foreground uppercase transition-all hover:bg-primary/80"
 			>
 				PUSH_TO_MANIFEST
 			</button>

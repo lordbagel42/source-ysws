@@ -5,7 +5,7 @@
 <section>
 	<div class="mb-4 flex items-center justify-between border-b border-outline-variant pb-2">
 		<h2
-			class="flex items-center gap-2 font-headline text-lg font-bold uppercase tracking-widest text-primary"
+			class="flex items-center gap-2 font-headline text-lg font-bold tracking-widest text-primary uppercase"
 		>
 			<Package class="size-4" />
 			Active_Inventory
@@ -35,14 +35,14 @@
 					</h3>
 					<div class="text-right">
 						<span class="font-headline text-lg font-bold">$0.00</span>
-						<span class="text-[10px] font-normal uppercase text-muted-foreground">
+						<span class="text-[10px] font-normal text-muted-foreground uppercase">
 							(VOUCHER_USED)
 						</span>
 					</div>
 				</div>
 				<p class="max-w-md font-mono text-xs leading-relaxed text-on-surface-variant">
-					ESP32-S3 Dual-Core Processor, 2.8" LCD, LoRa Module, QWERTY Keyboard. Core build
-					component for YSWS_CONSOLE.
+					ESP32-S3 Dual-Core Processor, 2.8" LCD, LoRa Module, QWERTY Keyboard. Core build component
+					for YSWS_CONSOLE.
 				</p>
 				<div class="mt-4 flex gap-2">
 					<span

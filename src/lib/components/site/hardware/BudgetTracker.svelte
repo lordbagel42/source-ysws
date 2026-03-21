@@ -4,7 +4,7 @@
 
 <div class="relative min-w-[300px] border-2 border-primary bg-surface-container-high p-6">
 	<span
-		class="absolute -top-3 left-4 bg-surface px-2 font-headline text-[10px] uppercase tracking-widest text-primary"
+		class="bg-surface absolute -top-3 left-4 px-2 font-headline text-[10px] tracking-widest text-primary uppercase"
 	>
 		Global Allocation
 	</span>

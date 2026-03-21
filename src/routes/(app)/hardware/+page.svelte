@@ -34,7 +34,7 @@
 <div class="mt-20 border-t-2 border-outline-variant pt-12">
 	<div class="grid grid-cols-1 gap-8 md:grid-cols-4">
 		<div class="md:col-span-1">
-			<h4 class="mb-4 font-headline text-xs font-bold uppercase tracking-[0.3em] text-primary">
+			<h4 class="mb-4 font-headline text-xs font-bold tracking-[0.3em] text-primary uppercase">
 				System_Logs
 			</h4>
 			<div class="space-y-2 font-mono text-[9px] text-on-surface-variant">
@@ -52,7 +52,7 @@
 		<div class="md:col-span-3">
 			<div class="flex h-full flex-col justify-end border-l border-outline-variant pl-8">
 				<p
-					class="font-headline text-3xl font-black uppercase leading-none tracking-tighter text-surface-container-highest opacity-50"
+					class="font-headline text-3xl leading-none font-black tracking-tighter text-surface-container-highest uppercase opacity-50"
 				>
 					Sovereign_Hardware_Supply_Chain_v2024
 				</p>
