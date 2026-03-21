@@ -28,10 +28,12 @@
 		}
 	});
 
-	type Props = (HTMLButtonAttributes | HTMLAnchorAttributes) &
-		VariantProps<typeof buttonVariants> & {
-			href?: string;
-		};
+	interface Props extends VariantProps<typeof buttonVariants> {
+		class?: string;
+		children?: import('svelte').Snippet;
+		href?: string;
+		[key: string]: any;
+	}
 
 	let { class: className, variant, size, children, href, ...rest }: Props = $props();
 </script>

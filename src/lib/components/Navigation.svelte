@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { cn } from '$lib/utils';
+	import { authClient } from '$lib/auth-client';
+	import { goto } from '$app/navigation';
 
 	const navItems = [
 		{ name: 'MISSION', href: '/', icon: 'assignment' },
@@ -13,6 +15,13 @@
 		if (href === '/') return page.url.pathname === '/';
 		return page.url.pathname.startsWith(href);
 	}
+
+	async function handleLogout() {
+		await authClient.signOut();
+		goto('/login');
+	}
+
+	const user = $derived(page.data.user);
 </script>
 
 <!-- Desktop Sidebar -->
@@ -23,12 +32,18 @@
 		<div class="mb-4 text-xl font-bold tracking-tighter text-primary-container">YSWS_CONSOLE</div>
 		<div class="flex items-center gap-3">
 			<div
-				class="flex h-8 w-8 items-center justify-center border border-outline-variant bg-surface-container-highest"
+				class="flex h-8 w-8 items-center justify-center overflow-hidden border border-outline-variant bg-surface-container-highest"
 			>
-				<span class="material-symbols-outlined text-xl text-primary-container">account_circle</span>
+				{#if user?.image}
+					<img src={user.image} alt={user.name} class="h-full w-full object-cover" />
+				{:else}
+					<span class="material-symbols-outlined text-xl text-primary-container"
+						>account_circle</span
+					>
+				{/if}
 			</div>
-			<div>
-				<div class="font-black text-primary-container">OPERATOR_01</div>
+			<div class="overflow-hidden">
+				<div class="truncate font-black text-primary-container">{user?.name || 'OPERATOR_01'}</div>
 				<div class="text-[10px] text-outline">STATUS: ACTIVE</div>
 			</div>
 		</div>
@@ -59,19 +74,19 @@
 		</button>
 		<div class="mt-4 border-t border-surface-container-high pt-4">
 			<a
-				href="/"
+				href="/settings"
 				class="flex items-center gap-3 px-2 py-2 text-outline transition-all duration-75 hover:bg-surface-container-high hover:text-primary"
 			>
 				<span class="material-symbols-outlined text-lg">settings</span>
 				<span>SETTINGS</span>
 			</a>
-			<a
-				href="/"
-				class="flex items-center gap-3 px-2 py-2 text-outline transition-all duration-75 hover:bg-surface-container-high hover:text-primary"
+			<button
+				onclick={handleLogout}
+				class="flex w-full items-center gap-3 px-2 py-2 text-outline transition-all duration-75 hover:bg-surface-container-high hover:text-primary"
 			>
 				<span class="material-symbols-outlined text-lg">logout</span>
 				<span>LOGOUT</span>
-			</a>
+			</button>
 		</div>
 	</div>
 </aside>

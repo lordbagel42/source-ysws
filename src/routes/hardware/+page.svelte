@@ -4,6 +4,10 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
+	import { enhance } from '$app/forms';
+	import type { PageData, ActionData } from './$types';
+
+	let { data, form }: { data: PageData; form: ActionData } = $props();
 
 	const inventory = [
 		{
@@ -16,6 +20,11 @@
 			img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAsnS7-mDmC6uz8WaYEKAa1ZnX7jd8cEKmz6oJvUsLXurqkpuAhxsfrrUxa0U4Ti57qV4-hE67E4UuxHRE6JrOez3D2k7TG74gHgtyH29QoesjxEe3CjDSLn2TAxltqV29ceWcfNv2MJQGx8lZeTFFt4U21S4PIlXsy2piJasT5s5DmPuC3ASgYQsQ_y4JYSzjfOSH_uASG0z1F-fyhUKZWs2Tq2DRjSuoCUoqbGqzIN1wd2Qd-a6EjheRVRRORgQ4sweV4xUlwH12a'
 		}
 	];
+
+	let totalRequested = $derived(
+		data.requests.reduce((acc, r) => acc + r.unitPrice * r.quantity, 0)
+	);
+	let remainingBudget = $derived(275 - totalRequested);
 </script>
 
 <svelte:head>
@@ -45,10 +54,13 @@
 		</div>
 		<div class="mb-1 font-headline text-xs text-outline">BUDGET_REMAINING:</div>
 		<div class="font-headline text-4xl font-bold tracking-tighter text-primary-container">
-			$275.00
+			${remainingBudget.toFixed(2)}
 		</div>
 		<div class="mt-4 h-1.5 w-full overflow-hidden bg-surface-container-lowest">
-			<div class="h-full w-full bg-primary-container"></div>
+			<div
+				class="h-full bg-primary-container"
+				style="width: {(remainingBudget / 275) * 100}%"
+			></div>
 		</div>
 	</Card.Root>
 </div>
@@ -63,7 +75,7 @@
 				>
 					<span class="material-symbols-outlined text-sm">inventory_2</span> Active_Inventory
 				</h2>
-				<span class="font-label text-[10px] text-outline">ITEMS_COUNT: 01</span>
+				<span class="font-label text-[10px] text-outline">ITEMS_COUNT: {inventory.length}</span>
 			</div>
 
 			{#each inventory as item (item.uid)}
@@ -126,19 +138,51 @@
 				>
 					<span class="material-symbols-outlined text-sm">receipt_long</span> BOM_REQUEST_LOG
 				</h2>
-				<span class="font-label text-[10px] text-outline">PENDING_TOTAL: $0.00</span>
+				<span class="font-label text-[10px] text-outline"
+					>PENDING_TOTAL: ${totalRequested.toFixed(2)}</span
+				>
 			</div>
-			<Card.Root
-				class="border-2 border-dashed border-outline-variant bg-transparent p-12 text-center shadow-none"
-			>
-				<span class="material-symbols-outlined mb-4 text-4xl text-outline-variant">terminal</span>
-				<p class="font-label text-xs tracking-widest text-outline uppercase">
-					No additional components requested.
-				</p>
-				<p class="mt-2 text-[10px] text-outline-variant">
-					Initialize request using the terminal form.
-				</p>
-			</Card.Root>
+
+			{#if data.requests.length === 0}
+				<Card.Root
+					class="border-2 border-dashed border-outline-variant bg-transparent p-12 text-center shadow-none"
+				>
+					<span class="material-symbols-outlined mb-4 text-4xl text-outline-variant">terminal</span>
+					<p class="font-label text-xs tracking-widest text-outline uppercase">
+						No additional components requested.
+					</p>
+					<p class="mt-2 text-[10px] text-outline-variant">
+						Initialize request using the terminal form.
+					</p>
+				</Card.Root>
+			{:else}
+				<div class="space-y-4">
+					{#each data.requests as r (r.id)}
+						<Card.Root
+							class="border-2 border-outline-variant bg-surface-container-low p-4 shadow-none"
+						>
+							<div class="flex items-center justify-between">
+								<div class="flex-1 overflow-hidden">
+									<p class="truncate font-mono text-xs text-primary-container">{r.componentUrl}</p>
+									<p class="mt-1 font-label text-[10px] text-outline uppercase">
+										{r.vendor} // QTY: {r.quantity}
+									</p>
+								</div>
+								<div class="ml-4 text-right">
+									<p class="font-headline text-lg font-bold text-primary">
+										${(r.unitPrice * r.quantity).toFixed(2)}
+									</p>
+									<Badge
+										variant="outline"
+										class="border-outline-variant text-[8px] text-outline uppercase"
+										>{r.status}</Badge
+									>
+								</div>
+							</div>
+						</Card.Root>
+					{/each}
+				</div>
+			{/if}
 		</section>
 	</div>
 
@@ -156,7 +200,7 @@
 				>
 					<span class="material-symbols-outlined">add_box</span> Request_New_Part
 				</h3>
-				<form class="space-y-5">
+				<form method="POST" action="?/requestPart" use:enhance class="space-y-5">
 					<div>
 						<Label
 							for="vendor"
@@ -165,12 +209,14 @@
 						>
 						<select
 							id="vendor"
+							name="vendor"
 							class="w-full appearance-none border-2 border-outline-variant bg-surface-container-lowest px-3 py-2 font-mono text-xs text-on-surface outline-none focus:border-secondary"
+							required
 						>
-							<option>DIGIKEY_ELECTRONICS</option>
-							<option>MOUSER_ELECTRONICS</option>
-							<option>AMAZON_US</option>
-							<option>ADAFRUIT_INDUSTRIES</option>
+							<option value="DIGIKEY_ELECTRONICS">DIGIKEY_ELECTRONICS</option>
+							<option value="MOUSER_ELECTRONICS">MOUSER_ELECTRONICS</option>
+							<option value="AMAZON_US">AMAZON_US</option>
+							<option value="ADAFRUIT_INDUSTRIES">ADAFRUIT_INDUSTRIES</option>
 						</select>
 					</div>
 					<div>
@@ -181,9 +227,11 @@
 						>
 						<Input
 							id="url"
+							name="componentUrl"
 							type="text"
 							placeholder="HTTPS://WWW.MOUSER.COM/P/..."
 							class="h-auto w-full border-2 border-outline-variant bg-surface-container-lowest px-3 py-2 font-mono text-xs text-on-surface outline-none placeholder:text-outline-variant focus:border-secondary"
+							required
 						/>
 					</div>
 					<div class="grid grid-cols-2 gap-4">
@@ -197,9 +245,12 @@
 								<span class="absolute top-2 left-3 text-xs text-outline-variant">$</span>
 								<Input
 									id="price"
+									name="unitPrice"
 									type="number"
+									step="0.01"
 									placeholder="0.00"
 									class="h-auto w-full border-2 border-outline-variant bg-surface-container-lowest py-2 pr-3 pl-6 font-mono text-xs text-on-surface outline-none placeholder:text-outline-variant focus:border-secondary"
+									required
 								/>
 							</div>
 						</div>
@@ -211,12 +262,20 @@
 							>
 							<Input
 								id="quantity"
+								name="quantity"
 								type="number"
 								placeholder="1"
+								min="1"
 								class="h-auto w-full border-2 border-outline-variant bg-surface-container-lowest px-3 py-2 font-mono text-xs text-on-surface outline-none placeholder:text-outline-variant focus:border-secondary"
+								required
 							/>
 						</div>
 					</div>
+
+					{#if form?.message}
+						<p class="text-[10px] font-bold text-error uppercase">{form.message}</p>
+					{/if}
+
 					<div class="border-t border-outline-variant pt-4">
 						<Button
 							type="button"

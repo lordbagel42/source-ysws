@@ -2,27 +2,10 @@
 	import * as Card from '$lib/components/ui/card/index.js';
 	import { Badge } from '$lib/components/ui/badge/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { enhance } from '$app/forms';
+	import type { PageData } from './$types';
 
-	const shipments = [
-		{
-			id: 'ONYX_DECK',
-			desc: 'Custom 40% mechanical keyboard with integrated LoRa mesh terminal.',
-			tags: ['LORA', 'PCB_DESIGN'],
-			img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC3Oay4BvS-4_f_ZfLpQz0y-S9X7Z0_QpG_z8_N-k3vXv_m-J-8vX_y'
-		},
-		{
-			id: 'AXIS_06',
-			desc: '6-axis robotic arm with sub-millimeter precision for SMD assembly.',
-			tags: ['ROBOTICS', 'STM32'],
-			img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA-z_8-J-8vX_y_m-J-8vX_y_m-J-8vX_y_m-J-8vX_y_m-J-8vX_y'
-		},
-		{
-			id: 'VOID_SPLIT',
-			desc: 'Wireless split ergonomic keyboard with customized ZMK firmware.',
-			tags: ['BLE', 'QMK/ZMK'],
-			img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBnxorM0Fbq92TNOEbdqyimxL8YngXtMwJsKnoop6UCfh6gMkm1rc05lU64Ot3eovPeaY2A4uyil80brAW28EZ76sHpQadrLpHTuB6w1ECDf_Y3T0X2UWf3tV8xxCShqQfwkJ6_KT_l7qH3_vs2qPAV9YYQrZ--qcQzhBuNDJb7LXXH6U8kQDH7r7XhUywJkelbuagihxKkA7DuwZxqwjxQ2ytJvtYpIPJpelYnuHOg52uraAA_x626tO6q0wPsnVvI3S9qZv6a1wD8'
-		}
-	];
+	let { data }: { data: PageData } = $props();
 
 	const rewards = [
 		{
@@ -45,6 +28,8 @@
 		},
 		{ id: '04', title: 'SYSTEM OVERRIDE', desc: 'VAL: ??? // STOCK: 00', status: 'LOCKED' }
 	];
+
+	let isInitializing = $state(false);
 </script>
 
 <section
@@ -75,11 +60,25 @@
 			BUILD AN OPEN-SOURCE ALTERNATIVE<br />GET THE HARDWARE TO BUILD IT
 		</p>
 		<div class="flex flex-col gap-6 sm:flex-row">
-			<Button
-				class="hard-shadow border-2 border-primary-fixed bg-primary-container px-8 py-8 font-headline text-xl font-black tracking-tighter text-on-primary uppercase transition-transform hover:-translate-x-1 hover:-translate-y-1"
+			<form
+				method="POST"
+				action="?/initializeBuild"
+				use:enhance={() => {
+					isInitializing = true;
+					return async ({ update }) => {
+						await update();
+						isInitializing = false;
+					};
+				}}
 			>
-				INITIALIZE_HARDWARE_BUILD
-			</Button>
+				<Button
+					type="submit"
+					disabled={isInitializing}
+					class="hard-shadow border-2 border-primary-fixed bg-primary-container px-8 py-8 font-headline text-xl font-black tracking-tighter text-on-primary uppercase transition-transform hover:-translate-x-1 hover:-translate-y-1"
+				>
+					{isInitializing ? 'INITIALIZING...' : 'INITIALIZE_HARDWARE_BUILD'}
+				</Button>
+			</form>
 			<div
 				class="flex items-center gap-4 border-2 border-outline-variant bg-surface-container-lowest px-6 py-4"
 			>
@@ -202,40 +201,49 @@
 			</h2>
 		</div>
 		<div class="hidden text-right md:block">
-			<div class="font-headline text-2xl font-bold text-primary-container">4,291</div>
+			<div class="font-headline text-2xl font-bold text-primary-container">
+				{data.totalValidated.toLocaleString()}
+			</div>
 			<div class="font-label text-[10px] text-outline uppercase">Validated Shipments</div>
 		</div>
 	</div>
 	<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-		{#each shipments as item (item.id)}
-			<Card.Root
-				class="group border-2 border-outline-variant bg-surface-container-low p-6 shadow-none transition-colors hover:border-primary"
-			>
-				<div
-					class="relative mb-6 aspect-video overflow-hidden border-2 border-outline-variant bg-surface-container-lowest"
+		{#if data.recentShipments.length === 0}
+			<div class="col-span-full border-2 border-dashed border-outline-variant py-20 text-center">
+				<p class="font-label text-xs tracking-widest text-outline uppercase">
+					No validated shipments found in cycle.
+				</p>
+			</div>
+		{:else}
+			{#each data.recentShipments as item (item.id)}
+				<Card.Root
+					class="group border-2 border-outline-variant bg-surface-container-low p-6 shadow-none transition-colors hover:border-primary"
 				>
-					<img
-						src={item.img}
-						alt={item.id}
-						class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
-					/>
-				</div>
-				<div class="mb-4 flex items-start justify-between">
-					<h3 class="font-headline text-xl font-bold uppercase">{item.id}</h3>
-					<span class="material-symbols-outlined text-outline">open_in_new</span>
-				</div>
-				<p class="mb-6 font-body text-sm text-on-surface-variant">{item.desc}</p>
-				<div class="flex gap-2">
-					{#each item.tags as tag (tag)}
-						<Badge
-							variant="outline"
-							class="border-outline-variant bg-surface-container-high font-label text-[10px] text-outline uppercase shadow-none"
-							>{tag}</Badge
-						>
-					{/each}
-				</div>
-			</Card.Root>
-		{/each}
+					<div
+						class="relative mb-6 aspect-video overflow-hidden border-2 border-outline-variant bg-surface-container-lowest"
+					>
+						{#if item.imageUrl}
+							<img
+								src={item.imageUrl}
+								alt={item.title}
+								class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+							/>
+						{:else}
+							<div class="flex h-full w-full items-center justify-center bg-surface-container-high">
+								<span class="material-symbols-outlined text-4xl text-outline">image</span>
+							</div>
+						{/if}
+					</div>
+					<div class="mb-4 flex items-start justify-between">
+						<h3 class="font-headline text-xl font-bold uppercase">{item.title}</h3>
+						<span class="material-symbols-outlined text-outline">open_in_new</span>
+					</div>
+					<p class="mb-6 font-body text-sm text-on-surface-variant">
+						{item.description || 'No description provided.'}
+					</p>
+				</Card.Root>
+			{/each}
+		{/if}
 	</div>
 </section>
 

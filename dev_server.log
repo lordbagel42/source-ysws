@@ -1,0 +1,25 @@
+
+> source-ysws@0.0.1 dev /app
+> vite dev
+
+(node:33947) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+  VITE v7.3.1  ready in 2763 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+[2m2026-03-21T12:02:21.390Z[0m [33mWARN[0m [1m[Better Auth]:[0m [better-auth] Warning: your BETTER_AUTH_SECRET should be at least 32 characters long for adequate security. Generate one with `npx auth secret` or `openssl rand -base64 32`.
+[2m2026-03-21T12:02:21.390Z[0m [33mWARN[0m [1m[Better Auth]:[0m [better-auth] Warning: your BETTER_AUTH_SECRET appears low-entropy. Use a randomly generated secret for production.
+Using secrets defined in .env
+12:03:00 PM [vite] (ssr) page reload src/lib/components/Navigation.svelte
+12:03:00 PM [vite] (ssr) page reload src/lib/components/ui/button/button.svelte
+12:03:01 PM [vite] (ssr) page reload src/lib/server/db/schema.ts
+12:03:01 PM [vite] (ssr) page reload src/routes/login/+page.svelte
+12:04:08 PM [vite] (ssr) page reload src/lib/server/db/schema.ts
+12:04:23 PM [vite] (ssr) page reload src/routes/login/+page.svelte
+12:04:29 PM [vite] (ssr) page reload src/lib/components/ui/button/button.svelte
+12:05:14 PM [vite] (ssr) page reload src/routes/login/+page.svelte
+12:07:21 PM [vite] (ssr) page reload src/lib/server/auth.ts
+12:07:43 PM [vite] (ssr) page reload src/lib/auth-client/index.ts
+12:07:49 PM [vite] (ssr) page reload src/routes/login/+page.svelte

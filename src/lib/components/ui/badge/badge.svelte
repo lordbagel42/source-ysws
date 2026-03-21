@@ -20,11 +20,11 @@
 		}
 	});
 
-	type Props = HTMLAttributes<HTMLDivElement> & VariantProps<typeof badgeVariants>;
+	interface Props extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof badgeVariants> {}
 
 	let { class: className, variant, children, ...rest }: Props = $props();
 </script>
 
-<div class={cn(badgeVariants({ variant, className }))} {...rest}>
+<div class={cn(badgeVariants({ variant, className: className as string }))} {...rest}>
 	{@render children?.()}
 </div>

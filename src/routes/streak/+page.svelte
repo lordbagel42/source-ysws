@@ -2,6 +2,9 @@
 	import * as Card from '$lib/components/ui/card/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Progress } from '$lib/components/ui/progress/index.js';
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
 
 	const months = [
 		'JAN',
@@ -19,21 +22,37 @@
 	];
 	const days = ['MON', 'WED', 'FRI'];
 
-	// Generate a mock dataset for the heat map
-	const heatMapData = Array.from({ length: 52 * 7 }, () => {
-		const rand = Math.random();
-		if (rand > 0.9) return 'bg-primary-fixed shadow-[0_0_5px_rgba(0,255,65,0.4)]';
-		if (rand > 0.7) return 'bg-primary-container';
-		if (rand > 0.5) return 'bg-[#007117]';
-		if (rand > 0.3) return 'bg-[#00530e]';
+	// Generate heatmap data from actual activity
+	const getHeatMapColor = (count: number) => {
+		if (count >= 5) return 'bg-primary-fixed shadow-[0_0_5px_rgba(0,255,65,0.4)]';
+		if (count >= 3) return 'bg-primary-container';
+		if (count >= 2) return 'bg-[#007117]';
+		if (count >= 1) return 'bg-[#00530e]';
 		return 'bg-surface-container-highest';
+	};
+
+	// Generate a grid for the last 52 weeks (364 days)
+	const heatMapData = $derived.by(() => {
+		const today = new Date();
+		const startDate = new Date();
+		startDate.setDate(today.getDate() - 363); // Start 52 weeks ago
+
+		return Array.from({ length: 364 }, (_, i) => {
+			const currentDate = new Date(startDate);
+			currentDate.setDate(startDate.getDate() + i);
+			const dateStr = currentDate.toISOString().split('T')[0];
+
+			const entry = data.heatmap.find((h) => {
+				const hDate = new Date(h.date).toISOString().split('T')[0];
+				return hDate === dateStr;
+			});
+			const count = entry ? Number(entry.count) : 0;
+
+			return getHeatMapColor(count);
+		});
 	});
 
-	const logs = [
-		{ date: '2024-10-24 14:32:01', action: 'PULL_REQUEST // PCB_V2.0_REFLOW' },
-		{ date: '2024-10-24 11:15:44', action: 'GIT_COMMIT // FIX_PWM_DUTY_CYCLE' },
-		{ date: '2024-10-23 23:59:12', action: 'STREAK_PRESERVED // LATE_NIGHT_SOLDER' }
-	];
+	let efficiency = $derived(Math.min(100, (data.streak.currentStreak / 30) * 100));
 </script>
 
 <svelte:head>
@@ -46,7 +65,9 @@
 		class="relative overflow-hidden border-2 border-outline-variant bg-surface-container-low p-8 shadow-none lg:col-span-8"
 	>
 		<div class="pointer-events-none absolute top-0 right-0 p-4 opacity-10">
-			<span class="font-headline text-[120px] leading-none font-black">0X14</span>
+			<span class="font-headline text-[120px] leading-none font-black"
+				>0X{data.streak.currentStreak.toString(16).toUpperCase().padStart(2, '0')}</span
+			>
 		</div>
 		<header class="mb-8 border-b-2 border-surface-container-high pb-4">
 			<span class="mb-2 block font-label text-[10px] tracking-[0.2em] text-outline uppercase"
@@ -62,7 +83,7 @@
 			<div class="flex flex-col">
 				<span
 					class="font-headline text-[64px] leading-none font-black text-primary-container md:text-[120px]"
-					>14</span
+					>{data.streak.currentStreak}</span
 				>
 				<span class="font-headline text-xl font-bold tracking-widest text-primary">DAYS_ACTIVE</span
 				>
@@ -72,11 +93,13 @@
 					<span class="font-label text-[10px] tracking-widest text-outline uppercase"
 						>CURRENT_VELOCITY</span
 					>
-					<span class="font-headline text-sm font-bold text-primary-container">88%_EFFICIENCY</span>
+					<span class="font-headline text-sm font-bold text-primary-container"
+						>{efficiency.toFixed(0)}%_EFFICIENCY</span
+					>
 				</div>
 				<div class="h-8 border-2 border-outline-variant bg-surface-container-lowest p-1">
 					<Progress
-						value={88}
+						value={efficiency}
 						class="h-full bg-primary-container shadow-[0_0_15px_rgba(0,255,65,0.4)]"
 					/>
 				</div>
@@ -100,8 +123,8 @@
 				DON'T_BREAK_THE_CHAIN
 			</p>
 			<p class="font-body text-xs leading-relaxed text-outline">
-				System integrity depends on continuous integration. 10 hours remaining to maintain current
-				streak sequence.
+				System integrity depends on continuous integration. Maintain your streak sequence to
+				stabilize the core.
 			</p>
 		</Card.Root>
 		<Card.Root
@@ -173,14 +196,20 @@
 				>LATEST_LOG_INPUTS</span
 			>
 			<Card.Root
-				class="space-y-2 border border-outline-variant bg-surface-container-lowest p-4 font-mono text-[10px] shadow-none"
+				class="min-h-[150px] space-y-2 border border-outline-variant bg-surface-container-lowest p-4 font-mono text-[10px] shadow-none"
 			>
-				{#each logs as log (log.date)}
-					<div class="flex justify-between border-b border-outline-variant/20 pb-1">
-						<span class="text-primary-container">{log.date}</span>
-						<span class="text-on-surface">{log.action}</span>
-					</div>
-				{/each}
+				{#if data.logs.length === 0}
+					<p class="text-outline uppercase">No activity logged yet.</p>
+				{:else}
+					{#each data.logs as log (log.id)}
+						<div class="flex justify-between border-b border-outline-variant/20 pb-1">
+							<span class="text-primary-container"
+								>{new Date(log.timestamp).toISOString().replace('T', ' ').split('.')[0]}</span
+							>
+							<span class="text-on-surface">{log.activityType} // {log.description || 'N/A'}</span>
+						</div>
+					{/each}
+				{/if}
 			</Card.Root>
 		</div>
 		<div class="flex flex-col justify-between md:w-64">
@@ -189,16 +218,18 @@
 					>STATS_SUMMARY</span
 				>
 				<div class="mb-1 flex justify-between">
-					<span class="text-xs text-outline uppercase">TOTAL_COMMITS</span>
-					<span class="text-xs font-bold text-on-background">1,204</span>
+					<span class="text-xs text-outline uppercase">TOTAL_LOGS</span>
+					<span class="text-xs font-bold text-on-background">{data.logs.length}</span>
 				</div>
 				<div class="mb-1 flex justify-between">
 					<span class="text-xs text-outline uppercase">MAX_STREAK</span>
-					<span class="text-xs font-bold text-on-background">42_DAYS</span>
+					<span class="text-xs font-bold text-on-background">{data.streak.maxStreak}_DAYS</span>
 				</div>
 				<div class="flex justify-between">
 					<span class="text-xs text-outline uppercase">CONSISTENCY</span>
-					<span class="text-xs font-bold text-primary-container">74.2%</span>
+					<span class="text-xs font-bold text-primary-container"
+						>{((data.heatmap.length / 30) * 100).toFixed(1)}%</span
+					>
 				</div>
 			</div>
 			<Button
@@ -220,7 +251,9 @@
 		>
 		<div class="flex items-center justify-between">
 			<div>
-				<p class="font-headline text-4xl font-black text-on-background">42.8°C</p>
+				<p class="font-headline text-4xl font-black text-on-background">
+					{40 + (data.streak.currentStreak * 0.2).toFixed(1)}°C
+				</p>
 				<p class="font-label text-[10px] tracking-widest text-primary-container uppercase">
 					THERMAL_STABLE
 				</p>
@@ -247,9 +280,7 @@
 			<div class="h-full w-full bg-primary-fixed shadow-[0_0_10px_rgba(0,255,65,0.4)]"></div>
 			<div class="h-[10%] w-full bg-surface-container-highest"></div>
 		</div>
-		<p class="font-headline text-xs font-bold text-on-background uppercase">
-			8_BUILDS_COMPLETED_TODAY
-		</p>
+		<p class="font-headline text-xs font-bold text-on-background uppercase">ACTIVITY_STABILIZED</p>
 	</Card.Root>
 	<!-- Operator Status -->
 	<Card.Root
@@ -260,37 +291,17 @@
 				>OPERATOR_LOAD</span
 			>
 			<div class="flex items-center justify-between">
-				<span class="font-headline text-2xl font-black text-on-background">CRITICAL</span>
+				<span class="font-headline text-2xl font-black text-on-background">OPTIMAL</span>
 				<div class="flex gap-1">
 					<div class="h-4 w-2 bg-primary-container"></div>
 					<div class="h-4 w-2 bg-primary-container"></div>
 					<div class="h-4 w-2 bg-primary-container"></div>
-					<div class="h-4 w-2 animate-pulse bg-error"></div>
+					<div class="h-4 w-2 bg-primary-container"></div>
 				</div>
 			</div>
 		</div>
 		<p class="mt-2 text-right font-body text-[9px] text-outline italic">
-			// ADVICE: SYSTEM_REQUIRES_REBOOT_AND_COFFEE
+			// ADVICE: SYSTEM_STATUS_STABLE
 		</p>
 	</Card.Root>
 </section>
-
-<!-- Hard Offset Shadow Modal Mockup -->
-<div class="group fixed right-6 bottom-6 z-50 hidden md:block">
-	<div class="relative">
-		<Card.Root
-			class="relative z-10 w-64 translate-x-0 translate-y-0 border-2 border-outline bg-surface-container-highest p-4 shadow-none transition-transform hover:-translate-x-1 hover:-translate-y-1"
-		>
-			<div class="mb-2 flex items-center justify-between">
-				<span class="font-label text-[10px] font-bold text-primary-container">SYSTEM_NOTIF</span>
-				<span class="material-symbols-outlined cursor-pointer text-xs">close</span>
-			</div>
-			<p class="font-headline text-xs leading-tight font-bold uppercase">
-				STREAK_SECURED: 14_DAYS_VALIDATED_IN_BLOCKCHAIN
-			</p>
-		</Card.Root>
-		<div
-			class="pointer-events-none absolute inset-0 translate-x-2 translate-y-2 bg-surface-container-lowest"
-		></div>
-	</div>
-</div>
