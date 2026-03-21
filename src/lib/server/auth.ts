@@ -4,10 +4,11 @@ import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { env } from '$env/dynamic/private';
 import { getRequestEvent } from '$app/server';
 import { db } from '$lib/server/db';
+import { building } from '$app/environment';
 
 export const auth = betterAuth({
-	baseURL: env.ORIGIN,
-	secret: env.BETTER_AUTH_SECRET,
+	baseURL: env.ORIGIN || 'http://localhost:5173',
+	secret: env.BETTER_AUTH_SECRET || (building ? 'build-time-secret-only' : undefined),
 	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
 	socialProviders: {
