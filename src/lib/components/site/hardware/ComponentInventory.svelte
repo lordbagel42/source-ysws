@@ -66,7 +66,8 @@
 		{#each categories as cat (cat)}
 			<button
 				type="button"
-				class="border px-2 py-0.5 font-mono text-[10px] transition-colors {activeCategory === cat
+				class="min-h-[32px] border px-3 py-1.5 font-mono text-[10px] transition-colors {activeCategory ===
+				cat
 					? 'border-primary bg-primary/10 text-primary'
 					: 'border-outline text-muted-foreground hover:border-primary/50 hover:text-foreground'}"
 				onclick={() => (activeCategory = cat)}

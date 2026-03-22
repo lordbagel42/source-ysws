@@ -17,17 +17,6 @@
 	);
 
 	let heatPercent = $derived(Math.min((currentStreak / 10) * 100, 100));
-
-	let pulseScale = $state(1);
-	let glowIntensity = $state(0.6);
-
-	$effect(() => {
-		const interval = setInterval(() => {
-			pulseScale = 1 + Math.sin(Date.now() / 400) * 0.05;
-			glowIntensity = 0.4 + Math.sin(Date.now() / 600) * 0.3;
-		}, 50);
-		return () => clearInterval(interval);
-	});
 </script>
 
 <section
@@ -39,22 +28,14 @@
 		<div class="relative flex shrink-0 items-center justify-center" aria-hidden="true">
 			<!-- Outer ring -->
 			<div
-				class="flex h-48 w-48 items-center justify-center border-2 border-[var(--primary)]"
-				style="transform: scale({pulseScale}); box-shadow: 0 0 {20 +
-					glowIntensity * 30}px rgba(0, 255, 65, {glowIntensity}), inset 0 0 {10 +
-					glowIntensity * 20}px rgba(0, 255, 65, {glowIntensity * 0.3});"
+				class="reactor-outer flex h-48 w-48 animate-[reactor-pulse_2s_ease-in-out_infinite] items-center justify-center border-2 border-[var(--primary)]"
 			>
 				<!-- Inner ring -->
 				<div
-					class="flex h-32 w-32 items-center justify-center border-2 border-[var(--secondary)]"
-					style="box-shadow: 0 0 {10 + glowIntensity * 15}px rgba(0, 227, 253, {glowIntensity *
-						0.5});"
+					class="reactor-inner flex h-32 w-32 animate-[reactor-glow_2s_ease-in-out_infinite] items-center justify-center border-2 border-[var(--secondary)]"
 				>
 					<!-- Core number -->
-					<span
-						class="font-headline text-6xl font-bold text-[var(--primary)]"
-						style="text-shadow: 0 0 20px rgba(0, 255, 65, {glowIntensity});"
-					>
+					<span class="reactor-text font-headline text-6xl font-bold text-[var(--primary)]">
 						{currentStreak}
 					</span>
 				</div>
@@ -121,3 +102,43 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	@keyframes reactor-pulse {
+		0%,
+		100% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.08);
+		}
+	}
+
+	@keyframes reactor-glow {
+		0%,
+		100% {
+			box-shadow:
+				0 0 20px rgba(0, 255, 65, 0.3),
+				inset 0 0 10px rgba(0, 255, 65, 0.1);
+		}
+		50% {
+			box-shadow:
+				0 0 50px rgba(0, 255, 65, 0.7),
+				inset 0 0 30px rgba(0, 255, 65, 0.2);
+		}
+	}
+
+	.reactor-outer {
+		box-shadow:
+			0 0 20px rgba(0, 255, 65, 0.3),
+			inset 0 0 10px rgba(0, 255, 65, 0.1);
+	}
+
+	.reactor-inner {
+		box-shadow: 0 0 10px rgba(0, 227, 253, 0.3);
+	}
+
+	.reactor-text {
+		text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+	}
+</style>

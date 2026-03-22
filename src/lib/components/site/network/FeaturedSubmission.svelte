@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
-	import { Clock, Star } from 'lucide-svelte';
+	import { Clock } from 'lucide-svelte';
 
 	let approveCount = $state(67);
 	let flagCount = $state(4);
@@ -34,12 +34,15 @@
 		<div class="grid grid-cols-1 gap-0 lg:grid-cols-12">
 			<!-- Image placeholder -->
 			<div
-				class="flex items-center justify-center border-b-2 border-outline-variant bg-surface-dim p-12 lg:col-span-4 lg:border-r-2 lg:border-b-0"
+				class="relative flex h-full items-center justify-center overflow-hidden border-b-2 border-outline-variant bg-surface-container lg:col-span-4 lg:border-r-2 lg:border-b-0"
 			>
-				<div class="text-center">
-					<Star class="mx-auto mb-3 h-16 w-16 text-primary opacity-30" />
-					<span class="font-mono text-xs text-on-surface-variant">PROJECT_RENDER.png</span>
-				</div>
+				<div
+					class="pointer-events-none absolute inset-0 opacity-10"
+					style="background-image: radial-gradient(circle, #00ff41 1px, transparent 1px); background-size: 20px 20px;"
+				></div>
+				<span class="py-12 font-mono text-sm text-on-surface-variant opacity-50"
+					>PROJECT_PREVIEW</span
+				>
 			</div>
 
 			<!-- Content -->

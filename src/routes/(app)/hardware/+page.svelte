@@ -90,7 +90,7 @@
 			<h4 class="mb-4 font-headline text-xs font-bold tracking-[0.3em] text-primary uppercase">
 				System_Logs
 			</h4>
-			<div class="space-y-2 font-mono text-[9px] text-on-surface-variant">
+			<div class="space-y-2 font-mono text-[10px] text-on-surface-variant">
 				<div class="flex justify-between">
 					<span>BOOT_HARDWARE_CHECK</span><span class="text-primary">PASS</span>
 				</div>
