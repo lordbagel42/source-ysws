@@ -15,7 +15,7 @@
 
 <section
 	aria-label="Terminal display"
-	class="relative overflow-hidden border-t-4 border-primary bg-surface-container-lowest p-4 font-mono text-xs"
+	class="relative overflow-hidden border-t-4 border-primary bg-surface-container-lowest px-6 py-6 font-mono text-xs md:px-8 md:py-8"
 >
 	<!-- Scanline overlay -->
 	<div class="scanline pointer-events-none absolute inset-0 opacity-10"></div>

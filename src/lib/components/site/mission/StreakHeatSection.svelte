@@ -25,7 +25,7 @@
 
 <section
 	aria-label="Build activity"
-	class="scanline border-b-2 border-surface-container-high bg-surface-container-low px-6 py-12"
+	class="scanline border-b-2 border-surface-container-high bg-surface-container-low px-6 py-10 md:px-8 md:py-12"
 >
 	<div class="mx-auto max-w-7xl">
 		<!-- Header -->

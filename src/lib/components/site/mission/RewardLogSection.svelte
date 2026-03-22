@@ -27,7 +27,10 @@
 	];
 </script>
 
-<section aria-label="Earned rewards" class="bg-surface-container-lowest p-6">
+<section
+	aria-label="Earned rewards"
+	class="bg-surface-container-lowest px-4 py-10 md:px-6 md:py-12"
+>
 	<!-- Header -->
 	<div class="mb-6">
 		<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"

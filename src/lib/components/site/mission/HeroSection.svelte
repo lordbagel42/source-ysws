@@ -25,7 +25,7 @@
 
 <section
 	aria-labelledby="hero-heading"
-	class="relative overflow-hidden border-b-2 border-surface-container-high bg-background px-6 py-20 md:py-32"
+	class="relative overflow-hidden border-b-2 border-surface-container-high bg-background px-6 py-16 md:px-8 md:py-24"
 >
 	<div
 		class="pointer-events-none absolute inset-0 opacity-10"

@@ -41,10 +41,10 @@
 	];
 </script>
 
-<section aria-label="Recent hardware shipments" class="bg-background px-6 py-20">
+<section aria-label="Recent hardware shipments" class="bg-background px-6 py-12 md:px-8 md:py-16">
 	<div class="mx-auto max-w-7xl">
 		<!-- Header -->
-		<div class="mb-12 border-l-4 border-primary pl-6">
+		<div class="mb-8 border-l-4 border-primary pl-6">
 			<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"
 				>TRANSMISSION_FEED</span
 			>
@@ -74,7 +74,7 @@
 					</div>
 
 					<!-- Content -->
-					<div class="p-6">
+					<div class="p-4 md:p-6">
 						<div class="mb-4 flex items-start justify-between">
 							<h3 class="font-headline text-xl font-bold tracking-tight text-foreground uppercase">
 								{ship.name}
