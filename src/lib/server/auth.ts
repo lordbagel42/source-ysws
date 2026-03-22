@@ -5,11 +5,12 @@ import { genericOAuth } from 'better-auth/plugins';
 import { dash } from '@better-auth/infra';
 import { getRequestEvent } from '$app/server';
 import { db } from '$lib/server/db';
+import { env } from '$env/dynamic/private';
 
-const BETTER_AUTH_SECRET = process.env.BETTER_AUTH_SECRET || 'build-time-secret-only';
-const HACKCLUB_CLIENT_ID = process.env.HACKCLUB_CLIENT_ID || '';
-const HACKCLUB_CLIENT_SECRET = process.env.HACKCLUB_CLIENT_SECRET || '';
-const BETTER_AUTH_URL = process.env.BETTER_AUTH_URL || '';
+const BETTER_AUTH_SECRET = env.BETTER_AUTH_SECRET || 'build-time-secret-only';
+const HACKCLUB_CLIENT_ID = env.HACKCLUB_CLIENT_ID || '';
+const HACKCLUB_CLIENT_SECRET = env.HACKCLUB_CLIENT_SECRET || '';
+const BETTER_AUTH_URL = env.BETTER_AUTH_URL || '';
 
 export const auth = betterAuth({
 	baseURL: BETTER_AUTH_URL || undefined,
