@@ -27,7 +27,10 @@
 	];
 </script>
 
-<section class="border-t-2 border-surface-container-high bg-surface-container-lowest px-6 py-20">
+<section
+	aria-label="Earned rewards"
+	class="border-t-2 border-surface-container-high bg-surface-container-lowest px-6 py-20"
+>
 	<div class="mx-auto max-w-7xl">
 		<!-- Header row -->
 		<div class="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
@@ -58,25 +61,32 @@
 		<!-- Reward table -->
 		<div class="overflow-x-auto">
 			<table class="w-full border-collapse font-mono text-sm">
+				<caption class="sr-only">Reward log showing protocol completion and budget progress</caption
+				>
 				<thead>
 					<tr class="bg-surface-container-high text-left">
 						<th
+							scope="col"
 							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
 							>ENTRY_ID</th
 						>
 						<th
+							scope="col"
 							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
 							>PROTOCOL_NAME</th
 						>
 						<th
+							scope="col"
 							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
 							>STATUS</th
 						>
 						<th
+							scope="col"
 							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
 							>BUDGET_PROGRESS</th
 						>
 						<th
+							scope="col"
 							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
 							>VALUATION</th
 						>

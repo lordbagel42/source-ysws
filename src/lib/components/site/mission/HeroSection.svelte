@@ -23,6 +23,7 @@
 </script>
 
 <section
+	aria-labelledby="hero-heading"
 	class="relative overflow-hidden border-b-2 border-surface-container-high bg-background px-6 py-20 md:py-32"
 >
 	<div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-12">
@@ -37,6 +38,7 @@
 
 			<!-- Main headline with CRT glow -->
 			<h1
+				id="hero-heading"
 				class="crt-glow font-headline text-5xl leading-none font-black tracking-tighter uppercase md:text-8xl"
 			>
 				REBUILD THE<br />PROTOCOL
@@ -52,7 +54,7 @@
 			<div class="flex flex-wrap gap-4 pt-4">
 				<Button
 					href="/login"
-					class="hard-shadow border-2 border-primary bg-primary px-8 py-4 font-mono text-lg font-black text-primary-foreground uppercase transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_#00FF41]"
+					class="hard-shadow min-h-[44px] border-2 border-primary bg-primary px-8 py-4 font-mono text-lg font-black text-primary-foreground uppercase transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_#00FF41]"
 				>
 					[INITIALIZE BUILD]
 				</Button>
@@ -60,7 +62,7 @@
 				<Button
 					href="/docs"
 					variant="outline"
-					class="border-2 border-primary bg-transparent px-8 py-4 font-mono text-lg font-bold text-primary uppercase transition-all hover:bg-surface-container-low"
+					class="min-h-[44px] border-2 border-primary bg-transparent px-8 py-4 font-mono text-lg font-bold text-primary uppercase transition-all hover:bg-surface-container-low"
 				>
 					VIEW_DOCS
 				</Button>

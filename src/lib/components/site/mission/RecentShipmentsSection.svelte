@@ -38,7 +38,7 @@
 	];
 </script>
 
-<section class="bg-background px-6 py-20">
+<section aria-label="Recent hardware shipments" class="bg-background px-6 py-20">
 	<div class="mx-auto max-w-7xl">
 		<!-- Header -->
 		<div class="mb-12 border-l-4 border-primary pl-6">
@@ -53,7 +53,7 @@
 		<!-- Cards grid -->
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
 			{#each shipments as ship (ship.name)}
-				<div
+				<article
 					class="group border-2 border-outline-variant bg-surface-container-low transition-colors hover:border-primary"
 				>
 					<!-- Image -->
@@ -104,7 +104,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</article>
 			{/each}
 		</div>
 	</div>

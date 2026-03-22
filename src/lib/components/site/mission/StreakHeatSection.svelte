@@ -14,14 +14,17 @@
 		return x - Math.floor(x);
 	}
 
+	const activityLabels = ['No activity', 'No activity', 'Low', 'Moderate', 'High', 'Critical'];
+
 	const cells = Array.from({ length: 154 }, (_, i) => {
 		const r = seededRandom(i * 47 + 13);
 		const level = Math.floor(r * heatLevels.length);
-		return heatLevels[level];
+		return { color: heatLevels[level], label: activityLabels[level] };
 	});
 </script>
 
 <section
+	aria-label="Build activity"
 	class="scanline border-b-2 border-surface-container-high bg-surface-container-low px-6 py-12"
 >
 	<div class="mx-auto max-w-7xl">
@@ -47,11 +50,17 @@
 		</div>
 
 		<!-- Heatmap grid -->
-		<div class="grid grid-cols-7 gap-1 sm:grid-cols-14 md:grid-cols-21 lg:grid-cols-28">
-			{#each cells as color, i (i)}
+		<p id="heatmap-desc" class="sr-only">
+			Heatmap showing daily build activity over the past 22 weeks
+		</p>
+		<div
+			aria-describedby="heatmap-desc"
+			class="grid grid-cols-7 gap-1 sm:grid-cols-14 md:grid-cols-21 lg:grid-cols-28"
+		>
+			{#each cells as cell, i (i)}
 				<div
-					class="aspect-square cursor-crosshair opacity-80 transition-opacity hover:opacity-100 {color}"
-					title="DATA_POINT_{i}"
+					class="aspect-square cursor-crosshair opacity-80 transition-opacity hover:opacity-100 {cell.color}"
+					title="Day {i + 1}: {cell.label} activity"
 				></div>
 			{/each}
 		</div>

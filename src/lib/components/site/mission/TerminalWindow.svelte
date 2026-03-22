@@ -14,6 +14,7 @@
 </script>
 
 <section
+	aria-label="Terminal display"
 	class="relative overflow-hidden border-t-4 border-primary bg-surface-container-lowest p-4 font-mono text-xs"
 >
 	<!-- Scanline overlay -->
@@ -27,7 +28,7 @@
 		</div>
 
 		<!-- Log entries -->
-		<div class="flex flex-col gap-1">
+		<div role="log" aria-live="polite" class="flex flex-col gap-1">
 			{#each logEntries as entry, i (entry.time)}
 				<div class="flex gap-4">
 					<span class="text-on-surface-variant">[{entry.time}]</span>
