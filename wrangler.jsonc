@@ -16,8 +16,7 @@
 		"enabled": true
 	},
 	"vars": {
-		"ORIGIN": "https://example.com",
-		"GITHUB_CLIENT_ID": ""
+		"ORIGIN": "https://source.raygen.dev"
 	}
 	/**
 	 * Smart Placement
