@@ -1,135 +1,76 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { resolve } from '$app/paths';
 	import { authClient } from '$lib/auth-client';
-	import { Avatar, AvatarFallback, AvatarImage } from '$lib/components/ui/avatar';
-	import * as Tooltip from '$lib/components/ui/tooltip';
-	import { House, Zap, Cpu, Archive, Settings, LogOut } from 'lucide-svelte';
-	import type { User } from 'better-auth/types';
+	import { Monitor, Users, Database, Lock } from 'lucide-svelte';
 
-	let { user }: { user: User } = $props();
+	let { user }: { user?: { name?: string | null; image?: string | null } | null } = $props();
 
 	const navItems = [
-		{ label: 'Mission', path: '/' as const, routeId: '/(app)' as const, icon: House },
-		{ label: 'Streak', path: '/streak' as const, routeId: '/(app)/streak' as const, icon: Zap },
-		{
-			label: 'Hardware',
-			path: '/hardware' as const,
-			routeId: '/(app)/hardware' as const,
-			icon: Cpu
-		},
-		{ label: 'Vault', path: '/vault' as const, routeId: '/(app)/vault' as const, icon: Archive }
+		{ label: 'TERMINAL', path: '/', icon: Monitor },
+		{ label: 'NETWORK', path: '/network', icon: Users },
+		{ label: 'REGISTRY', path: '/hardware', icon: Database },
+		{ label: 'VAULT', path: '/vault', icon: Lock }
 	];
 
-	let currentPath = $derived($page.url.pathname);
-
-	function isActive(path: string): boolean {
-		if (path === '/') return currentPath === '/';
-		return currentPath.startsWith(path);
-	}
-
-	async function handleSignOut() {
+	async function signOut() {
 		await authClient.signOut();
-		goto(resolve('/login'));
+		goto('/login');
 	}
 </script>
 
 <aside
-	class="fixed top-0 left-0 z-40 flex h-screen w-16 flex-col border-r-2 border-outline-variant bg-surface-container-low"
+	class="fixed top-0 left-0 hidden h-screen w-64 flex-col border-r-2 border-outline-variant bg-surface-container-lowest md:flex"
 >
-	<!-- Branding -->
-	<div class="flex h-16 items-center justify-center">
-		<span class="crt-glow font-headline text-2xl font-black">S</span>
+	<div class="px-4 py-6">
+		<span class="font-headline text-2xl font-black text-primary uppercase">SOURCE</span>
+		<p class="font-mono text-[10px] tracking-widest text-on-surface-variant">REBUILD_PROTOCOL</p>
 	</div>
 
-	<!-- Navigation -->
-	<nav class="flex flex-1 flex-col items-center gap-1 py-2">
-		{#each navItems as item (item.path)}
-			<Tooltip.Root>
-				<Tooltip.Trigger>
-					<a
-						href={resolve(item.routeId)}
-						class="flex h-10 w-10 items-center justify-center transition-colors {isActive(item.path)
-							? 'border-l-2 border-primary bg-surface-container-high text-primary'
-							: 'border-l-2 border-transparent text-on-surface-variant hover:bg-surface-container hover:text-on-surface'}"
-					>
-						<item.icon class="h-5 w-5" />
-					</a>
-				</Tooltip.Trigger>
-				<Tooltip.Portal>
-					<Tooltip.Content
-						side="right"
-						class="rounded-none border-outline-variant bg-surface-container-high font-mono text-xs text-on-surface"
-					>
-						{item.label}
-					</Tooltip.Content>
-				</Tooltip.Portal>
-			</Tooltip.Root>
+	<nav class="flex flex-1 flex-col gap-1 px-2">
+		{#each navItems as item}
+			{@const active = $page.url.pathname === item.path}
+			<a
+				href={item.path}
+				class="flex items-center gap-3 px-4 py-3 font-mono text-xs tracking-wider uppercase {active
+					? 'border-l-4 border-primary bg-surface-container-high text-primary'
+					: 'text-on-surface-variant hover:bg-surface-container hover:text-primary'}"
+			>
+				<item.icon size={18} />
+				{item.label}
+			</a>
 		{/each}
 	</nav>
 
-	<!-- Bottom actions -->
-	<div class="flex flex-col items-center gap-2 pb-4">
-		<Tooltip.Root>
-			<Tooltip.Trigger>
-				<a
-					href="#"
-					class="flex h-10 w-10 items-center justify-center border-l-2 border-transparent text-on-surface-variant transition-colors hover:bg-surface-container hover:text-on-surface"
-				>
-					<Settings class="h-5 w-5" />
-				</a>
-			</Tooltip.Trigger>
-			<Tooltip.Portal>
-				<Tooltip.Content
-					side="right"
-					class="rounded-none border-outline-variant bg-surface-container-high font-mono text-xs text-on-surface"
-				>
-					Settings
-				</Tooltip.Content>
-			</Tooltip.Portal>
-		</Tooltip.Root>
-
-		<Tooltip.Root>
-			<Tooltip.Trigger>
-				<a href="#" class="flex items-center justify-center">
-					<Avatar class="h-8 w-8 border border-outline-variant">
-						<AvatarImage src={user.image ?? ''} alt={user.name} />
-						<AvatarFallback
-							class="bg-surface-container-high font-mono text-xs text-on-surface-variant"
-						>
-							{user.name?.charAt(0).toUpperCase() ?? '?'}
-						</AvatarFallback>
-					</Avatar>
-				</a>
-			</Tooltip.Trigger>
-			<Tooltip.Portal>
-				<Tooltip.Content
-					side="right"
-					class="rounded-none border-outline-variant bg-surface-container-high font-mono text-xs text-on-surface"
-				>
+	<div class="border-t-2 border-outline-variant p-4">
+		{#if user}
+			<div class="flex items-center gap-3">
+				{#if user.image}
+					<img src={user.image} alt={user.name ?? 'User'} class="h-8 w-8 rounded-full" />
+				{:else}
+					<div
+						class="flex h-8 w-8 items-center justify-center rounded-full bg-surface-container font-mono text-xs text-primary"
+					>
+						{(user.name ?? '?').charAt(0).toUpperCase()}
+					</div>
+				{/if}
+				<span class="flex-1 truncate font-mono text-xs text-on-surface-variant">
 					{user.name ?? 'User'}
-				</Tooltip.Content>
-			</Tooltip.Portal>
-		</Tooltip.Root>
-
-		<Tooltip.Root>
-			<Tooltip.Trigger>
+				</span>
 				<button
-					onclick={handleSignOut}
-					class="flex h-10 w-10 items-center justify-center border-l-2 border-transparent text-on-surface-variant transition-colors hover:bg-surface-container hover:text-on-surface"
+					onclick={signOut}
+					class="font-mono text-[10px] text-on-surface-variant uppercase hover:text-primary"
 				>
-					<LogOut class="h-5 w-5" />
+					OUT
 				</button>
-			</Tooltip.Trigger>
-			<Tooltip.Portal>
-				<Tooltip.Content
-					side="right"
-					class="rounded-none border-outline-variant bg-surface-container-high font-mono text-xs text-on-surface"
-				>
-					Sign out
-				</Tooltip.Content>
-			</Tooltip.Portal>
-		</Tooltip.Root>
+			</div>
+		{:else}
+			<a
+				href="/login"
+				class="block w-full bg-primary py-3 text-center font-mono text-xs font-bold text-primary-foreground uppercase"
+			>
+				INIT_SEQUENCE
+			</a>
+		{/if}
 	</div>
 </aside>
