@@ -30,7 +30,7 @@
 
 	/* Semantic colors */
 	--muted: #1a1a1a;
-	--muted-foreground: #8a8a8a;
+	--muted-foreground: #999999;
 	--card: #161616;
 	--card-foreground: #e5e2e1;
 	--popover: #161616;
@@ -45,7 +45,7 @@
 
 	/* Extended palette */
 	--on-surface: #e5e2e1;
-	--on-surface-variant: #8a8a8a;
+	--on-surface-variant: #999999;
 	--outline: #3a3a3a;
 	--outline-variant: #2c2c2c;
 	--error: #ff4444;
@@ -140,6 +140,11 @@
 	h5,
 	h6 {
 		font-family: var(--font-headline);
+	}
+
+	*:focus-visible {
+		outline: 3px solid var(--primary);
+		outline-offset: 2px;
 	}
 }
 
@@ -272,6 +277,16 @@
 
 .heat-gradient {
 	background: linear-gradient(90deg, #ff3e00 0%, #f0ff00 50%, #00ff41 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
 }
 
 /* Custom scrollbar */

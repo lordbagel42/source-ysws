@@ -50,7 +50,7 @@
 				class="flex items-center gap-4 border-2 border-outline-variant bg-surface-container-lowest px-6 py-4"
 			>
 				<Radar class="h-5 w-5 animate-pulse text-secondary" />
-				<span class="blinking-cursor text-xs text-on-surface-variant uppercase"
+				<span class="blinking-cursor text-xs text-on-surface-variant uppercase" aria-hidden="true"
 					>What will you build?</span
 				>
 			</div>
