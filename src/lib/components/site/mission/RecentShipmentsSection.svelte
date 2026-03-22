@@ -60,7 +60,7 @@
 					class="group border-2 border-outline-variant bg-surface-container-low transition-colors hover:border-primary"
 				>
 					<!-- Image -->
-					<div class="relative h-48 overflow-hidden">
+					<div class="relative h-32 overflow-hidden sm:h-48">
 						<img
 							class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
 							src={ship.image}

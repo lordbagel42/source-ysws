@@ -16,9 +16,9 @@
 	{#each navItems as item}
 		<a
 			href={item.path}
-			class="flex flex-col items-center gap-1 px-3 py-1 font-mono text-[10px] tracking-wider uppercase {$page
+			class="flex flex-col items-center gap-1 px-3 py-2 font-mono text-[10px] tracking-wider uppercase {$page
 				.url.pathname === item.path
-				? 'text-primary'
+				? 'border-t-2 border-primary text-primary'
 				: 'text-on-surface-variant'}"
 		>
 			<item.icon size={20} />

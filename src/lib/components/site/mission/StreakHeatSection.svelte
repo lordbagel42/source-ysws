@@ -55,11 +55,11 @@
 		</p>
 		<div
 			aria-describedby="heatmap-desc"
-			class="grid grid-cols-7 gap-1 sm:grid-cols-14 md:grid-cols-21 lg:grid-cols-28"
+			class="grid grid-cols-14 gap-0.5 sm:gap-1 md:grid-cols-21 lg:grid-cols-28"
 		>
 			{#each cells as cell, i (i)}
 				<div
-					class="aspect-square cursor-crosshair opacity-80 transition-opacity hover:opacity-100 {cell.color}"
+					class="h-2.5 w-2.5 cursor-crosshair opacity-80 transition-opacity hover:opacity-100 sm:aspect-square sm:h-auto sm:w-auto {cell.color}"
 					title="Day {i + 1}: {cell.label} activity"
 				></div>
 			{/each}

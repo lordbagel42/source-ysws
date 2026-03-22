@@ -3,7 +3,7 @@
 	import { Button } from '$lib/components/ui/button';
 </script>
 
-<div class="relative flex min-h-screen items-center justify-center">
+<div class="relative flex min-h-screen items-center justify-center px-4">
 	<div
 		class="pointer-events-none absolute inset-0 opacity-5"
 		style="background-image: radial-gradient(circle, #00ff41 1px, transparent 1px); background-size: 24px 24px;"
