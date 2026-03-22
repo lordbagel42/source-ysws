@@ -32,3 +32,12 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	:global(.crt-glow) {
+		text-shadow: 0 0 10px rgba(var(--primary), 0.5);
+	}
+	:global(.hard-shadow) {
+		box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.2);
+	}
+</style>
