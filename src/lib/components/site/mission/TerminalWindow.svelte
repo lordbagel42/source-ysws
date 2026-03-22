@@ -32,7 +32,7 @@
 			{#each logEntries as entry, i (entry.time)}
 				<div class="flex gap-4">
 					<span class="text-on-surface-variant">[{entry.time}]</span>
-					<span class="{entry.color} uppercase" class:blinking-cursor={i === logEntries.length - 1}>
+					<span class="{entry.color} uppercase">
 						{entry.text}
 					</span>
 				</div>

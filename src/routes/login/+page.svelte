@@ -36,7 +36,7 @@
 
 		<div class="mt-6 text-center">
 			<p class="font-mono text-xs text-on-surface-variant">
-				SECURE TERMINAL v1.0 <span class="blinking-cursor"></span>
+				SECURE TERMINAL v1.0
 			</p>
 		</div>
 	</div>

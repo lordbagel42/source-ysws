@@ -18,7 +18,7 @@
 
 	<!-- Subtitle -->
 	<p class="font-mono text-sm text-on-surface-variant">
-		Peer review and validation network<span class="blinking-cursor"></span>
+		Peer review and validation network
 	</p>
 
 	<!-- Stats bar -->

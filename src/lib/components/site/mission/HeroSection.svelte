@@ -89,7 +89,7 @@
 						{/if}
 					{/each}
 					{#if visibleLines >= terminalLines.length}
-						<p class="blinking-cursor text-secondary">ready to ship</p>
+						<p class="text-secondary">ready to ship</p>
 					{/if}
 				</div>
 			</div>
