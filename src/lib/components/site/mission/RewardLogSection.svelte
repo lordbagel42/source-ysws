@@ -6,6 +6,7 @@
 			status: 'COMPLETE',
 			statusClass: 'bg-[#00530e] text-primary',
 			progress: 100,
+			barColor: 'bg-primary',
 			value: '$275.00'
 		},
 		{
@@ -14,6 +15,7 @@
 			status: 'VERIFYING',
 			statusClass: 'bg-[#004f58] text-secondary',
 			progress: 75,
+			barColor: 'bg-secondary',
 			value: '$205.00'
 		},
 		{
@@ -22,6 +24,7 @@
 			status: 'PENDING',
 			statusClass: 'bg-surface-container-highest text-foreground',
 			progress: 15,
+			barColor: 'bg-[#F0FF00]',
 			value: '$45.00'
 		}
 	];
@@ -33,7 +36,7 @@
 >
 	<!-- Header -->
 	<div class="mb-6">
-		<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"
+		<span class="font-mono text-xs tracking-[0.2em] text-on-surface-variant uppercase"
 			>LEDGER_SYSTEM</span
 		>
 		<h2 class="font-headline text-2xl font-black tracking-tight text-foreground uppercase">
@@ -68,7 +71,7 @@
 				</div>
 				<p class="mb-3 font-mono text-xs font-bold text-foreground">{reward.name}</p>
 				<div class="mb-1 h-1.5 w-full bg-surface-container-high">
-					<div class="h-full bg-primary" style="width: {reward.progress}%"></div>
+					<div class="h-full {reward.barColor}" style="width: {reward.progress}%"></div>
 				</div>
 				<div class="flex items-center justify-between">
 					<span class="font-mono text-[10px] text-on-surface-variant">{reward.progress}%</span>
@@ -79,7 +82,7 @@
 	</div>
 
 	<button
-		class="mt-4 w-full border-2 border-primary bg-primary py-2 font-mono text-xs font-bold text-primary-foreground uppercase hover:bg-primary/90"
+		class="hard-shadow mt-4 w-full border-2 border-primary bg-primary py-2 font-mono text-xs font-bold text-primary-foreground uppercase hover:bg-primary/90"
 		>CLAIM_ALL</button
 	>
 </section>

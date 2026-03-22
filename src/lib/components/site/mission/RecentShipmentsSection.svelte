@@ -32,7 +32,7 @@
 				'A filament dryer for your 3D printer with PID-controlled heating, humidity monitoring, and multi-spool capacity. Keep your prints crispy.',
 			tags: ['PTC_HEATER', 'BME280', 'OLED_UI'],
 			status: 'QUEUED',
-			statusClass: 'bg-surface-container-highest text-foreground',
+			statusClass: 'border border-outline bg-surface-container-highest text-foreground',
 			timestamp: '--:--:--',
 			reward: 'ALLOCATION_PENDING',
 			image:
@@ -45,7 +45,7 @@
 	<div class="mx-auto max-w-7xl">
 		<!-- Header -->
 		<div class="mb-8 border-l-4 border-primary pl-6">
-			<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"
+			<span class="font-mono text-xs tracking-[0.2em] text-on-surface-variant uppercase"
 				>TRANSMISSION_FEED</span
 			>
 			<h2 class="font-headline text-4xl font-black tracking-tight text-foreground uppercase">

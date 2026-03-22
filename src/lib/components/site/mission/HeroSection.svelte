@@ -7,7 +7,7 @@
 		{ prefix: '>', text: 'forking protocol...', color: 'text-on-surface-variant' },
 		{ prefix: '>', text: 'analytical_modules: LOADED', color: 'text-on-surface-variant' },
 		{ prefix: '>', text: 'security_layers: BYPASSED', color: 'text-on-surface-variant' },
-		{ prefix: '>', text: 'hardware_link: STABLE', color: 'text-primary' }
+		{ prefix: '>', text: 'hardware_link:', color: 'text-primary' }
 	];
 
 	let visibleLines = $state(0);
@@ -94,7 +94,7 @@
 							<p class={line.color}>
 								<span class="text-on-surface-variant">{line.prefix}</span>
 								{line.text}
-								{#if line.text === 'hardware_link: STABLE'}
+								{#if line.text === 'hardware_link:'}
 									<span class="bg-primary px-1 text-primary-foreground">STABLE</span>
 								{/if}
 							</p>

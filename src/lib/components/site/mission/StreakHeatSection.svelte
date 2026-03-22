@@ -31,10 +31,12 @@
 		<!-- Header -->
 		<div class="mb-8 flex items-end justify-between">
 			<div>
-				<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"
+				<span class="font-mono text-xs tracking-[0.2em] text-on-surface-variant uppercase"
 					>SENSOR_READOUT</span
 				>
-				<h2 class="font-headline text-3xl font-black tracking-tight text-foreground uppercase">
+				<h2
+					class="font-headline text-3xl font-black tracking-tight text-foreground uppercase md:text-4xl"
+				>
 					PROTOCOL_CONTRIBUTIONS
 				</h2>
 			</div>

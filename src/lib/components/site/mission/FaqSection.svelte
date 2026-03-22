@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { slide } from 'svelte/transition';
 	import { ChevronDown, HelpCircle } from 'lucide-svelte';
 
 	const faqs = [
@@ -43,7 +44,7 @@
 	<div class="mx-auto max-w-4xl">
 		<!-- Header -->
 		<div class="mb-10 border-l-4 border-primary pl-6">
-			<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"
+			<span class="font-mono text-xs tracking-[0.2em] text-on-surface-variant uppercase"
 				>KNOWLEDGE_BASE</span
 			>
 			<h2
@@ -74,7 +75,10 @@
 						/>
 					</button>
 					{#if openIndex === i}
-						<div class="border-t border-outline-variant bg-surface-container-lowest px-6 py-5">
+						<div
+							transition:slide={{ duration: 150 }}
+							class="border-t border-outline-variant bg-surface-container-lowest px-6 py-5"
+						>
 							<p class="text-sm leading-relaxed text-on-surface-variant">
 								<span class="font-mono text-primary">{'>'}</span>
 								{faq.a}
