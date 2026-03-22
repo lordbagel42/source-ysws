@@ -1,0 +1,18 @@
+
+> source-ysws@0.0.1 dev /app
+> vite dev
+
+(node:3515) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+8:44:08 PM [vite] (client) Forced re-optimization of dependencies
+
+  VITE v7.3.1  ready in 2657 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+[2m2026-03-22T20:44:42.998Z[0m [33mWARN[0m [1m[Better Auth]:[0m [better-auth] Base URL could not be determined. Please set a valid base URL using the baseURL config option or the BETTER_AUTH_URL environment variable. Without this, callbacks and redirects may not work correctly.
+[2m2026-03-22T20:44:42.998Z[0m [33mWARN[0m [1m[Better Auth]:[0m [better-auth] Warning: your BETTER_AUTH_SECRET should be at least 32 characters long for adequate security. Generate one with `npx auth secret` or `openssl rand -base64 32`.
+[2m2026-03-22T20:44:42.999Z[0m [33mWARN[0m [1m[Better Auth]:[0m [better-auth] Warning: your BETTER_AUTH_SECRET appears low-entropy. Use a randomly generated secret for production.
+ ELIFECYCLE  Command failed.
+8:46:42 PM [vite] (client) hmr update /src/routes/layout.css
+8:46:42 PM [vite] (ssr) page reload src/routes/login/+page.server.ts
