@@ -25,7 +25,7 @@ export const Walkthrough: React.FC = () => {
 			<Sequence from={offset} durationInFrames={INTRO_DURATION + TRANSITION_DURATION}>
 				<IntroSlide />
 			</Sequence>
-			{offset += INTRO_DURATION}
+			{(offset += INTRO_DURATION)}
 
 			{/* Screen slides with cross-fade overlap */}
 			{SCREENS.map((screen, i) => {

@@ -1,83 +1,119 @@
 <script lang="ts">
 	const rewards = [
 		{
-			num: '01',
-			name: 'LILYGO T-DECK',
-			desc: 'OPEN-SOURCE HARDWARE TERMINAL',
-			status: 'GUARANTEED',
-			locked: false
+			id: '#X992-01',
+			name: 'LILYGO_T-DECK_RESYNC',
+			status: 'COMPLETE',
+			statusClass: 'bg-[#00530e] text-primary',
+			progress: 100,
+			value: '$275.00'
 		},
 		{
-			num: '02',
-			name: '$275 HARDWARE BUDGET',
-			desc: 'REIMBURSEMENT FOR PROJECT MATERIALS',
-			status: 'AVAILABLE',
-			locked: false
+			id: '#X992-05',
+			name: 'MESH_ROUTER_V3',
+			status: 'VERIFYING',
+			statusClass: 'bg-[#004f58] text-secondary',
+			progress: 75,
+			value: '$205.00'
 		},
 		{
-			num: '03',
-			name: 'CUSTOM HARDWARE KIT',
-			desc: 'REMAINING BUDGET ALLOCATION FOR TOOLS',
-			status: 'AVAILABLE',
-			locked: false
-		},
-		{
-			num: '04',
-			name: 'SYSTEM OVERRIDE',
-			desc: 'VAL: ??? // STOCK: 00',
-			status: 'LOCKED',
-			locked: true
+			id: '#X993-12',
+			name: 'CRYPTO_KEY_HARDWARE',
+			status: 'PENDING',
+			statusClass: 'bg-surface-container-highest text-foreground',
+			progress: 15,
+			value: '$45.00'
 		}
 	];
 </script>
 
-<section class="border-y-2 border-outline-variant bg-surface-container-lowest px-8 py-24 md:px-16">
-	<div class="mx-auto max-w-6xl">
-		<!-- Centered heading -->
-		<div class="mb-16 text-center">
-			<h2 class="mb-4 font-headline text-5xl font-black tracking-tighter uppercase md:text-7xl">
-				REWARD_LOG
-			</h2>
-			<p class="text-[10px] tracking-widest text-on-surface-variant uppercase">
-				Target mission rewards for hardware builders
-			</p>
+<section
+	aria-label="Earned rewards"
+	class="border-t-2 border-surface-container-high bg-surface-container-lowest px-6 py-20"
+>
+	<div class="mx-auto max-w-7xl">
+		<!-- Header row -->
+		<div class="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+			<div>
+				<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"
+					>LEDGER_SYSTEM</span
+				>
+				<h2 class="font-headline text-4xl font-black tracking-tight text-foreground uppercase">
+					TARGET_REWARDS
+				</h2>
+			</div>
+			<div class="flex gap-8 border border-outline-variant bg-surface-container-low p-4">
+				<div>
+					<span class="block font-mono text-[10px] text-on-surface-variant uppercase"
+						>CURRENT_RANK</span
+					>
+					<span class="font-mono font-bold text-primary">[ELITE_OP]</span>
+				</div>
+				<div>
+					<span class="block font-mono text-[10px] text-on-surface-variant uppercase"
+						>TOTAL_BOUNTY</span
+					>
+					<span class="font-mono font-bold text-secondary">$1,245.00</span>
+				</div>
+			</div>
 		</div>
 
-		<!-- 2x2 grid with visible gap borders -->
-		<div
-			class="grid grid-cols-1 gap-px border-2 border-outline-variant bg-outline-variant md:grid-cols-2"
-		>
-			{#each rewards as reward (reward.num)}
-				<div
-					class="group flex items-center justify-between bg-background p-8 transition-colors hover:bg-surface-container-low"
-					class:opacity-50={reward.locked}
+		<!-- Reward table -->
+		<div class="overflow-x-auto">
+			<table class="w-full border-collapse font-mono text-sm">
+				<caption class="sr-only">Reward log showing protocol completion and budget progress</caption
 				>
-					<div class="flex items-center gap-6">
-						<span class="font-headline text-4xl font-black text-primary group-hover:text-primary">
-							{reward.num}
-						</span>
-						<div>
-							<h3 class="font-headline text-xl font-bold uppercase">{reward.name}</h3>
-							<p class="text-[10px] tracking-widest text-on-surface-variant uppercase">
-								{reward.desc}
-							</p>
-						</div>
-					</div>
-					{#if reward.status === 'LOCKED'}
-						<span
-							class="border border-outline-variant bg-surface-container-high px-3 py-1 text-[10px] font-black text-on-surface-variant uppercase"
+				<thead>
+					<tr class="bg-surface-container-high text-left">
+						<th
+							scope="col"
+							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
+							>ENTRY_ID</th
 						>
-							{reward.status}
-						</span>
-					{:else}
-						<span
-							class="bg-primary px-3 py-1 text-[10px] font-black text-primary-foreground uppercase"
+						<th
+							scope="col"
+							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
+							>PROTOCOL_NAME</th
 						>
-							{reward.status}
-						</span>
-					{/if}
-				</div>
-			{/each}
+						<th
+							scope="col"
+							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
+							>STATUS</th
+						>
+						<th
+							scope="col"
+							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
+							>BUDGET_PROGRESS</th
+						>
+						<th
+							scope="col"
+							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
+							>VALUATION</th
+						>
+					</tr>
+				</thead>
+				<tbody class="divide-y divide-outline-variant">
+					{#each rewards as reward (reward.id)}
+						<tr class="transition-colors hover:bg-surface-dim">
+							<td class="border border-outline-variant p-4 text-primary">{reward.id}</td>
+							<td class="border border-outline-variant p-4 font-bold">{reward.name}</td>
+							<td class="border border-outline-variant p-4">
+								<span class="px-2 py-0.5 text-[10px] {reward.statusClass}">{reward.status}</span>
+							</td>
+							<td class="w-1/4 border border-outline-variant p-4">
+								<div class="h-2 w-full bg-surface-container-high">
+									<div class="h-full bg-primary" style="width: {reward.progress}%"></div>
+								</div>
+							</td>
+							<td class="border border-outline-variant p-4 text-right">{reward.value}</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
 		</div>
+		<button
+			class="mt-4 w-full border-2 border-primary bg-primary py-2 font-mono text-xs font-bold text-primary-foreground uppercase hover:bg-primary/90"
+			>CLAIM_ALL</button
+		>
 	</div>
 </section>

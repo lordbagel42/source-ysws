@@ -1,0 +1,606 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>SOURCE — REBUILD THE PROTOCOL</title>
+		<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'tertiary-fixed': '#e2e2e2',
+							'error-container': '#93000a',
+							'inverse-primary': '#006e16',
+							'surface-bright': '#3a3939',
+							'surface-container-high': '#2a2a2a',
+							'surface-dim': '#131313',
+							'inverse-on-surface': '#313030',
+							'on-secondary': '#00363d',
+							'surface-container-low': '#1c1b1b',
+							'inverse-surface': '#e5e2e1',
+							'on-primary-fixed': '#002203',
+							'surface-tint': '#00e639',
+							'surface-variant': '#353534',
+							'secondary-container': '#00e3fd',
+							'on-primary-container': '#007117',
+							'on-secondary-container': '#00616d',
+							'surface-container-lowest': '#0e0e0e',
+							'on-primary': '#003907',
+							background: '#131313',
+							'on-tertiary-fixed': '#1a1c1c',
+							'primary-fixed-dim': '#00e639',
+							'on-tertiary-container': '#5f6161',
+							'surface-container-highest': '#353534',
+							'on-secondary-fixed-variant': '#004f58',
+							'on-error-container': '#ffdad6',
+							secondary: '#bdf4ff',
+							'primary-container': '#00ff41',
+							'outline-variant': '#3b4b37',
+							'on-surface-variant': '#b9ccb2',
+							surface: '#131313',
+							'secondary-fixed-dim': '#00daf3',
+							'secondary-fixed': '#9cf0ff',
+							'on-error': '#690005',
+							error: '#ffb4ab',
+							'primary-fixed': '#72ff70',
+							'on-secondary-fixed': '#001f24',
+							'tertiary-fixed-dim': '#c6c6c7',
+							'tertiary-container': '#dcdddd',
+							'on-surface': '#e5e2e1',
+							tertiary: '#f9f9f9',
+							'surface-container': '#201f1f',
+							'on-tertiary': '#2f3131',
+							'on-background': '#e5e2e1',
+							outline: '#84967e',
+							primary: '#ebffe2',
+							'on-tertiary-fixed-variant': '#454747',
+							'on-primary-fixed-variant': '#00530e'
+						},
+						fontFamily: {
+							headline: ['Space Grotesk'],
+							body: ['Inter'],
+							label: ['Space Grotesk']
+						},
+						borderRadius: { DEFAULT: '0px', lg: '0px', xl: '0px', full: '9999px' }
+					}
+				}
+			};
+		</script>
+		<style>
+			.material-symbols-outlined {
+				font-variation-settings:
+					'FILL' 0,
+					'wght' 400,
+					'GRAD' 0,
+					'opsz' 24;
+			}
+			.crt-glow {
+				text-shadow:
+					0 0 8px rgba(0, 255, 65, 0.6),
+					0 0 12px rgba(0, 255, 65, 0.3);
+			}
+			.scanlines {
+				background:
+					linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+					linear-gradient(
+						90deg,
+						rgba(255, 0, 0, 0.06),
+						rgba(0, 255, 0, 0.02),
+						rgba(0, 0, 255, 0.06)
+					);
+				background-size:
+					100% 2px,
+					3px 100%;
+				pointer-events: none;
+			}
+			.blinking-cursor::after {
+				content: '_';
+				animation: blink 1s step-end infinite;
+			}
+			@keyframes blink {
+				50% {
+					opacity: 0;
+				}
+			}
+			.hero-gradient {
+				background: linear-gradient(to bottom, #00ff41, #007117);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			.hard-shadow:hover {
+				transform: translate(-2px, -2px);
+				box-shadow: 4px 4px 0px 0px #00ff41;
+			}
+		</style>
+	</head>
+	<body
+		class="text-on-background selection:bg-primary-container selection:text-on-primary-container bg-background font-body"
+	>
+		<!-- TopNavBar -->
+		<nav
+			class="fixed top-0 z-50 flex h-16 w-full items-center justify-between border-b-2 border-[#2A2A2A] bg-[#131313] px-6"
+		>
+			<div class="flex items-center gap-8">
+				<span class="crt-glow font-mono text-2xl font-black tracking-tighter text-[#00FF41]"
+					>SOURCE</span
+				>
+				<div class="hidden gap-6 md:flex">
+					<a
+						class="border-b-2 border-[#00FF41] pb-1 font-['Space_Grotesk'] text-sm tracking-widest text-[#00FF41] uppercase"
+						href="#"
+						>PROTOCOL</a
+					>
+					<a
+						class="font-['Space_Grotesk'] text-sm tracking-widest text-[#84967E] uppercase transition-colors hover:text-[#00FF41]"
+						href="#"
+						>ARCHIVE</a
+					>
+					<a
+						class="font-['Space_Grotesk'] text-sm tracking-widest text-[#84967E] uppercase transition-colors hover:text-[#00FF41]"
+						href="#"
+						>NETWORK</a
+					>
+				</div>
+			</div>
+			<button
+				class="bg-primary-container text-on-primary border-primary-fixed hover:bg-primary-fixed-dim border-2 px-4 py-2 font-mono text-xs font-bold uppercase transition-all hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[2px_2px_0px_0px_#00FF41]"
+			>
+				[INITIALIZE_SESSION]
+			</button>
+		</nav>
+		<main class="min-h-screen pt-16">
+			<!-- HERO SECTION -->
+			<section
+				class="bg-surface relative overflow-hidden border-b-2 border-surface-container-high px-6 py-20 md:py-32"
+			>
+				<div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-12">
+					<div class="space-y-8 md:col-span-7">
+						<div
+							class="text-primary-container inline-block border border-outline-variant bg-surface-container-high px-3 py-1 font-mono text-xs tracking-widest uppercase"
+						>
+							SYSTEM_LEVEL: ADMIN // NODE_01
+						</div>
+						<h1
+							class="hero-gradient crt-glow font-headline text-5xl leading-none font-black tracking-tighter uppercase md:text-8xl"
+						>
+							REBUILD THE<br />PROTOCOL
+						</h1>
+						<p class="max-w-xl text-xl font-medium text-on-surface-variant md:text-2xl">
+							Ship real open-source hardware. Earn a LilyGO T-Deck +
+							<span class="text-primary-container">$275 budget</span>.
+						</p>
+						<div class="flex flex-wrap gap-4 pt-4">
+							<button
+								class="bg-primary-container text-on-primary border-primary-fixed hard-shadow border-2 px-8 py-4 font-mono text-lg font-black uppercase transition-all"
+							>
+								[INITIALIZE BUILD]
+							</button>
+							<button
+								class="bg-surface border-2 border-primary px-8 py-4 font-mono text-lg font-bold text-primary uppercase transition-all hover:bg-surface-container-low"
+							>
+								VIEW_DOCS
+							</button>
+						</div>
+					</div>
+					<div class="relative md:col-span-5">
+						<div
+							class="group relative space-y-2 overflow-hidden border-2 border-outline bg-surface-container-lowest p-6 font-mono text-sm"
+						>
+							<div class="scanlines absolute inset-0 opacity-30"></div>
+							<div class="mb-4 flex items-center gap-2 text-surface-container-highest">
+								<div class="h-3 w-3 rounded-full bg-error"></div>
+								<div class="h-3 w-3 rounded-full bg-secondary"></div>
+								<div class="bg-primary-container h-3 w-3 rounded-full"></div>
+								<span class="ml-auto text-[10px]">TERMINAL_STABLE_v4.2</span>
+							</div>
+							<p class="text-primary-container">$ source init --project-alpha</p>
+							<p class="text-on-surface-variant">&gt; forking protocol...</p>
+							<p class="text-on-surface-variant">&gt; analytical_modules: LOADED</p>
+							<p class="text-on-surface-variant">&gt; security_layers: BYPASSED</p>
+							<p class="text-primary-container">
+								&gt; hardware_link:
+								<span class="bg-primary-container text-on-primary px-1">STABLE</span>
+							</p>
+							<p class="blinking-cursor text-secondary">READY_FOR_DEPLOYMENT</p>
+						</div>
+						<div
+							class="border-primary-container pointer-events-none absolute -right-4 -bottom-4 h-24 w-24 border-r-2 border-b-2"
+						></div>
+					</div>
+				</div>
+			</section>
+			<!-- STREAK THERMAL SCAN -->
+			<section class="border-b-2 border-surface-container-high bg-surface-container-low px-6 py-12">
+				<div class="mx-auto max-w-7xl">
+					<div class="mb-8 flex items-end justify-between">
+						<div>
+							<span class="font-mono text-[10px] tracking-[0.2em] text-outline uppercase"
+								>SENSOR_READOUT</span
+							>
+							<h2
+								class="font-headline text-3xl font-black tracking-tight text-on-surface uppercase"
+							>
+								STREAK_THERMAL_STATUS
+							</h2>
+						</div>
+						<div class="flex items-center gap-2 font-mono text-[10px] text-outline">
+							<span>LOW_ACTIVITY</span>
+							<div class="flex gap-1">
+								<div class="h-3 w-3 bg-surface-container-high"></div>
+								<div class="bg-on-primary-fixed-variant h-3 w-3"></div>
+								<div class="bg-on-primary-container h-3 w-3"></div>
+								<div class="bg-primary-container h-3 w-3"></div>
+								<div class="bg-secondary-container h-3 w-3"></div>
+							</div>
+							<span>CRITICAL_MASS</span>
+						</div>
+					</div>
+					<div class="grid grid-cols-7 gap-1 sm:grid-cols-14 md:grid-cols-21 lg:grid-cols-28">
+						<!-- Generating a fake heatmap grid -->
+						<script>
+							const colors = [
+								'bg-surface-container-high',
+								'bg-on-primary-fixed-variant',
+								'bg-on-primary-container',
+								'bg-primary-container',
+								'bg-secondary-container'
+							];
+							for (let i = 0; i < 154; i++) {
+								const randomColor = colors[Math.floor(Math.random() * colors.length)];
+								document.write(
+									`<div class="aspect-square ${randomColor} opacity-80 hover:opacity-100 transition-opacity cursor-crosshair" title="DATA_POINT_${i}"></div>`
+								);
+							}
+						</script>
+					</div>
+				</div>
+			</section>
+			<!-- RECENT SHIPMENTS FEED -->
+			<section class="bg-surface px-6 py-20">
+				<div class="mx-auto max-w-7xl">
+					<div class="border-primary-container mb-12 border-l-4 pl-6">
+						<span class="font-mono text-[10px] tracking-[0.2em] text-outline uppercase"
+							>TRANSMISSION_FEED</span
+						>
+						<h2 class="font-headline text-4xl font-black tracking-tight text-on-surface uppercase">
+							RECENT_SHIPMENTS
+						</h2>
+					</div>
+					<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+						<!-- Build Card 1 -->
+						<div
+							class="hover:border-primary-container group border-2 border-outline-variant bg-surface-container-low transition-colors"
+						>
+							<div class="relative h-48 overflow-hidden">
+								<img
+									class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+									data-alt="Cyberpunk hardware circuit board closeup"
+									src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMcRN_9dq2GzHoPysCYD9If6D2dBRng2R0pWqMqpIwiRklnR7YdXWBKXx-uVkNYcRt7vE2M4pUauuv6kBlun7kYhHOpu64LHV2mSKkPZGExidqMdmMLHMiqae9NTiXzLKTzv6rS10S7DOZxhlWqlOwLeFTg96GycpbstWJr3lu8k6KCc2jfTbnzaiVYHwnwb4sgTgm3_UifN46yotZvkc5vpiOcRUvBxdWkpqOwVKr_ZWT_fUV1KB5-qgoJ2JUqf1-nNDMWfLYZiVW"
+								/>
+								<div class="absolute top-0 right-0 p-4">
+									<span
+										class="bg-primary-container text-on-primary px-2 py-1 font-mono text-[10px] font-bold"
+										>[DEPLOYED]</span
+									>
+								</div>
+							</div>
+							<div class="p-6">
+								<div class="mb-4 flex items-start justify-between">
+									<h3
+										class="font-headline text-xl font-bold tracking-tight text-on-surface uppercase"
+									>
+										ONYX_DECK_V4
+									</h3>
+									<span class="font-mono text-[10px] text-outline">TS: 08:42:11</span>
+								</div>
+								<div class="space-y-4">
+									<div class="flex flex-wrap gap-2">
+										<span
+											class="border border-outline-variant px-2 py-0.5 font-mono text-[10px] text-outline"
+											>ESP32-S3</span
+										>
+										<span
+											class="border border-outline-variant px-2 py-0.5 font-mono text-[10px] text-outline"
+											>LORA_915MHZ</span
+										>
+									</div>
+									<p class="font-body text-sm text-on-surface-variant">
+										Sub-GHz communication array with haptic interface for mesh-net resilience.
+									</p>
+									<div
+										class="flex items-center justify-between border-t border-outline-variant pt-4"
+									>
+										<span class="text-primary-container font-mono text-xs">REWARD: $275</span>
+										<span
+											class="material-symbols-outlined group-hover:text-primary-container cursor-pointer text-outline"
+											>arrow_forward</span
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Build Card 2 -->
+						<div
+							class="hover:border-primary-container group border-2 border-outline-variant bg-surface-container-low transition-colors"
+						>
+							<div class="relative h-48 overflow-hidden">
+								<img
+									class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+									data-alt="Hacker computer screens in dark room"
+									src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSmp7-_3Mrd_p6KTCvulGh_pV4go9g2fRnriOjeKtgRnkSOESCoeuBNWIjWTdZHhsf09zEem_HQ97OJQxPg6g43THoCHhDpLLkDuf4v6OzEK1AXvqX0gJypGbY8aHy66UG0UDFgSNRhPAnzcTiT88ncWupebaSyu7XPgryqVYcSfSLhV6EtKClY4LD-T9QmKQ0ZH4kxqzEOp36Br87_cHV95h8h6MgNeXeL5VXFOItvR_cCDlUUrldC7RQNtOiBuMkeb7tmNFsAlJr"
+								/>
+								<div class="absolute top-0 right-0 p-4">
+									<span
+										class="bg-secondary-container text-on-secondary px-2 py-1 font-mono text-[10px] font-bold"
+										>[IN_PROGRESS]</span
+									>
+								</div>
+							</div>
+							<div class="p-6">
+								<div class="mb-4 flex items-start justify-between">
+									<h3
+										class="font-headline text-xl font-bold tracking-tight text-on-surface uppercase"
+									>
+										NEURAL_LINK_V1
+									</h3>
+									<span class="font-mono text-[10px] text-outline">TS: 12:15:00</span>
+								</div>
+								<div class="space-y-4">
+									<div class="flex flex-wrap gap-2">
+										<span
+											class="border border-outline-variant px-2 py-0.5 font-mono text-[10px] text-outline"
+											>EEG_SCANNER</span
+										>
+										<span
+											class="border border-outline-variant px-2 py-0.5 font-mono text-[10px] text-outline"
+											>BIPHASIC</span
+										>
+									</div>
+									<p class="font-body text-sm text-on-surface-variant">
+										Biometric data logging with encrypted local storage and biometric lock.
+									</p>
+									<div
+										class="flex items-center justify-between border-t border-outline-variant pt-4"
+									>
+										<span class="text-primary-container font-mono text-xs">BUDGET: $210/275</span>
+										<span
+											class="material-symbols-outlined group-hover:text-primary-container cursor-pointer text-outline"
+											>arrow_forward</span
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Build Card 3 -->
+						<div
+							class="hover:border-primary-container group border-2 border-outline-variant bg-surface-container-low transition-colors"
+						>
+							<div class="relative h-48 overflow-hidden">
+								<img
+									class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+									data-alt="Abstract glowing technology lines"
+									src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUpYdzyaCQCNjQTG-FvR_xDFGKHg3b2rM29OPJNcSTnG89gcfCIiYyrOk834D73j45ULTURwXSqNgYe-lOdL0JZNaj-PzlU3i6v9Itgw03m7D99Urb3UqQHTNDab_fRh0T6VHww5HrZDijJl7As1ay7eMtaorScihmMW1fpVF1mcexGZGYSltO5ZPesnGJJYPCrW4kzDNEYCZf4DepmdOIiAgga2gzl3FzghmUcsvkYi97MG-V90dpngZ696VZJYOI2FzTNMVvc0FB"
+								/>
+								<div class="absolute top-0 right-0 p-4">
+									<span
+										class="bg-surface-container-highest px-2 py-1 font-mono text-[10px] font-bold text-on-surface"
+										>[QUEUED]</span
+									>
+								</div>
+							</div>
+							<div class="p-6">
+								<div class="mb-4 flex items-start justify-between">
+									<h3
+										class="font-headline text-xl font-bold tracking-tight text-on-surface uppercase"
+									>
+										VOID_SCANNER_X
+									</h3>
+									<span class="font-mono text-[10px] text-outline">TS: --:--:--</span>
+								</div>
+								<div class="space-y-4">
+									<div class="flex flex-wrap gap-2">
+										<span
+											class="border border-outline-variant px-2 py-0.5 font-mono text-[10px] text-outline"
+											>SDR_RADIO</span
+										>
+										<span
+											class="border border-outline-variant px-2 py-0.5 font-mono text-[10px] text-outline"
+											>OPEN_TX</span
+										>
+									</div>
+									<p class="font-body text-sm text-on-surface-variant">
+										Broadband radio scanner for signal analysis in restricted zones.
+									</p>
+									<div
+										class="flex items-center justify-between border-t border-outline-variant pt-4"
+									>
+										<span class="text-primary-container font-mono text-xs">ALLOCATION_PENDING</span>
+										<span
+											class="material-symbols-outlined group-hover:text-primary-container cursor-pointer text-outline"
+											>arrow_forward</span
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- REWARD LOG -->
+			<section
+				class="border-t-2 border-surface-container-high bg-surface-container-lowest px-6 py-20"
+			>
+				<div class="mx-auto max-w-7xl">
+					<div
+						class="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center"
+					>
+						<div>
+							<span class="font-mono text-[10px] tracking-[0.2em] text-outline uppercase"
+								>LEDGER_SYSTEM</span
+							>
+							<h2
+								class="font-headline text-4xl font-black tracking-tight text-on-surface uppercase"
+							>
+								REWARD_LOG_FILE
+							</h2>
+						</div>
+						<div class="flex gap-8 border border-outline-variant bg-surface-container-low p-4">
+							<div>
+								<span class="block font-mono text-[10px] text-outline uppercase">CURRENT_RANK</span>
+								<span class="text-primary-container font-mono font-bold">[ELITE_OP]</span>
+							</div>
+							<div>
+								<span class="block font-mono text-[10px] text-outline uppercase">TOTAL_BOUNTY</span>
+								<span class="font-mono font-bold text-secondary">$1,245.00</span>
+							</div>
+						</div>
+					</div>
+					<div class="overflow-x-auto">
+						<table class="w-full border-collapse font-mono text-sm">
+							<thead>
+								<tr class="bg-surface-container-high text-left">
+									<th class="border border-outline-variant p-4 text-[10px] text-outline uppercase">
+										ENTRY_ID
+									</th>
+									<th class="border border-outline-variant p-4 text-[10px] text-outline uppercase">
+										PROTOCOL_NAME
+									</th>
+									<th class="border border-outline-variant p-4 text-[10px] text-outline uppercase">
+										STATUS
+									</th>
+									<th class="border border-outline-variant p-4 text-[10px] text-outline uppercase">
+										BUDGET_PROGRESS
+									</th>
+									<th class="border border-outline-variant p-4 text-[10px] text-outline uppercase">
+										VALUATION
+									</th>
+								</tr>
+							</thead>
+							<tbody class="divide-y divide-outline-variant">
+								<tr class="hover:bg-surface transition-colors">
+									<td class="text-primary-container border border-outline-variant p-4">#X992-01</td>
+									<td class="border border-outline-variant p-4 font-bold">LILYGO_T-DECK_RESYNC</td>
+									<td class="border border-outline-variant p-4">
+										<span
+											class="bg-on-primary-fixed-variant text-primary-container px-2 py-0.5 text-[10px]"
+											>COMPLETE</span
+										>
+									</td>
+									<td class="w-1/4 border border-outline-variant p-4">
+										<div class="h-2 w-full bg-surface-container-high">
+											<div class="bg-primary-container h-full w-[100%]"></div>
+										</div>
+									</td>
+									<td class="border border-outline-variant p-4 text-right">$275.00</td>
+								</tr>
+								<tr class="hover:bg-surface transition-colors">
+									<td class="text-primary-container border border-outline-variant p-4">#X992-05</td>
+									<td class="border border-outline-variant p-4 font-bold">MESH_ROUTER_V3</td>
+									<td class="border border-outline-variant p-4">
+										<span
+											class="bg-on-secondary-fixed-variant px-2 py-0.5 text-[10px] text-secondary"
+											>VERIFYING</span
+										>
+									</td>
+									<td class="border border-outline-variant p-4">
+										<div class="h-2 w-full bg-surface-container-high">
+											<div class="bg-secondary-container h-full w-[75%]"></div>
+										</div>
+									</td>
+									<td class="border border-outline-variant p-4 text-right">$205.00</td>
+								</tr>
+								<tr class="hover:bg-surface transition-colors">
+									<td class="text-primary-container border border-outline-variant p-4">#X993-12</td>
+									<td class="border border-outline-variant p-4 font-bold">CRYPTO_KEY_HARDWARE</td>
+									<td class="border border-outline-variant p-4">
+										<span
+											class="bg-surface-container-highest px-2 py-0.5 text-[10px] text-on-surface"
+											>PENDING</span
+										>
+									</td>
+									<td class="border border-outline-variant p-4">
+										<div class="h-2 w-full bg-surface-container-high">
+											<div class="h-full w-[15%] bg-outline"></div>
+										</div>
+									</td>
+									<td class="border border-outline-variant p-4 text-right">$45.00</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+			<!-- TERMINAL WINDOW BOTTOM -->
+			<section
+				class="border-primary-container relative overflow-hidden border-t-4 bg-surface-container-lowest p-4 font-mono text-xs"
+			>
+				<div class="scanlines absolute inset-0 opacity-10"></div>
+				<div class="mx-auto flex max-w-7xl flex-col gap-1">
+					<div class="flex gap-4">
+						<span class="text-outline">[08:42:11]</span>
+						<span class="text-primary-container uppercase">INITIALIZING HARDWARE PROTOCOLS...</span>
+					</div>
+					<div class="flex gap-4">
+						<span class="text-outline">[08:42:15]</span>
+						<span class="text-secondary uppercase">SUCCESS: NODE_01 SYNCED</span>
+					</div>
+					<div class="flex gap-4">
+						<span class="text-outline">[08:42:18]</span>
+						<span class="text-on-surface">UPLOADING ENCRYPTED TELEMETRY TO ARCHIVE...</span>
+					</div>
+					<div class="flex gap-4">
+						<span class="text-outline">[08:42:22]</span>
+						<span class="text-primary-container blinking-cursor uppercase"
+							>WAITING FOR COMMAND</span
+						>
+					</div>
+				</div>
+			</section>
+		</main>
+		<!-- Footer -->
+		<footer
+			class="flex w-full flex-col items-center justify-between gap-4 border-t-2 border-[#2A2A2A] bg-[#0E0E0E] px-6 py-8 md:flex-row"
+		>
+			<div class="flex flex-col gap-1">
+				<span class="crt-glow font-mono text-xs font-bold text-[#00FF41]">SOURCE_PROTOCOL</span>
+				<span class="font-mono text-[10px] tracking-[0.1em] text-[#353534] uppercase"
+					>©2024 SOURCE_PROTOCOL // REBUILD_THE_VOID</span
+				>
+			</div>
+			<div class="flex gap-8">
+				<a
+					class="font-mono text-[10px] tracking-[0.1em] text-[#353534] uppercase underline underline-offset-4 hover:text-[#00FF41]"
+					href="#"
+					>TERMINAL_ACCESS</a
+				>
+				<a
+					class="font-mono text-[10px] tracking-[0.1em] text-[#353534] uppercase underline underline-offset-4 hover:text-[#00FF41]"
+					href="#"
+					>ENCRYPTION_LAYERS</a
+				>
+				<a
+					class="font-mono text-[10px] tracking-[0.1em] text-[#353534] uppercase underline underline-offset-4 hover:text-[#00FF41]"
+					href="#"
+					>SYSTEM_STATUS</a
+				>
+			</div>
+			<div class="font-mono text-[10px] text-[#00FF41]">LATENCY: 14MS // STATUS: OPERATIONAL</div>
+		</footer>
+	</body>
+</html>

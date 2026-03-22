@@ -1,10 +1,4 @@
-import {
-	AbsoluteFill,
-	interpolate,
-	spring,
-	useCurrentFrame,
-	useVideoConfig
-} from 'remotion';
+import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 
 export const IntroSlide: React.FC = () => {
 	const frame = useCurrentFrame();

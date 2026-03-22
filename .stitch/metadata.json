@@ -38,6 +38,27 @@
 			"sourceScreen": "projects/14307926202671112492/screens/0009007cbcb94741a90b12df29dd3ac4",
 			"width": 1280,
 			"height": 1385
+		},
+		"sidebar-variant-a": {
+			"id": "9040ed30a9e0434a8a070fdc7af85c68",
+			"sourceScreen": "projects/14307926202671112492/screens/9040ed30a9e0434a8a070fdc7af85c68",
+			"width": 2560,
+			"height": 2048,
+			"label": "Compact Icon Rail"
+		},
+		"sidebar-variant-b": {
+			"id": "d6e97d6966dd4c2c89f0e31cee5ef1ce",
+			"sourceScreen": "projects/14307926202671112492/screens/d6e97d6966dd4c2c89f0e31cee5ef1ce",
+			"width": 2560,
+			"height": 2048,
+			"label": "Command Palette Sidebar"
+		},
+		"sidebar-variant-c": {
+			"id": "ae576429b7d943e0b6d8620ba00135af",
+			"sourceScreen": "projects/14307926202671112492/screens/ae576429b7d943e0b6d8620ba00135af",
+			"width": 2560,
+			"height": 2048,
+			"label": "Modular HUD Panel"
 		}
 	}
 }

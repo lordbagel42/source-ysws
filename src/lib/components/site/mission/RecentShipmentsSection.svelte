@@ -1,87 +1,111 @@
 <script lang="ts">
 	import { Badge } from '$lib/components/ui/badge/index.js';
-	import { ExternalLink } from 'lucide-svelte';
 
 	const shipments = [
 		{
-			name: 'ONYX_DECK',
-			description: 'Custom 40% mechanical keyboard with integrated LoRa mesh terminal.',
-			tags: ['LORA', 'PCB_DESIGN'],
-			hoverColor: 'hover:border-primary',
-			placeholderColor: 'bg-surface-container-high'
+			name: 'ONYX_DECK_V4',
+			description: 'Sub-GHz communication array with haptic interface for mesh-net resilience.',
+			tags: ['ESP32-S3', 'LORA_915MHZ'],
+			status: 'DEPLOYED',
+			statusClass: 'bg-primary text-primary-foreground',
+			timestamp: '08:42:11',
+			reward: 'REWARD: $275',
+			image:
+				'https://lh3.googleusercontent.com/aida-public/AB6AXuDMcRN_9dq2GzHoPysCYD9If6D2dBRng2R0pWqMqpIwiRklnR7YdXWBKXx-uVkNYcRt7vE2M4pUauuv6kBlun7kYhHOpu64LHV2mSKkPZGExidqMdmMLHMiqae9NTiXzLKTzv6rS10S7DOZxhlWqlOwLeFTg96GycpbstWJr3lu8k6KCc2jfTbnzaiVYHwnwb4sgTgm3_UifN46yotZvkc5vpiOcRUvBxdWkpqOwVKr_ZWT_fUV1KB5-qgoJ2JUqf1-nNDMWfLYZiVW'
 		},
 		{
-			name: 'AXIS_06',
-			description: '6-axis robotic arm with sub-millimeter precision for SMD assembly.',
-			tags: ['ROBOTICS', 'STM32'],
-			hoverColor: 'hover:border-secondary',
-			placeholderColor: 'bg-surface-container-high'
+			name: 'NEURAL_LINK_V1',
+			description: 'Biometric data logging with encrypted local storage and biometric lock.',
+			tags: ['EEG_SCANNER', 'BIPHASIC'],
+			status: 'IN_PROGRESS',
+			statusClass: 'bg-secondary text-secondary-foreground',
+			timestamp: '12:15:00',
+			reward: 'BUDGET: $210/275',
+			image:
+				'https://lh3.googleusercontent.com/aida-public/AB6AXuDSmp7-_3Mrd_p6KTCvulGh_pV4go9g2fRnriOjeKtgRnkSOESCoeuBNWIjWTdZHhsf09zEem_HQ97OJQxPg6g43THoCHhDpLLkDuf4v6OzEK1AXvqX0gJypGbY8aHy66UG0UDFgSNRhPAnzcTiT88ncWupebaSyu7XPgryqVYcSfSLhV6EtKClY4LD-T9QmKQ0ZH4kxqzEOp36Br87_cHV95h8h6MgNeXeL5VXFOItvR_cCDlUUrldC7RQNtOiBuMkeb7tmNFsAlJr'
 		},
 		{
-			name: 'VOID_SPLIT',
-			description: 'Wireless split ergonomic keyboard with customized ZMK firmware.',
-			tags: ['BLE', 'QMK/ZMK'],
-			hoverColor: 'hover:border-error',
-			placeholderColor: 'bg-surface-container-high'
+			name: 'VOID_SCANNER_X',
+			description: 'Broadband radio scanner for signal analysis in restricted zones.',
+			tags: ['SDR_RADIO', 'OPEN_TX'],
+			status: 'QUEUED',
+			statusClass: 'bg-surface-container-highest text-foreground',
+			timestamp: '--:--:--',
+			reward: 'ALLOCATION_PENDING',
+			image:
+				'https://lh3.googleusercontent.com/aida-public/AB6AXuCUpYdzyaCQCNjQTG-FvR_xDFGKHg3b2rM29OPJNcSTnG89gcfCIiYyrOk834D73j45ULTURwXSqNgYe-lOdL0JZNaj-PzlU3i6v9Itgw03m7D99Urb3UqQHTNDab_fRh0T6VHww5HrZDijJl7As1ay7eMtaorScihmMW1fpVF1mcexGZGYSltO5ZPesnGJJYPCrW4kzDNEYCZf4DepmdOIiAgga2gzl3FzghmUcsvkYi97MG-V90dpngZ696VZJYOI2FzTNMVvc0FB'
 		}
 	];
 </script>
 
-<section class="px-8 py-24 md:px-16">
-	<!-- Header -->
-	<div class="mb-12 flex items-end justify-between">
-		<div>
-			<span class="mb-2 block text-[10px] tracking-widest text-on-surface-variant uppercase"
-				>Proof of Work</span
+<section aria-label="Recent hardware shipments" class="bg-background px-6 py-20">
+	<div class="mx-auto max-w-7xl">
+		<!-- Header -->
+		<div class="mb-12 border-l-4 border-primary pl-6">
+			<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"
+				>TRANSMISSION_FEED</span
 			>
-			<h2 class="font-headline text-4xl font-black tracking-tighter uppercase md:text-6xl">
+			<h2 class="font-headline text-4xl font-black tracking-tight text-foreground uppercase">
 				RECENT_SHIPMENTS
 			</h2>
 		</div>
-		<div class="hidden text-right md:block">
-			<div class="font-headline text-2xl font-bold text-primary">4,291</div>
-			<div class="text-[10px] tracking-widest text-on-surface-variant uppercase">
-				Validated Shipments
-			</div>
-		</div>
-	</div>
 
-	<!-- Cards grid -->
-	<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-		{#each shipments as shipment (shipment.name)}
-			<div
-				class="group border-2 border-outline-variant bg-surface-container-low p-6 transition-colors {shipment.hoverColor}"
-			>
-				<!-- Image placeholder -->
-				<div
-					class="relative mb-6 aspect-video overflow-hidden border-2 border-outline-variant {shipment.placeholderColor}"
+		<!-- Cards grid -->
+		<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+			{#each shipments as ship (ship.name)}
+				<article
+					class="group border-2 border-outline-variant bg-surface-container-low transition-colors hover:border-primary"
 				>
-					<div
-						class="flex h-full w-full items-center justify-center grayscale transition-all duration-500 group-hover:grayscale-0"
-					>
-						<span class="font-headline text-2xl font-black uppercase opacity-30"
-							>{shipment.name}</span
-						>
+					<!-- Image -->
+					<div class="relative h-48 overflow-hidden">
+						<img
+							class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+							src={ship.image}
+							alt={ship.name}
+						/>
+						<div class="absolute top-0 right-0 p-4">
+							<Badge class="font-mono text-[10px] font-bold {ship.statusClass}">
+								[{ship.status}]
+							</Badge>
+						</div>
 					</div>
-				</div>
-				<!-- Title + link icon -->
-				<div class="mb-4 flex items-start justify-between">
-					<h3 class="font-headline text-xl font-bold uppercase">{shipment.name}</h3>
-					<ExternalLink class="h-4 w-4 text-on-surface-variant" />
-				</div>
-				<!-- Description -->
-				<p class="mb-6 text-sm text-on-surface-variant">{shipment.description}</p>
-				<!-- Tags -->
-				<div class="flex gap-2">
-					{#each shipment.tags as tag (tag)}
-						<Badge
-							variant="outline"
-							class="border-outline-variant bg-surface-container-high text-[10px] tracking-widest text-on-surface-variant uppercase"
-							>{tag}</Badge
-						>
-					{/each}
-				</div>
-			</div>
-		{/each}
+
+					<!-- Content -->
+					<div class="p-6">
+						<div class="mb-4 flex items-start justify-between">
+							<h3 class="font-headline text-xl font-bold tracking-tight text-foreground uppercase">
+								{ship.name}
+							</h3>
+							<span class="font-mono text-[10px] text-on-surface-variant">TS: {ship.timestamp}</span
+							>
+						</div>
+
+						<div class="space-y-4">
+							<!-- Tags -->
+							<div class="flex flex-wrap gap-2">
+								{#each ship.tags as tag (tag)}
+									<span
+										class="border border-outline-variant px-2 py-0.5 font-mono text-[10px] text-on-surface-variant"
+										>{tag}</span
+									>
+								{/each}
+							</div>
+
+							<p class="text-sm text-on-surface-variant">
+								{ship.description}
+							</p>
+
+							<!-- Footer -->
+							<div class="flex items-center justify-between border-t border-outline-variant pt-4">
+								<span class="font-mono text-xs text-primary">{ship.reward}</span>
+								<span class="text-on-surface-variant transition-colors group-hover:text-primary"
+									>→</span
+								>
+							</div>
+						</div>
+					</div>
+				</article>
+			{/each}
+		</div>
 	</div>
 </section>

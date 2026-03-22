@@ -1,107 +1,76 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { resolve } from '$app/paths';
 	import { authClient } from '$lib/auth-client';
-	import { Avatar, AvatarFallback, AvatarImage } from '$lib/components/ui/avatar';
-	import { Button } from '$lib/components/ui/button';
-	import { Separator } from '$lib/components/ui/separator';
-	import { ClipboardList, Zap, Cpu, Archive, Rocket, Settings, LogOut } from 'lucide-svelte';
-	import type { User } from 'better-auth/types';
+	import { Monitor, Users, Database, Lock } from 'lucide-svelte';
 
-	let { user }: { user: User } = $props();
+	let { user }: { user?: { name?: string | null; image?: string | null } | null } = $props();
 
 	const navItems = [
-		{ label: 'MISSION', path: '/', routeId: '/(app)' as const, icon: ClipboardList },
-		{ label: 'STREAK', path: '/streak', routeId: '/(app)/streak' as const, icon: Zap },
-		{ label: 'HARDWARE', path: '/hardware', routeId: '/(app)/hardware' as const, icon: Cpu },
-		{ label: 'VAULT', path: '/vault', routeId: '/(app)/vault' as const, icon: Archive }
+		{ label: 'TERMINAL', path: '/', icon: Monitor },
+		{ label: 'NETWORK', path: '/network', icon: Users },
+		{ label: 'REGISTRY', path: '/hardware', icon: Database },
+		{ label: 'VAULT', path: '/vault', icon: Lock }
 	];
 
-	let currentPath = $derived($page.url.pathname);
-
-	function isActive(path: string): boolean {
-		if (path === '/') return currentPath === '/';
-		return currentPath.startsWith(path);
-	}
-
-	async function handleSignOut() {
+	async function signOut() {
 		await authClient.signOut();
-		goto(resolve('/login'));
+		goto('/login');
 	}
 </script>
 
 <aside
-	class="fixed top-0 left-0 flex h-screen w-64 flex-col border-r-2 border-outline-variant bg-surface-container-low"
+	class="fixed top-0 left-0 hidden h-screen w-64 flex-col border-r-2 border-outline-variant bg-surface-container-lowest md:flex"
 >
-	<!-- Logo -->
-	<div class="p-6">
-		<h1 class="crt-glow font-headline text-2xl font-black tracking-widest">SOURCE</h1>
+	<div class="px-4 py-6">
+		<span class="font-headline text-2xl font-black text-primary uppercase">SOURCE</span>
+		<p class="font-mono text-[10px] tracking-widest text-on-surface-variant">REBUILD_PROTOCOL</p>
 	</div>
 
-	<Separator />
-
-	<!-- User section -->
-	<div class="flex items-center gap-3 p-4">
-		<Avatar class="h-8 w-8 border border-outline-variant">
-			<AvatarImage src={user.image ?? ''} alt={user.name} />
-			<AvatarFallback class="bg-surface-container-high font-mono text-xs text-on-surface-variant">
-				{user.name?.charAt(0).toUpperCase() ?? '?'}
-			</AvatarFallback>
-		</Avatar>
-		<div class="min-w-0">
-			<p class="font-mono text-[10px] tracking-widest text-on-surface-variant uppercase">
-				Operator
-			</p>
-			<p class="truncate font-mono text-sm text-on-surface">{user.name ?? 'Unknown'}</p>
-		</div>
-	</div>
-
-	<Separator />
-
-	<!-- Navigation -->
-	<nav class="flex-1 py-2">
-		{#each navItems as item (item.path)}
+	<nav class="flex flex-1 flex-col gap-1 px-2">
+		{#each navItems as item}
+			{@const active = $page.url.pathname === item.path}
 			<a
-				href={resolve(item.routeId)}
-				class="flex items-center gap-3 px-4 py-3 font-mono text-sm transition-colors {isActive(
-					item.path
-				)
+				href={item.path}
+				class="flex items-center gap-3 px-4 py-3 font-mono text-xs tracking-wider uppercase {active
 					? 'border-l-4 border-primary bg-surface-container-high text-primary'
-					: 'border-l-4 border-transparent text-on-surface-variant hover:bg-surface-container hover:text-on-surface'}"
+					: 'text-on-surface-variant hover:bg-surface-container hover:text-primary'}"
 			>
-				<item.icon class="h-4 w-4" />
+				<item.icon size={18} />
 				{item.label}
 			</a>
 		{/each}
 	</nav>
 
-	<Separator />
-
-	<!-- Bottom actions -->
-	<div class="space-y-2 p-4">
-		<Button
-			class="w-full bg-primary font-mono text-xs font-bold tracking-wider text-primary-foreground hover:bg-primary/90"
-		>
-			<Rocket class="mr-2 h-3 w-3" />
-			INITIALIZE_BUILD
-		</Button>
-		<div class="flex gap-2">
-			<Button
-				variant="ghost"
-				class="flex-1 font-mono text-xs text-on-surface-variant hover:text-on-surface"
+	<div class="border-t-2 border-outline-variant p-4">
+		{#if user}
+			<div class="flex items-center gap-3">
+				{#if user.image}
+					<img src={user.image} alt={user.name ?? 'User'} class="h-8 w-8 rounded-full" />
+				{:else}
+					<div
+						class="flex h-8 w-8 items-center justify-center rounded-full bg-surface-container font-mono text-xs text-primary"
+					>
+						{(user.name ?? '?').charAt(0).toUpperCase()}
+					</div>
+				{/if}
+				<span class="flex-1 truncate font-mono text-xs text-on-surface-variant">
+					{user.name ?? 'User'}
+				</span>
+				<button
+					onclick={signOut}
+					class="font-mono text-[10px] text-on-surface-variant uppercase hover:text-primary"
+				>
+					OUT
+				</button>
+			</div>
+		{:else}
+			<a
+				href="/login"
+				class="block w-full bg-primary py-3 text-center font-mono text-xs font-bold text-primary-foreground uppercase"
 			>
-				<Settings class="mr-1 h-3 w-3" />
-				SETTINGS
-			</Button>
-			<Button
-				variant="ghost"
-				class="flex-1 font-mono text-xs text-on-surface-variant hover:text-on-surface"
-				onclick={handleSignOut}
-			>
-				<LogOut class="mr-1 h-3 w-3" />
-				LOGOUT
-			</Button>
-		</div>
+				INIT_SEQUENCE
+			</a>
+		{/if}
 	</div>
 </aside>

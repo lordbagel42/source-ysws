@@ -1,0 +1,360 @@
+<!doctype html>
+<html class="dark" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>SOURCE | Compact Icon Rail</title>
+		<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&amp;family=Inter:wght@400;700&amp;family=JetBrains+Mono&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							primary: '#00FF41',
+							secondary: '#00E3FD',
+							tertiary: '#F0FF00',
+							'surface-base': '#131313',
+							'surface-card': '#1C1B1B',
+							'surface-header': '#2A2A2A',
+							error: '#FF4B2B'
+						},
+						fontFamily: {
+							headline: ['Space Grotesk', 'sans-serif'],
+							body: ['Inter', 'sans-serif'],
+							code: ['JetBrains Mono', 'monospace']
+						},
+						borderRadius: { DEFAULT: '0px' }
+					}
+				}
+			};
+		</script>
+		<style type="text/tailwindcss">
+			@layer base {
+				body {
+					@apply bg-surface-base overflow-hidden font-body text-[#E5E2E1];
+				}
+			}
+			.material-symbols-outlined {
+				font-variation-settings:
+					'FILL' 0,
+					'wght' 400,
+					'GRAD' 0,
+					'opsz' 24;
+			}
+			.crt-glow {
+				text-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
+			}
+			.crt-glow-cyan {
+				text-shadow: 0 0 10px rgba(0, 227, 253, 0.7);
+			}
+			.blinking-cursor::after {
+				content: '_';
+				animation: blink 1s step-end infinite;
+			}
+			@keyframes blink {
+				50% {
+					opacity: 0;
+				}
+			}
+			.sidebar-rail {
+				width: 64px;
+				transition: width 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+			}
+			.sidebar-rail:hover {
+				width: 256px;
+			}
+			.nav-label {
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.15s ease-in-out;
+				white-space: nowrap;
+			}
+			.sidebar-rail:hover .nav-label {
+				opacity: 1;
+				pointer-events: auto;
+			}
+			.logo-text {
+				opacity: 0;
+				transition: opacity 0.15s ease-in-out;
+			}
+			.sidebar-rail:hover .logo-text {
+				opacity: 1;
+			}
+			.user-details {
+				opacity: 0;
+				transition: opacity 0.15s ease-in-out;
+			}
+			.sidebar-rail:hover .user-details {
+				opacity: 1;
+			}
+			.scanlines {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background:
+					linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+					linear-gradient(
+						90deg,
+						rgba(255, 0, 0, 0.02),
+						rgba(0, 255, 0, 0.01),
+						rgba(0, 0, 255, 0.02)
+					);
+				background-size:
+					100% 4px,
+					3px 100%;
+				pointer-events: none;
+				z-index: 100;
+			}
+			.active-link {
+				@apply border-l-[4px] border-primary bg-primary/10 text-primary;
+			}
+		</style>
+	</head>
+	<body class="flex min-h-screen">
+		<div class="scanlines"></div>
+		<aside
+			class="sidebar-rail border-surface-header bg-surface-base relative z-50 flex h-screen flex-col border-r-2"
+		>
+			<div
+				class="border-surface-header flex h-20 shrink-0 items-center overflow-hidden border-b-2 px-[18px]"
+			>
+				<div class="flex items-center gap-4">
+					<span class="crt-glow shrink-0 font-headline text-3xl font-black text-primary">S</span>
+					<span
+						class="logo-text crt-glow font-headline text-2xl font-black tracking-tighter text-primary"
+						>OURCE</span
+					>
+				</div>
+			</div>
+			<nav class="flex flex-grow flex-col overflow-hidden pt-6">
+				<a
+					class="active-link group flex h-14 items-center px-[18px] transition-all hover:bg-primary/5"
+					href="#"
+				>
+					<span class="material-symbols-outlined shrink-0 text-2xl">terminal</span>
+					<span class="nav-label ml-6 font-headline text-sm tracking-widest">MISSION</span>
+				</a>
+				<a
+					class="flex h-14 items-center border-l-[4px] border-transparent px-[18px] text-[#84967E] transition-all hover:bg-primary/5 hover:text-primary"
+					href="#"
+				>
+					<span class="material-symbols-outlined shrink-0 text-2xl">bolt</span>
+					<span class="nav-label ml-6 font-headline text-sm tracking-widest uppercase">streak</span>
+				</a>
+				<a
+					class="flex h-14 items-center border-l-[4px] border-transparent px-[18px] text-[#84967E] transition-all hover:bg-primary/5 hover:text-primary"
+					href="#"
+				>
+					<span class="material-symbols-outlined shrink-0 text-2xl">memory</span>
+					<span class="nav-label ml-6 font-headline text-sm tracking-widest uppercase"
+						>hardware</span
+					>
+				</a>
+				<a
+					class="flex h-14 items-center border-l-[4px] border-transparent px-[18px] text-[#84967E] transition-all hover:bg-primary/5 hover:text-primary"
+					href="#"
+				>
+					<span class="material-symbols-outlined shrink-0 text-2xl">account_balance_wallet</span>
+					<span class="nav-label ml-6 font-headline text-sm tracking-widest uppercase">vault</span>
+				</a>
+			</nav>
+			<div class="border-surface-header mt-auto border-t-2">
+				<div class="flex h-20 items-center overflow-hidden px-[12px]">
+					<div class="bg-surface-card h-10 w-10 shrink-0 border-2 border-primary grayscale">
+						<img
+							alt="User"
+							class="h-full w-full object-cover"
+							src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj7EblFK-wg5EZJMHcm1y5kuzJJgEoWUG4-XJB1irOYaIjCf0rTeNVwdPd36kxLhIp7nDb--TQOYpzp0RrE5hdBkYBc33efTa5jGzbg26_gTUMdIf0WtXYjMTMCvlxIGTDB70V5Mwg863-Kkj2605wv-Tw-WndpRoK2dArBecT2kCmYhpqfX_MdJgtZVH5LRyjW3GzCrJlMWucYkNccUz0BHdUygpXr5EpCrhpy9ZpW0a8ie1DCBSXtUEZtiphLHO5l2rrTnswpIYx"
+						/>
+					</div>
+					<div class="user-details ml-4 overflow-hidden">
+						<p class="font-headline text-[10px] font-bold tracking-tighter text-primary">
+							OPERATOR
+						</p>
+						<p class="truncate font-headline text-xs font-bold text-white uppercase">@NULL_VOID</p>
+					</div>
+				</div>
+				<a
+					class="flex h-14 items-center border-l-[4px] border-transparent px-[18px] text-[#84967E] transition-all hover:bg-error/10 hover:text-error"
+					href="#"
+				>
+					<span class="material-symbols-outlined shrink-0 text-2xl">logout</span>
+					<span class="nav-label ml-6 font-headline text-sm tracking-widest uppercase"
+						>sign out</span
+					>
+				</a>
+			</div>
+		</aside>
+		<main class="relative flex-grow overflow-y-auto p-12">
+			<header class="mb-16 flex items-start justify-between">
+				<div>
+					<div
+						class="crt-glow mb-4 font-headline text-xs font-bold tracking-widest text-primary opacity-70"
+					>
+						SYSTEM_AUTH // SESSION_ACTIVE
+					</div>
+					<h2
+						class="blinking-cursor font-headline text-7xl leading-none font-black tracking-tighter uppercase"
+					>
+						DASHBOARD
+					</h2>
+				</div>
+				<div class="flex gap-6">
+					<div
+						class="bg-surface-card border-surface-header flex flex-col items-end border-2 p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+					>
+						<span class="font-headline text-[10px] tracking-widest text-secondary">NET_PING</span>
+						<span class="crt-glow font-headline text-2xl font-black text-primary">12MS</span>
+					</div>
+					<div
+						class="bg-surface-card border-surface-header flex flex-col items-end border-2 p-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+					>
+						<span class="font-headline text-[10px] tracking-widest text-secondary">SYS_STATUS</span>
+						<span class="crt-glow-cyan font-headline text-2xl font-black text-secondary"
+							>STABLE</span
+						>
+					</div>
+				</div>
+			</header>
+			<div class="grid grid-cols-12 gap-8">
+				<div class="bg-surface-card border-surface-header col-span-12 border-2 lg:col-span-8">
+					<div class="bg-surface-header flex items-center justify-between px-6 py-3">
+						<span class="font-headline text-xs font-bold tracking-[0.2em] text-primary"
+							>ACTIVE_PROTOCOLS</span
+						>
+						<span class="font-code text-[10px] text-[#84967E]">ID: 0x4F92</span>
+					</div>
+					<div class="space-y-6 p-8">
+						<div
+							class="border-surface-header bg-surface-base group flex items-center justify-between border-2 p-6 transition-colors hover:border-primary"
+						>
+							<div class="flex items-center gap-6">
+								<span class="material-symbols-outlined text-3xl text-primary">rocket_launch</span>
+								<div>
+									<h3 class="font-headline text-xl font-bold tracking-tight">NEURAL_VOID_V1</h3>
+									<p class="font-code mt-1 text-[10px] text-[#84967E]">
+										NODE: US-EAST-1 // STATUS: ENCRYPTED
+									</p>
+								</div>
+							</div>
+							<div class="text-right">
+								<span class="bg-primary px-3 py-1 font-headline text-[10px] font-bold text-black"
+									>LIVE_LINK</span
+								>
+							</div>
+						</div>
+						<div
+							class="border-surface-header bg-surface-base group flex items-center justify-between border-2 p-6 transition-colors hover:border-secondary"
+						>
+							<div class="flex items-center gap-6">
+								<span class="material-symbols-outlined text-3xl text-secondary">database</span>
+								<div>
+									<h3 class="font-headline text-xl font-bold tracking-tight text-white">
+										CYBER_STASH_CORE
+									</h3>
+									<p class="font-code mt-1 text-[10px] text-[#84967E]">
+										NODE: EU-WEST-2 // STATUS: SYNCING
+									</p>
+								</div>
+							</div>
+							<div class="text-right">
+								<span
+									class="bg-surface-header px-3 py-1 font-headline text-[10px] font-bold text-white"
+									>BUILDING</span
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div
+					class="bg-surface-card border-surface-header col-span-12 flex flex-col border-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] lg:col-span-4"
+				>
+					<div class="bg-surface-header border-surface-header border-b-2 px-6 py-3">
+						<span class="font-headline text-xs font-bold tracking-[0.2em] text-secondary"
+							>UPTIME_METRIC</span
+						>
+					</div>
+					<div class="flex flex-grow flex-col p-8">
+						<div class="crt-glow mb-2 font-headline text-7xl font-black text-primary">
+							99.98<span class="text-3xl text-secondary">%</span>
+						</div>
+						<p class="mb-8 font-body text-sm leading-relaxed text-[#84967E]">
+							System integrity remains optimal across all distributed hardware clusters. No critical
+							failures detected in current cycle.
+						</p>
+						<div
+							class="border-surface-header relative mt-auto h-32 w-full overflow-hidden border-2 bg-black"
+						>
+							<div
+								class="absolute inset-0 opacity-10"
+								style="
+									background-image:
+										linear-gradient(90deg, #00ff41 1px, transparent 1px),
+										linear-gradient(#00ff41 1px, transparent 1px);
+									background-size: 16px 16px;
+								"
+							></div>
+							<svg
+								class="absolute bottom-0 left-0 h-24 w-full"
+								preserveAspectRatio="none"
+								viewBox="0 0 200 64"
+							>
+								<path
+									d="M0 64 L20 40 L40 50 L60 20 L80 30 L100 10 L120 45 L140 25 L160 55 L180 15 L200 64"
+									fill="none"
+									stroke="#00FF41"
+									stroke-width="2"
+								></path>
+							</svg>
+						</div>
+					</div>
+				</div>
+				<div
+					class="border-surface-header font-code col-span-12 border-2 bg-black p-8 text-xs text-primary shadow-[Inset_0_0_20px_rgba(0,0,0,0.8)]"
+				>
+					<div
+						class="border-surface-header mb-6 flex items-center gap-3 border-b pb-4 text-secondary"
+					>
+						<span class="material-symbols-outlined text-lg">terminal</span>
+						<span class="font-headline text-sm tracking-widest">CONSOLE_OUTPUT</span>
+					</div>
+					<div class="space-y-2 leading-relaxed opacity-90">
+						<p class="text-[#84967E]">[08:42:11] INITIALIZING HARDWARE PROTOCOLS...</p>
+						<p class="text-[#84967E]">[08:42:12] CONNECTION ESTABLISHED WITH REMOTE CLUSTER_A</p>
+						<p><span class="text-secondary">[INFO]:</span> RETRIEVING LATEST BUILD ARTIFACTS</p>
+						<p><span class="text-primary">[SUCCESS]:</span> NODE_01 SYNCED SUCCESSFULLY</p>
+						<p class="text-tertiary">
+							<span class="font-bold">[WARN]:</span> LATENCY SPIKE DETECTED IN US-WEST SUBNET
+						</p>
+						<p class="blinking-cursor mt-4 text-primary">READY_FOR_COMMAND&gt;</p>
+					</div>
+				</div>
+			</div>
+		</main>
+		<div class="fixed right-12 bottom-12 z-50">
+			<div
+				class="bg-surface-card flex items-center gap-6 border-2 border-primary px-8 py-5 text-primary shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+			>
+				<div class="h-3 w-3 animate-pulse bg-primary"></div>
+				<div class="flex flex-col">
+					<span
+						class="font-headline text-[10px] font-bold tracking-[0.2em] text-[#84967E] uppercase"
+						>SYSTEM_LOAD</span
+					>
+					<span class="crt-glow font-headline text-xl leading-none font-bold">0.04%</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
