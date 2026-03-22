@@ -32,8 +32,8 @@
 			{@const active = $page.url.pathname === item.path}
 			<a
 				href={item.path}
-				class="flex items-center gap-3 px-4 py-3 font-mono text-xs tracking-wider uppercase {active
-					? 'border-l-4 border-primary bg-surface-container-high text-primary'
+				class="flex items-center gap-3 px-4 py-3 font-mono text-xs tracking-wider uppercase transition-all duration-150 {active
+					? 'border-l-2 border-primary bg-surface-container-high text-primary'
 					: 'text-on-surface-variant hover:bg-surface-container hover:text-primary'}"
 			>
 				<item.icon size={18} />
@@ -46,10 +46,10 @@
 		{#if user}
 			<div class="flex items-center gap-3">
 				{#if user.image}
-					<img src={user.image} alt={user.name ?? 'User'} class="h-8 w-8 rounded-full" />
+					<img src={user.image} alt={user.name ?? 'User'} class="h-8 w-8 border-2 border-primary" />
 				{:else}
 					<div
-						class="flex h-8 w-8 items-center justify-center rounded-full bg-surface-container font-mono text-xs text-primary"
+						class="flex h-8 w-8 items-center justify-center border-2 border-primary bg-surface-container font-mono text-xs text-primary"
 					>
 						{(user.name ?? '?').charAt(0).toUpperCase()}
 					</div>
@@ -67,7 +67,7 @@
 		{:else}
 			<a
 				href="/login"
-				class="block w-full bg-primary py-3 text-center font-mono text-xs font-bold text-primary-foreground uppercase"
+				class="hard-shadow block w-full bg-primary py-3 text-center font-mono text-xs font-bold text-primary-foreground uppercase"
 			>
 				INIT_SEQUENCE
 			</a>

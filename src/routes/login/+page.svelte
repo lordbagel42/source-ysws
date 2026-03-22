@@ -3,8 +3,17 @@
 	import { Button } from '$lib/components/ui/button';
 </script>
 
-<div class="flex min-h-screen items-center justify-center">
-	<div class="w-full max-w-md border-2 border-outline-variant bg-surface-container-low p-8">
+<div class="relative flex min-h-screen items-center justify-center">
+	<div
+		class="pointer-events-none absolute inset-0 opacity-5"
+		style="background-image: radial-gradient(circle, #00ff41 1px, transparent 1px); background-size: 24px 24px;"
+	></div>
+	<div
+		class="scanline relative w-full max-w-md overflow-visible border-2 border-outline-variant bg-surface-container-low p-8"
+	>
+		<div
+			class="pointer-events-none absolute -right-3 -bottom-3 h-16 w-16 border-r-2 border-b-2 border-primary"
+		></div>
 		<div class="mb-8 text-center">
 			<h1 class="crt-glow font-headline text-4xl font-black tracking-widest">AUTHENTICATE</h1>
 			<p class="mt-2 font-mono text-sm text-on-surface-variant">ACCESS PROTOCOL // SOURCE YSWS</p>
