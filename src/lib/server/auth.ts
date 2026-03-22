@@ -26,7 +26,7 @@ export const auth = betterAuth({
 					discoveryUrl: 'https://auth.hackclub.com/.well-known/openid-configuration',
 					clientId: HACKCLUB_CLIENT_ID,
 					clientSecret: HACKCLUB_CLIENT_SECRET,
-					scopes: ['openid', 'profile'],
+					scopes: ['openid', 'email', 'name', 'profile', 'verification_status', 'slack_id'],
 					mapProfileToUser: (profile) => ({
 						name: profile.name || profile.nickname || 'Hack Clubber',
 						email: profile.email,
