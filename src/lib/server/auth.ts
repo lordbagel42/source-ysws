@@ -19,6 +19,12 @@ export const auth = betterAuth({
 	),
 	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
+	advanced: {
+		defaultCookieAttributes: {
+			sameSite: 'none',
+			secure: true
+		}
+	},
 	plugins: [
 		genericOAuth({
 			config: [
