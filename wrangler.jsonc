@@ -14,9 +14,6 @@
 	},
 	"observability": {
 		"enabled": true
-	},
-	"vars": {
-		"ORIGIN": "https://source.raygen.dev"
 	}
 	/**
 	 * Smart Placement
