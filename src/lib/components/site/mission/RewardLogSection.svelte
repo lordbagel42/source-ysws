@@ -57,7 +57,7 @@
 							{reward.num}
 						</span>
 						<div>
-							<h4 class="font-headline text-xl font-bold uppercase">{reward.name}</h4>
+							<h3 class="font-headline text-xl font-bold uppercase">{reward.name}</h3>
 							<p class="text-[10px] tracking-widest text-on-surface-variant uppercase">
 								{reward.desc}
 							</p>

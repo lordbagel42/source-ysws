@@ -10,7 +10,7 @@
 		<div
 			class="flex items-center gap-4 border-b-2 border-outline-variant bg-surface-container-high px-4 py-2"
 		>
-			<div class="flex gap-2">
+			<div class="flex gap-2" aria-hidden="true">
 				<div class="h-2 w-2 rounded-full bg-error"></div>
 				<div class="h-2 w-2 rounded-full bg-secondary"></div>
 				<div class="h-2 w-2 rounded-full bg-primary"></div>

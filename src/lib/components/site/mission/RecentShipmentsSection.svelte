@@ -8,21 +8,21 @@
 			description: 'Custom 40% mechanical keyboard with integrated LoRa mesh terminal.',
 			tags: ['LORA', 'PCB_DESIGN'],
 			hoverColor: 'hover:border-primary',
-			placeholderColor: 'bg-[#1a2e1a]'
+			placeholderColor: 'bg-surface-container-high'
 		},
 		{
 			name: 'AXIS_06',
 			description: '6-axis robotic arm with sub-millimeter precision for SMD assembly.',
 			tags: ['ROBOTICS', 'STM32'],
 			hoverColor: 'hover:border-secondary',
-			placeholderColor: 'bg-[#1a2a2e]'
+			placeholderColor: 'bg-surface-container-high'
 		},
 		{
 			name: 'VOID_SPLIT',
 			description: 'Wireless split ergonomic keyboard with customized ZMK firmware.',
 			tags: ['BLE', 'QMK/ZMK'],
-			hoverColor: 'hover:border-destructive',
-			placeholderColor: 'bg-[#2e1a1a]'
+			hoverColor: 'hover:border-error',
+			placeholderColor: 'bg-surface-container-high'
 		}
 	];
 </script>

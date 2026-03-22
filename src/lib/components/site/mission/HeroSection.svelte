@@ -9,6 +9,7 @@
 	<!-- Background watermark -->
 	<div
 		class="pointer-events-none absolute top-10 right-10 font-headline text-[120px] leading-none font-black text-surface-container-high opacity-20 select-none"
+		aria-hidden="true"
 	>
 		0xSOURCE
 	</div>
