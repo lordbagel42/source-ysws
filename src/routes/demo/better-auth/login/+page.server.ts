@@ -11,14 +11,14 @@ export const load: PageServerLoad = async (event) => {
 };
 
 export const actions: Actions = {
-	signInSocial: async (event) => {
+	signInOAuth: async (event) => {
 		const formData = await event.request.formData();
-		const provider = formData.get('provider')?.toString() ?? 'github';
+		const providerId = formData.get('providerId')?.toString() ?? 'hackclub';
 		const callbackURL = formData.get('callbackURL')?.toString() ?? '/demo/better-auth';
 
-		const result = await auth.api.signInSocial({
+		const result = await auth.api.signInWithOAuth2({
 			body: {
-				provider: provider as 'github',
+				providerId,
 				callbackURL
 			}
 		});
@@ -26,6 +26,6 @@ export const actions: Actions = {
 		if (result.url) {
 			return redirect(302, result.url);
 		}
-		return fail(400, { message: 'Social sign-in failed' });
+		return fail(400, { message: 'OAuth sign-in failed' });
 	}
 };

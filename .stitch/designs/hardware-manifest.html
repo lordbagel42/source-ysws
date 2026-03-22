@@ -1,0 +1,457 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>YSWS_CONSOLE_V1.0 | HARDWARE_MANIFEST</title>
+		<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+			rel="stylesheet"
+		/>
+		<script id="tailwind-config">
+			tailwind.config = {
+				darkMode: 'class',
+				theme: {
+					extend: {
+						colors: {
+							'on-primary': '#003907',
+							'on-primary-fixed-variant': '#00530e',
+							'primary-fixed': '#72ff70',
+							'surface-container-lowest': '#0e0e0e',
+							'surface-bright': '#3a3939',
+							secondary: '#bdf4ff',
+							primary: '#ebffe2',
+							'surface-tint': '#00e639',
+							'on-tertiary-container': '#5f6161',
+							'on-primary-fixed': '#002203',
+							'on-surface': '#e5e2e1',
+							'inverse-on-surface': '#313030',
+							'primary-container': '#00ff41',
+							'on-error-container': '#ffdad6',
+							'surface-container': '#201f1f',
+							'tertiary-fixed-dim': '#c6c6c7',
+							'surface-container-high': '#2a2a2a',
+							'on-background': '#e5e2e1',
+							'on-secondary-fixed': '#001f24',
+							background: '#131313',
+							error: '#ffb4ab',
+							'on-tertiary-fixed-variant': '#454747',
+							'surface-dim': '#131313',
+							tertiary: '#f9f9f9',
+							'on-tertiary-fixed': '#1a1c1c',
+							'on-secondary-container': '#00616d',
+							'error-container': '#93000a',
+							'on-error': '#690005',
+							'tertiary-fixed': '#e2e2e2',
+							outline: '#84967e',
+							'tertiary-container': '#dcdddd',
+							'primary-fixed-dim': '#00e639',
+							surface: '#131313',
+							'on-secondary': '#00363d',
+							'on-secondary-fixed-variant': '#004f58',
+							'surface-container-highest': '#353534',
+							'secondary-container': '#00e3fd',
+							'on-tertiary': '#2f3131',
+							'surface-variant': '#353534',
+							'outline-variant': '#3b4b37',
+							'secondary-fixed': '#9cf0ff',
+							'on-primary-container': '#007117',
+							'surface-container-low': '#1c1b1b',
+							'on-surface-variant': '#b9ccb2',
+							'secondary-fixed-dim': '#00daf3',
+							'inverse-primary': '#006e16',
+							'inverse-surface': '#e5e2e1'
+						},
+						fontFamily: {
+							headline: ['Space Grotesk'],
+							body: ['Inter'],
+							label: ['Space Grotesk']
+						},
+						borderRadius: { DEFAULT: '0px', lg: '0px', xl: '0px', full: '9999px' }
+					}
+				}
+			};
+		</script>
+		<style>
+			.material-symbols-outlined {
+				font-variation-settings:
+					'FILL' 0,
+					'wght' 400,
+					'GRAD' 0,
+					'opsz' 24;
+			}
+			::-webkit-scrollbar {
+				width: 4px;
+			}
+			::-webkit-scrollbar-track {
+				background: #131313;
+			}
+			::-webkit-scrollbar-thumb {
+				background: #2a2a2a;
+			}
+			.crt-glow {
+				text-shadow: 0 0 5px rgba(0, 255, 65, 0.4);
+			}
+		</style>
+	</head>
+	<body
+		class="bg-surface selection:bg-primary-container selection:text-on-primary font-body text-on-surface"
+	>
+		<!-- SideNavBar (Pinned Left, Only Navigation) -->
+		<aside
+			class="fixed top-0 left-0 z-40 hidden h-full w-64 flex-col border-r-2 border-[#2A2A2A] bg-[#1C1B1B] font-['Space_Grotesk'] text-xs font-bold tracking-widest uppercase md:flex"
+		>
+			<div class="border-b border-[#2A2A2A] p-6">
+				<div class="mb-1 mb-4 text-xl font-bold tracking-tighter text-[#00FF41]">YSWS_CONSOLE</div>
+				<div class="flex items-center gap-3">
+					<div
+						class="flex h-8 w-8 items-center justify-center border border-outline-variant bg-surface-container-highest"
+					>
+						<img
+							alt="User Terminal Avatar"
+							class="h-6 w-6"
+							src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMLsP_CGjVVbzFhWxmx_9yoswpLGQ9vJKE7YLL9LiwYJsKyFVLu_ppBgzZQcfhdKYBYV6U7Fte8M__5tXF4pPROiuREYlQR79c6qAl5P2JAFM9RiXuaw6KBWzuJ2O6rWcH8fwi_D77cbTtAuvAkXn2ep0WjG5VDoBMpXrCCA9rTpkX5AISKams5FZE5LZp-WrpObnoG0VjnG-5PURdv4n9HrMf2AiSWAuVlBDFCuVfX0GVUFWX1ahPl3EdVFddmOHdTRTcg-nAz4OM"
+						/>
+					</div>
+					<div>
+						<div class="font-black text-[#00FF41]">OPERATOR_01</div>
+						<div class="text-[10px] text-[#84967E]">STATUS: ACTIVE</div>
+					</div>
+				</div>
+			</div>
+			<nav class="flex-1 py-4">
+				<a
+					class="flex items-center gap-3 px-6 py-4 text-[#84967E] transition-all duration-75 hover:bg-[#2A2A2A]/50 hover:text-[#EBFFE2]"
+					href="#"
+				>
+					<span class="material-symbols-outlined text-lg">assignment</span>
+					<span>MISSION</span>
+				</a>
+				<a
+					class="flex items-center gap-3 px-6 py-4 text-[#84967E] transition-all duration-75 hover:bg-[#2A2A2A]/50 hover:text-[#EBFFE2]"
+					href="#"
+				>
+					<span class="material-symbols-outlined text-lg">bolt</span>
+					<span>STREAK</span>
+				</a>
+				<a
+					class="flex items-center gap-3 border-l-4 border-[#00FF41] bg-[#2A2A2A] px-6 py-4 text-[#00FF41]"
+					href="#"
+				>
+					<span class="material-symbols-outlined text-lg">memory</span>
+					<span>HARDWARE</span>
+				</a>
+				<a
+					class="flex items-center gap-3 px-6 py-4 text-[#84967E] transition-all duration-75 hover:bg-[#2A2A2A]/50 hover:text-[#EBFFE2]"
+					href="#"
+				>
+					<span class="material-symbols-outlined text-lg">lock_open</span>
+					<span>VAULT</span>
+				</a>
+			</nav>
+			<div class="mt-auto p-6">
+				<button
+					class="bg-primary-container text-on-primary hover:bg-primary-fixed-dim w-full px-4 py-3 font-bold tracking-tighter transition-colors active:scale-[0.99]"
+				>
+					INITIALIZE_BUILD
+				</button>
+				<div class="mt-4 border-t border-[#2A2A2A] pt-4">
+					<a
+						class="flex items-center gap-3 px-2 py-2 text-[#84967E] transition-all duration-75 hover:bg-[#2A2A2A] hover:text-[#EBFFE2]"
+						href="#"
+					>
+						<span class="material-symbols-outlined text-lg">settings</span>
+						<span>SETTINGS</span>
+					</a>
+					<a
+						class="flex items-center gap-3 px-2 py-2 text-[#84967E] transition-all duration-75 hover:bg-[#2A2A2A] hover:text-[#EBFFE2]"
+						href="#"
+					>
+						<span class="material-symbols-outlined text-lg">logout</span>
+						<span>LOGOUT</span>
+					</a>
+				</div>
+			</div>
+		</aside>
+		<!-- Main Content -->
+		<main class="min-h-screen px-6 pt-8 pb-12 md:ml-64">
+			<!-- Header Section / Budget Display -->
+			<div class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+				<div>
+					<span
+						class="font-label mb-2 block text-xs tracking-[0.2em] text-outline underline decoration-primary/30"
+						>MANIFEST_ID: 0x2A7F_HARDWARE</span
+					>
+					<h1
+						class="crt-glow font-headline text-5xl leading-none font-black tracking-tighter text-primary uppercase md:text-6xl"
+					>
+						Hardware Catalog
+					</h1>
+				</div>
+				<div
+					class="border-primary-container relative min-w-[300px] border-2 bg-surface-container-high p-6"
+				>
+					<div
+						class="bg-surface font-label text-primary-container absolute -top-3 left-4 px-2 text-[10px] tracking-widest uppercase"
+					>
+						Global Allocation
+					</div>
+					<div class="mb-1 font-headline text-xs text-outline">BUDGET_REMAINING:</div>
+					<div class="text-primary-container font-headline text-4xl font-bold tracking-tighter">
+						$275.00
+					</div>
+					<div class="mt-4 h-1.5 w-full overflow-hidden bg-surface-container-lowest">
+						<div class="bg-primary-container h-full w-full"></div>
+					</div>
+				</div>
+			</div>
+			<div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
+				<!-- Left Column: BOM List -->
+				<div class="space-y-8 lg:col-span-8">
+					<section>
+						<div
+							class="mb-4 flex items-center justify-between border-b border-outline-variant pb-2"
+						>
+							<h2
+								class="flex items-center gap-2 font-headline text-lg font-bold tracking-widest text-primary uppercase"
+							>
+								<span class="material-symbols-outlined text-sm">inventory_2</span> Active_Inventory
+							</h2>
+							<span class="font-label text-[10px] text-outline">ITEMS_COUNT: 01</span>
+						</div>
+						<!-- LILYGO T-DECK Card (Pre-allocated) -->
+						<div class="group border-2 border-outline-variant bg-surface-container-low p-0">
+							<div
+								class="flex items-center justify-between border-b border-outline-variant bg-surface-container-high px-4 py-2"
+							>
+								<span class="font-label text-primary-container text-[10px]"
+									>UID: LILY-TDECK-001</span
+								>
+								<span class="bg-primary-container text-on-primary px-2 py-0.5 text-[10px] font-bold"
+									>ALLOCATED</span
+								>
+							</div>
+							<div class="flex flex-col gap-6 p-6 md:flex-row">
+								<div
+									class="h-24 w-24 flex-shrink-0 border border-outline-variant bg-surface-container-highest"
+								>
+									<img
+										alt="Hardware Part"
+										class="h-full w-full opacity-60 grayscale transition-all hover:grayscale-0"
+										src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsnS7-mDmC6uz8WaYEKAa1ZnX7jd8cEKmz6oJvUsLXurqkpuAhxsfrrUxa0U4Ti57qV4-hE67E4UuxHRE6JrOez3D2k7TG74gHgtyH29QoesjxEe3CjDSLn2TAxltqV29ceWcfNv2MJQGx8lZeTFFt4U21S4PIlXsy2piJasT5s5DmPuC3ASgYQsQ_y4JYSzjfOSH_uASG0z1F-fyhUKZWs2Tq2DRjSuoCUoqbGqzIN1wd2Qd-a6EjheRVRRORgQ4sweV4xUlwH12a"
+									/>
+								</div>
+								<div class="flex-1">
+									<div class="mb-2 flex items-start justify-between">
+										<h3 class="font-headline text-xl font-bold tracking-tight text-primary">
+											LILYGO® T-DECK
+										</h3>
+										<span class="font-headline text-lg font-bold"
+											>$0.00
+											<span class="text-[10px] font-normal text-outline uppercase"
+												>(VOUCHER_USED)</span
+											></span
+										>
+									</div>
+									<p class="max-w-md font-mono text-xs leading-relaxed text-outline-variant">
+										ESP32-S3 Dual-Core Processor, 2.8" LCD, LoRa Module, QWERTY Keyboard. Core build
+										component for YSWS_CONSOLE.
+									</p>
+									<div class="mt-4 flex gap-2">
+										<span
+											class="border border-outline-variant px-2 py-0.5 font-mono text-[10px] text-outline"
+											>LORA_868MHZ</span
+										>
+										<span
+											class="border border-outline-variant px-2 py-0.5 font-mono text-[10px] text-outline"
+											>TRACKBALL_INPUT</span
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div
+							class="mb-4 flex items-center justify-between border-b border-outline-variant pb-2"
+						>
+							<h2
+								class="flex items-center gap-2 font-headline text-lg font-bold tracking-widest text-primary uppercase"
+							>
+								<span class="material-symbols-outlined text-sm">receipt_long</span> BOM_REQUEST_LOG
+							</h2>
+							<span class="font-label text-[10px] text-outline">PENDING_TOTAL: $0.00</span>
+						</div>
+						<div class="border-2 border-dashed border-outline-variant p-12 text-center">
+							<span class="material-symbols-outlined mb-4 text-4xl text-outline-variant"
+								>terminal</span
+							>
+							<p class="font-label text-xs tracking-widest text-outline uppercase">
+								No additional components requested.
+							</p>
+							<p class="mt-2 text-[10px] text-outline-variant">
+								Initialize request using the terminal form.
+							</p>
+						</div>
+					</section>
+				</div>
+				<!-- Right Column: Request Form -->
+				<div class="lg:col-span-4">
+					<div class="sticky top-8 space-y-6">
+						<div class="relative border-2 border-outline bg-surface-container-low p-6">
+							<div
+								class="bg-surface font-label absolute -top-3 right-4 px-2 text-[10px] tracking-widest text-outline uppercase"
+							>
+								Hardware_Req_v1
+							</div>
+							<h3
+								class="mb-6 flex items-center gap-2 font-headline text-lg font-bold tracking-widest text-primary uppercase"
+							>
+								<span class="material-symbols-outlined">add_box</span> Request_New_Part
+							</h3>
+							<form class="space-y-5">
+								<div>
+									<label
+										class="font-label mb-2 block text-[10px] tracking-widest text-outline uppercase"
+										>Vendor_Source</label
+									>
+									<select
+										class="w-full appearance-none border-2 border-outline-variant bg-surface-container-lowest px-3 py-2 font-mono text-xs text-on-surface outline-none focus:border-secondary"
+									>
+										<option>DIGIKEY_ELECTRONICS</option>
+										<option>MOUSER_ELECTRONICS</option>
+										<option>AMAZON_US</option>
+										<option>ADAFRUIT_INDUSTRIES</option>
+									</select>
+								</div>
+								<div>
+									<label
+										class="font-label mb-2 block text-[10px] tracking-widest text-outline uppercase"
+										>Component_URL</label
+									>
+									<input
+										class="w-full border-2 border-outline-variant bg-surface-container-lowest px-3 py-2 font-mono text-xs text-on-surface outline-none placeholder:text-outline-variant focus:border-secondary"
+										placeholder="HTTPS://WWW.MOUSER.COM/P/..."
+										type="text"
+									/>
+								</div>
+								<div class="grid grid-cols-2 gap-4">
+									<div>
+										<label
+											class="font-label mb-2 block text-[10px] tracking-widest text-outline uppercase"
+											>Unit_Price</label
+										>
+										<div class="relative">
+											<span class="absolute top-2 left-3 text-xs text-outline-variant">$</span>
+											<input
+												class="w-full border-2 border-outline-variant bg-surface-container-lowest py-2 pr-3 pl-6 font-mono text-xs text-on-surface outline-none placeholder:text-outline-variant focus:border-secondary"
+												placeholder="0.00"
+												type="number"
+											/>
+										</div>
+									</div>
+									<div>
+										<label
+											class="font-label mb-2 block text-[10px] tracking-widest text-outline uppercase"
+											>Quantity</label
+										>
+										<input
+											class="w-full border-2 border-outline-variant bg-surface-container-lowest px-3 py-2 font-mono text-xs text-on-surface outline-none placeholder:text-outline-variant focus:border-secondary"
+											placeholder="1"
+											type="number"
+										/>
+									</div>
+								</div>
+								<div class="border-t border-outline-variant pt-4">
+									<button
+										class="bg-surface hover:bg-primary-container hover:text-on-primary mb-3 flex w-full items-center justify-center gap-2 border-2 border-primary py-3 font-headline font-bold tracking-widest text-primary uppercase transition-all active:translate-y-0.5"
+										type="button"
+									>
+										<span class="material-symbols-outlined text-sm">verified</span> VERIFY_COST
+									</button>
+									<button
+										class="bg-primary-container text-on-primary hover:bg-primary-fixed-dim w-full py-3 font-headline font-bold tracking-widest uppercase transition-all"
+										type="submit"
+									>
+										PUSH_TO_MANIFEST
+									</button>
+								</div>
+							</form>
+						</div>
+						<div class="border-2 border-outline-variant bg-surface-container-highest p-4">
+							<div class="mb-3 flex items-center gap-3 text-secondary">
+								<span class="material-symbols-outlined">info</span>
+								<span class="font-label text-[10px] font-bold tracking-widest uppercase"
+									>Protocol_Reminder</span
+								>
+							</div>
+							<p class="font-mono text-[10px] leading-relaxed text-outline">
+								ALL REQUESTS ARE SUBJECT TO OPERATOR REVIEW. ENSURE QUANTITIES REFLECT EXACT PROJECT
+								NEEDS. SHIPMENT BATCHING OCCURS EVERY FRIDAY AT 00:00 UTC.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- BOM Table Style Footer -->
+			<div class="mt-20 border-t-2 border-outline-variant pt-12">
+				<div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+					<div class="md:col-span-1">
+						<h4 class="font-label mb-4 text-xs font-bold tracking-[0.3em] text-primary uppercase">
+							System_Logs
+						</h4>
+						<div class="space-y-2 font-mono text-[9px] text-outline-variant">
+							<div class="flex justify-between">
+								<span>BOOT_HARDWARE_CHECK</span><span class="text-primary-container">PASS</span>
+							</div>
+							<div class="flex justify-between">
+								<span>MEM_ALLOCATION</span><span class="text-primary-container">STABLE</span>
+							</div>
+							<div class="flex justify-between">
+								<span>UPLINK_STATUS</span><span class="text-primary-container">ENCRYPTED</span>
+							</div>
+						</div>
+					</div>
+					<div class="md:col-span-3">
+						<div class="flex h-full flex-col justify-end border-l border-outline-variant pl-8">
+							<p
+								class="font-headline text-3xl leading-none font-black tracking-tighter text-surface-container-highest uppercase opacity-50"
+							>
+								Sovereign_Hardware_Supply_Chain_v2024
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<!-- BottomNavBar (Mobile Only) -->
+		<nav
+			class="fixed right-0 bottom-0 left-0 z-50 flex h-16 items-center justify-around border-t border-outline-variant bg-surface-container-low px-4 md:hidden"
+		>
+			<a class="flex flex-col items-center text-outline" href="#">
+				<span class="material-symbols-outlined">assignment</span>
+				<span class="font-label mt-1 text-[8px]">MISSION</span>
+			</a>
+			<a class="flex flex-col items-center text-outline" href="#">
+				<span class="material-symbols-outlined">bolt</span>
+				<span class="font-label mt-1 text-[8px]">STREAK</span>
+			</a>
+			<a class="text-primary-container flex flex-col items-center" href="#">
+				<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1"
+					>memory</span
+				>
+				<span class="font-label mt-1 text-[8px]">HARDWARE</span>
+			</a>
+			<a class="flex flex-col items-center text-outline" href="#">
+				<span class="material-symbols-outlined">lock_open</span>
+				<span class="font-label mt-1 text-[8px]">VAULT</span>
+			</a>
+		</nav>
+	</body>
+</html>

@@ -1,7 +1,7 @@
-import Input from './input.svelte';
+import Root from './input.svelte';
 
 export {
-	Input,
+	Root,
 	//
-	Input as Root
+	Root as Input
 };

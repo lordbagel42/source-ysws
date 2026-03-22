@@ -1,27 +1,18 @@
-import { redirect, type Handle } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit';
 import { building } from '$app/environment';
 import { auth } from '$lib/server/auth';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
 
 const handleBetterAuth: Handle = async ({ event, resolve }) => {
-	const session = await auth.api.getSession({ headers: event.request.headers });
+	// Better Auth base path is /api/auth by default
+	const isAuthRoute = event.url.pathname.startsWith('/api/auth');
 
-	if (session) {
-		event.locals.session = session.session;
-		event.locals.user = session.user;
-	}
-
-	const isPublicPath = event.url.pathname === '/' ||
-		event.url.pathname === '/login' ||
-		event.url.pathname.startsWith('/api/auth');
-
-	// Protect routes
-	if (!isPublicPath && !session) {
-		throw redirect(302, '/login');
-	}
-
-	if (event.url.pathname === '/login' && session) {
-		throw redirect(302, '/');
+	if (!isAuthRoute) {
+		const session = await auth.api.getSession({ headers: event.request.headers });
+		if (session) {
+			event.locals.session = session.session;
+			event.locals.user = session.user;
+		}
 	}
 
 	return svelteKitHandler({ event, resolve, auth, building });

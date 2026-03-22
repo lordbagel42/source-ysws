@@ -2,54 +2,33 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { genericOAuth } from 'better-auth/plugins';
-import { env } from '$env/dynamic/private';
+import { dash } from '@better-auth/infra';
+import { getRequestEvent } from '$app/server';
 import { db } from '$lib/server/db';
-import { building } from '$app/environment';
+
+const BETTER_AUTH_SECRET = process.env.BETTER_AUTH_SECRET || 'build-time-secret-only';
+const ORIGIN = process.env.ORIGIN || 'http://localhost:5173';
+const HACKCLUB_CLIENT_ID = process.env.HACKCLUB_CLIENT_ID || '';
+const HACKCLUB_CLIENT_SECRET = process.env.HACKCLUB_CLIENT_SECRET || '';
 
 export const auth = betterAuth({
-	// Use dynamic baseURL by not setting it here or setting it from env
-	// If it's not set, it will be inferred from the request.
-	// For production we can set it via BETTER_AUTH_URL in wrangler
-	baseURL: env.BETTER_AUTH_URL,
-
-	trustedOrigins: [
-		'http://localhost:5173',
-		'https://*.enderium42.workers.dev'
-	],
-
-	secret: env.BETTER_AUTH_SECRET || (building ? 'build-time-secret-only' : undefined),
-	database: drizzleAdapter(db, {
-		provider: 'pg',
-		useRuntimeFilters: true
-	}),
+	baseURL: ORIGIN,
+	secret: BETTER_AUTH_SECRET,
+	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
-	socialProviders: {
-		github: {
-			clientId: env.GITHUB_CLIENT_ID || 'dummy',
-			clientSecret: env.GITHUB_CLIENT_SECRET || 'dummy'
-		}
-	},
 	plugins: [
 		genericOAuth({
 			config: [
 				{
 					providerId: 'hackclub',
-					clientId: env.HACKCLUB_CLIENT_ID || '',
-					clientSecret: env.HACKCLUB_CLIENT_SECRET || '',
-					authorizationUrl: 'https://auth.hackclub.com/oauth/authorize',
-					tokenUrl: 'https://auth.hackclub.com/oauth/token',
-					userInfoUrl: 'https://auth.hackclub.com/api/v1/me',
-					scopes: ['openid', 'profile', 'email'],
-					mapProfileToUser: async (profile: any) => {
-						return {
-							name: profile.nickname || profile.name,
-							email: profile.email,
-							image: profile.avatar
-						};
-					}
+					discoveryUrl: 'https://auth.hackclub.com/.well-known/openid-configuration',
+					clientId: HACKCLUB_CLIENT_ID,
+					clientSecret: HACKCLUB_CLIENT_SECRET,
+					scopes: ['openid', 'profile', 'email', 'verification_status']
 				}
 			]
 		}),
-		sveltekitCookies() // make sure this is the last plugin in the array
+		dash(),
+		sveltekitCookies(getRequestEvent) // must be last
 	]
 });

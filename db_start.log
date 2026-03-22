@@ -1,0 +1,115 @@
+
+> source-ysws@0.0.1 db:start /app
+> docker compose up
+
+ Image postgres Pulling
+ d4ced18622af Pulling fs layer 0B
+ af73ff344a10 Pulling fs layer 0B
+ ce2467f2f21d Pulling fs layer 0B
+ 07cec992154a Pulling fs layer 0B
+ ec781dee3f47 Pulling fs layer 0B
+ f3bba6db66bc Pulling fs layer 0B
+ 917d5439b698 Pulling fs layer 0B
+ bda354b903ce Pulling fs layer 0B
+ fd0dcffac314 Pulling fs layer 0B
+ fcd98f4944fb Pulling fs layer 0B
+ 895ed9837058 Pulling fs layer 0B
+ daebffc75218 Pulling fs layer 0B
+ 365add159c69 Pulling fs layer 0B
+ af9063ecbdef Download complete 0B
+ b26b36c837dc Downloading 4.194MB
+ ce2467f2f21d Download complete 0B
+ bda354b903ce Download complete 0B
+ daebffc75218 Download complete 0B
+ ec781dee3f47 Downloading 2.097MB
+ 07cec992154a Downloading 1.049MB
+ 917d5439b698 Downloading 1.049MB
+ 365add159c69 Download complete 0B
+ d4ced18622af Downloading 3.146MB
+ fcd98f4944fb Download complete 0B
+ 895ed9837058 Download complete 0B
+ b26b36c837dc Download complete 0B
+ ec781dee3f47 Downloading 4.194MB
+ f3bba6db66bc Download complete 0B
+ 07cec992154a Downloading 2.367MB
+ 917d5439b698 Downloading 3.146MB
+ fd0dcffac314 Download complete 0B
+ d4ced18622af Downloading 6.291MB
+ af73ff344a10 Download complete 0B
+ 07cec992154a Downloading 6.291MB
+ 917d5439b698 Downloading 7.34MB
+ d4ced18622af Download complete 0B
+ ec781dee3f47 Downloading 10.49MB
+ ec781dee3f47 Downloading 14.68MB
+ 07cec992154a Download complete 0B
+ 917d5439b698 Downloading 11.53MB
+ ec781dee3f47 Downloading 19.92MB
+ 917d5439b698 Downloading 16.78MB
+ ec781dee3f47 Downloading 27.26MB
+ 917d5439b698 Downloading 23.07MB
+ ec781dee3f47 Downloading 28.31MB
+ 917d5439b698 Downloading 28.31MB
+ 917d5439b698 Downloading 32.51MB
+ ec781dee3f47 Downloading 29.78MB
+ ec781dee3f47 Download complete 0B
+ 917d5439b698 Downloading 35.65MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 39.85MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 42.99MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 47.7MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 51.38MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 55.57MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 60.82MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 64.1MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 69.21MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 73.4MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 78.34MB
+ ec781dee3f47 Extracting 1B
+ 917d5439b698 Downloading 82.01MB
+ ec781dee3f47 Extracting 2B
+ 917d5439b698 Downloading 85.98MB
+ ec781dee3f47 Extracting 2B
+ 917d5439b698 Downloading 91.23MB
+ ec781dee3f47 Extracting 2B
+ 917d5439b698 Downloading 97.52MB
+ ec781dee3f47 Extracting 2B
+ 917d5439b698 Downloading 102.8MB
+ ec781dee3f47 Extracting 2B
+ 917d5439b698 Downloading 109.2MB
+ ec781dee3f47 Extracting 2B
+ 917d5439b698 Downloading 113.2MB
+ ec781dee3f47 Extracting 2B
+ 917d5439b698 Downloading 115.3MB
+ ec781dee3f47 Extracting 2B
+ 917d5439b698 Downloading 115.3MB
+ ec781dee3f47 Extracting 2B
+ 917d5439b698 Downloading 115.3MB
+ ec781dee3f47 Extracting 2B
+ 917d5439b698 Download complete 0B
+ ec781dee3f47 Extracting 3B
+ ec781dee3f47 Extracting 3B
+ ec781dee3f47 Extracting 3B
+ ec781dee3f47 Extracting 3B
+ ec781dee3f47 Extracting 3B
+ ec781dee3f47 Extracting 3B
+ ec781dee3f47 Extracting 3B
+ ec781dee3f47 Extracting 3B
+ ec781dee3f47 Extracting 3B
+ ec781dee3f47 Extracting 3B
+ ec781dee3f47 Extracting 4B
+ ec781dee3f47 Extracting 4B
+ ec781dee3f47 Extracting 4B
+ ec781dee3f47 Extracting 4B
+ ce2467f2f21d Pull complete 0B
+ ec781dee3f47 Pull complete 0B
+failed to extract layer (application/vnd.oci.image.layer.v1.tar+gzip sha256:d4ced18622af7809be6eb08f66f0ece3b5e203212dbcf1d02a1d70d458f46c7c) to overlayfs as "extract-516651985-b1WH sha256:0ec3416140bad660ed6d1ea4e264b453926905b47d6d7ad15b548ad23ebde0e2": failed to convert whiteout file "etc/alternatives/.wh.pager.1.gz": operation not permitted
+ ELIFECYCLE  Command failed with exit code 1.
