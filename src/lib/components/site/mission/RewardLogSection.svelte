@@ -27,93 +27,56 @@
 	];
 </script>
 
-<section
-	aria-label="Earned rewards"
-	class="border-t-2 border-surface-container-high bg-surface-container-lowest px-6 py-20"
->
-	<div class="mx-auto max-w-7xl">
-		<!-- Header row -->
-		<div class="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-			<div>
-				<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"
-					>LEDGER_SYSTEM</span
-				>
-				<h2 class="font-headline text-4xl font-black tracking-tight text-foreground uppercase">
-					TARGET_REWARDS
-				</h2>
-			</div>
-			<div class="flex gap-8 border border-outline-variant bg-surface-container-low p-4">
-				<div>
-					<span class="block font-mono text-[10px] text-on-surface-variant uppercase"
-						>CURRENT_RANK</span
-					>
-					<span class="font-mono font-bold text-primary">[ELITE_OP]</span>
-				</div>
-				<div>
-					<span class="block font-mono text-[10px] text-on-surface-variant uppercase"
-						>TOTAL_BOUNTY</span
-					>
-					<span class="font-mono font-bold text-secondary">$1,245.00</span>
-				</div>
-			</div>
-		</div>
-
-		<!-- Reward table -->
-		<div class="overflow-x-auto">
-			<table class="w-full border-collapse font-mono text-sm">
-				<caption class="sr-only">Reward log showing protocol completion and budget progress</caption
-				>
-				<thead>
-					<tr class="bg-surface-container-high text-left">
-						<th
-							scope="col"
-							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
-							>ENTRY_ID</th
-						>
-						<th
-							scope="col"
-							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
-							>PROTOCOL_NAME</th
-						>
-						<th
-							scope="col"
-							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
-							>STATUS</th
-						>
-						<th
-							scope="col"
-							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
-							>BUDGET_PROGRESS</th
-						>
-						<th
-							scope="col"
-							class="border border-outline-variant p-4 text-[10px] text-on-surface-variant uppercase"
-							>VALUATION</th
-						>
-					</tr>
-				</thead>
-				<tbody class="divide-y divide-outline-variant">
-					{#each rewards as reward (reward.id)}
-						<tr class="transition-colors hover:bg-surface-dim">
-							<td class="border border-outline-variant p-4 text-primary">{reward.id}</td>
-							<td class="border border-outline-variant p-4 font-bold">{reward.name}</td>
-							<td class="border border-outline-variant p-4">
-								<span class="px-2 py-0.5 text-[10px] {reward.statusClass}">{reward.status}</span>
-							</td>
-							<td class="w-1/4 border border-outline-variant p-4">
-								<div class="h-2 w-full bg-surface-container-high">
-									<div class="h-full bg-primary" style="width: {reward.progress}%"></div>
-								</div>
-							</td>
-							<td class="border border-outline-variant p-4 text-right">{reward.value}</td>
-						</tr>
-					{/each}
-				</tbody>
-			</table>
-		</div>
-		<button
-			class="mt-4 w-full border-2 border-primary bg-primary py-2 font-mono text-xs font-bold text-primary-foreground uppercase hover:bg-primary/90"
-			>CLAIM_ALL</button
+<section aria-label="Earned rewards" class="bg-surface-container-lowest p-6">
+	<!-- Header -->
+	<div class="mb-6">
+		<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"
+			>LEDGER_SYSTEM</span
 		>
+		<h2 class="font-headline text-2xl font-black tracking-tight text-foreground uppercase">
+			TARGET_REWARDS
+		</h2>
 	</div>
+
+	<!-- Stats -->
+	<div class="mb-6 grid grid-cols-2 gap-3">
+		<div class="border border-outline-variant bg-surface-container-low p-3">
+			<span class="block font-mono text-[10px] text-on-surface-variant uppercase">CURRENT_RANK</span
+			>
+			<span class="font-mono text-sm font-bold text-primary">[ELITE_OP]</span>
+		</div>
+		<div class="border border-outline-variant bg-surface-container-low p-3">
+			<span class="block font-mono text-[10px] text-on-surface-variant uppercase">TOTAL_BOUNTY</span
+			>
+			<span class="font-mono text-sm font-bold text-secondary">$1,245.00</span>
+		</div>
+	</div>
+
+	<!-- Reward list (card-based instead of table for narrow column) -->
+	<p class="sr-only">Reward log showing protocol completion and budget progress</p>
+	<div class="space-y-3">
+		{#each rewards as reward (reward.id)}
+			<div
+				class="border border-outline-variant bg-surface-container-low p-4 transition-colors hover:border-primary"
+			>
+				<div class="mb-2 flex items-center justify-between">
+					<span class="font-mono text-[10px] text-primary">{reward.id}</span>
+					<span class="px-2 py-0.5 text-[10px] {reward.statusClass}">{reward.status}</span>
+				</div>
+				<p class="mb-3 font-mono text-xs font-bold text-foreground">{reward.name}</p>
+				<div class="mb-1 h-1.5 w-full bg-surface-container-high">
+					<div class="h-full bg-primary" style="width: {reward.progress}%"></div>
+				</div>
+				<div class="flex items-center justify-between">
+					<span class="font-mono text-[10px] text-on-surface-variant">{reward.progress}%</span>
+					<span class="font-mono text-xs font-bold text-foreground">{reward.value}</span>
+				</div>
+			</div>
+		{/each}
+	</div>
+
+	<button
+		class="mt-4 w-full border-2 border-primary bg-primary py-2 font-mono text-xs font-bold text-primary-foreground uppercase hover:bg-primary/90"
+		>CLAIM_ALL</button
+	>
 </section>
