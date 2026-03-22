@@ -1,7 +1,7 @@
 <div class="border-t-2 border-outline-variant bg-surface-container-lowest px-6 py-4">
 	<div class="flex items-center justify-between">
 		<p class="font-mono text-xs text-on-surface-variant">
-			© 2025 SOURCE PROTOCOL // HACK CLUB YSWS
+			Source — a Hack Club You Ship We Ship
 		</p>
 		<div class="flex gap-4">
 			<a
@@ -23,7 +23,7 @@
 				target="_blank"
 				rel="noopener noreferrer"
 				class="font-mono text-xs text-on-surface-variant transition-colors hover:text-primary"
-				>HACK_CLUB</a
+				>Hack Club</a
 			>
 		</div>
 	</div>

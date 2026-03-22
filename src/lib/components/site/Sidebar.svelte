@@ -12,10 +12,10 @@
 	let { user }: { user: User } = $props();
 
 	const navItems = [
-		{ label: 'MISSION', path: '/', routeId: '/(app)' as const, icon: ClipboardList },
-		{ label: 'STREAK', path: '/streak', routeId: '/(app)/streak' as const, icon: Zap },
-		{ label: 'HARDWARE', path: '/hardware', routeId: '/(app)/hardware' as const, icon: Cpu },
-		{ label: 'VAULT', path: '/vault', routeId: '/(app)/vault' as const, icon: Archive }
+		{ label: 'Dashboard', path: '/', routeId: '/(app)' as const, icon: ClipboardList },
+		{ label: 'Streaks', path: '/streak', routeId: '/(app)/streak' as const, icon: Zap },
+		{ label: 'Hardware', path: '/hardware', routeId: '/(app)/hardware' as const, icon: Cpu },
+		{ label: 'Gallery', path: '/vault', routeId: '/(app)/vault' as const, icon: Archive }
 	];
 
 	let currentPath = $derived($page.url.pathname);
@@ -50,9 +50,6 @@
 			</AvatarFallback>
 		</Avatar>
 		<div class="min-w-0">
-			<p class="font-mono text-[10px] tracking-widest text-on-surface-variant uppercase">
-				Operator
-			</p>
 			<p class="truncate font-mono text-sm text-on-surface">{user.name ?? 'Unknown'}</p>
 		</div>
 	</div>
@@ -84,7 +81,7 @@
 			class="w-full bg-primary font-mono text-xs font-bold tracking-wider text-primary-foreground hover:bg-primary/90"
 		>
 			<Rocket class="mr-2 h-3 w-3" />
-			INITIALIZE_BUILD
+			Start building
 		</Button>
 		<div class="flex gap-2">
 			<Button
@@ -92,7 +89,7 @@
 				class="flex-1 font-mono text-xs text-on-surface-variant hover:text-on-surface"
 			>
 				<Settings class="mr-1 h-3 w-3" />
-				SETTINGS
+				Settings
 			</Button>
 			<Button
 				variant="ghost"
@@ -100,7 +97,7 @@
 				onclick={handleSignOut}
 			>
 				<LogOut class="mr-1 h-3 w-3" />
-				LOGOUT
+				Sign out
 			</Button>
 		</div>
 	</div>
