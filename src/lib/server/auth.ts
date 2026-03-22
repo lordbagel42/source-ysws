@@ -24,6 +24,9 @@ export const auth = betterAuth({
 		defaultCookieAttributes: {
 			sameSite: 'none',
 			secure: true
+		},
+		ipAddress: {
+			ipAddressHeaders: ['cf-connecting-ip', 'x-forwarded-for']
 		}
 	},
 	plugins: [
