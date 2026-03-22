@@ -37,7 +37,7 @@
 			<!-- System badge -->
 			<div class="inline-block border border-outline-variant bg-surface-container-high px-3 py-1">
 				<span class="font-mono text-xs tracking-widest text-primary uppercase"
-					>ESTABLISHED_2024 // HACK_CLUB</span
+					>> WELCOME // SESSION_INITIALIZED</span
 				>
 			</div>
 

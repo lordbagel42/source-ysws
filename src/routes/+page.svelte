@@ -4,6 +4,7 @@
 	import RecentShipmentsSection from '$lib/components/site/mission/RecentShipmentsSection.svelte';
 	import RewardLogSection from '$lib/components/site/mission/RewardLogSection.svelte';
 	import TerminalWindow from '$lib/components/site/mission/TerminalWindow.svelte';
+	import FaqSection from '$lib/components/site/mission/FaqSection.svelte';
 	import Footer from '$lib/components/site/Footer.svelte';
 </script>
 
@@ -22,5 +23,6 @@
 	</div>
 
 	<RecentShipmentsSection />
+	<FaqSection />
 	<Footer />
 </main>
