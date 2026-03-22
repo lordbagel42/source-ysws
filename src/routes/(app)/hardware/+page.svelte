@@ -6,12 +6,12 @@
 
 	const projects = [
 		{
-			codename: 'DIY Ring Doorbell',
-			title: 'DIY Ring Doorbell',
+			codename: 'OpenBell',
+			title: 'OpenBell',
 			status: 'VERIFIED' as const,
 			difficulty: 'INTERMEDIATE' as const,
 			description:
-				'A DIY video doorbell with local AI processing, night vision, and encrypted local storage. No cloud subscriptions needed — you own your data.',
+				'Open-source alternative to Ring Doorbell — local AI processing, night vision, and encrypted storage. No cloud subscriptions needed, you own your data.',
 			bom: [
 				{ name: 'ESP32-CAM', cost: 8 },
 				{ name: 'PIR Sensor', cost: 2 },
@@ -24,12 +24,12 @@
 			timeEstimate: 12
 		},
 		{
-			codename: 'Open Source Google Home',
-			title: 'Open Source Google Home',
+			codename: 'LibreVox',
+			title: 'LibreVox',
 			status: 'IN_PROGRESS' as const,
 			difficulty: 'ADVANCED' as const,
 			description:
-				'An open-source smart speaker with wake-word detection, local LLM processing, and modular audio. Like Google Home, but you control everything.',
+				'Open-source alternative to Amazon Echo / Google Home — wake-word detection, local LLM processing, and modular audio. Your smart speaker, your rules.',
 			bom: [
 				{ name: 'RPi Zero 2W', cost: 15 },
 				{ name: 'I2S Amplifier', cost: 6 },
@@ -42,17 +42,17 @@
 			timeEstimate: 20
 		},
 		{
-			codename: '3D Printer Filament Dryer',
-			title: '3D Printer Filament Dryer',
+			codename: 'OpenDeck',
+			title: 'OpenDeck',
 			status: 'QUEUED' as const,
 			difficulty: 'BEGINNER' as const,
 			description:
-				'A filament dryer for your 3D printer with PID-controlled heating, humidity monitoring, and multi-spool capacity. Keep your prints crispy.',
+				'Open-source alternative to Elgato Stream Deck — programmable macro pad with OLED keys, built on a Raspberry Pi Pico. Fully customizable, no proprietary software.',
 			bom: [
-				{ name: 'PTC Heater', cost: 6 },
-				{ name: 'BME280', cost: 3 },
-				{ name: 'OLED 0.96"', cost: 4 },
-				{ name: 'Arduino Nano', cost: 5 },
+				{ name: 'RPi Pico', cost: 4 },
+				{ name: 'OLED Keys x6', cost: 18 },
+				{ name: 'Cherry MX Switches', cost: 6 },
+				{ name: 'PCB', cost: 5 },
 				{ name: 'Enclosure', cost: 8 },
 				{ name: 'Misc', cost: 3 }
 			],
