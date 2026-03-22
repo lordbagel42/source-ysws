@@ -7,7 +7,7 @@
 
 <div class="flex min-h-screen">
 	<Sidebar user={data.user} />
-	<div class="ml-64 flex flex-1 flex-col">
+	<div class="ml-16 flex flex-1 flex-col">
 		<main class="flex-1 p-6">
 			{@render children()}
 		</main>
