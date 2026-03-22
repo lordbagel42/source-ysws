@@ -1,34 +1,34 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
-	import { ChevronDown, HelpCircle } from 'lucide-svelte';
+	import { ChevronDown } from 'lucide-svelte';
 
 	const faqs = [
 		{
-			q: 'WHAT_IS_SOURCE?',
+			q: 'What is Source?',
 			a: 'Source is a Hack Club YSWS (You Ship, We Ship) where you build open-source hardware projects meant to replace closed-source consumer tech. Think DIY alternatives to Ring doorbells, Google Homes, and more — stuff you actually own and control.'
 		},
 		{
-			q: 'HOW_DOES_IT_WORK?',
+			q: 'How does it work?',
 			a: 'Pick a hardware project, design and build it from scratch, and track your progress on this platform. Document your build journey, share updates, and ship a working prototype.'
 		},
 		{
-			q: 'WHAT_DO_I_GET?',
-			a: "Every builder who ships gets a $275 hardware budget and a LilyGO T-Deck. But there's more — your Core Heat multiplier and peer voting score influence a bonus lootbox of tech goodies, custom-picked based on what your project is."
+			q: 'What do I get?',
+			a: 'Every builder who ships gets a $275 hardware budget and a LilyGO T-Deck. Your Core Heat multiplier and peer voting score influence a bonus lootbox of tech goodies, custom-picked based on what your project is.'
 		},
 		{
-			q: "WHAT'S_CORE_HEAT?",
-			a: "Core Heat tracks your build streak — how consistently you're working on your project. Work on it every day and your heat multiplier goes up, unlocking better rewards. Miss days and it cools down. Keep the reactor hot."
+			q: "What's Core Heat?",
+			a: "Core Heat tracks your build streak — how consistently you're working on your project. Work on it every day and your heat multiplier goes up, unlocking better rewards. Miss days and it cools down."
 		},
 		{
-			q: "WHAT'S_PEER_VOTING?",
+			q: "What's peer voting?",
 			a: "Builders vote on each other's projects. It's not just about finishing — it's about building something genuinely useful and well-crafted. Higher votes = better lootbox picks."
 		},
 		{
-			q: 'WHO_CAN_PARTICIPATE?',
+			q: 'Who can participate?',
 			a: 'Any Hack Club member. Sign in with your Hack Club account to get started.'
 		},
 		{
-			q: 'WHAT_PROJECTS_COUNT?',
+			q: 'What projects count?',
 			a: "Any hardware project that's an open-source alternative to something closed-source. Video doorbells, smart speakers, filament dryers, mesh routers, air quality monitors — if it replaces something proprietary, it counts."
 		}
 	];
@@ -44,13 +44,9 @@
 	<div class="mx-auto max-w-4xl">
 		<!-- Header -->
 		<div class="mb-10 border-l-4 border-primary pl-6">
-			<span class="font-mono text-xs tracking-[0.2em] text-on-surface-variant uppercase"
-				>KNOWLEDGE_BASE</span
-			>
 			<h2
-				class="flex items-center gap-3 font-headline text-4xl font-black tracking-tight text-foreground uppercase"
+				class="flex items-center gap-3 font-headline text-3xl font-black tracking-tight text-foreground uppercase md:text-4xl"
 			>
-				<HelpCircle class="h-8 w-8 text-primary" />
 				FAQ
 			</h2>
 		</div>
@@ -65,7 +61,6 @@
 						aria-expanded={openIndex === i}
 					>
 						<span class="font-mono text-sm font-bold text-foreground">
-							<span class="text-primary">$</span>
 							{faq.q}
 						</span>
 						<ChevronDown
@@ -80,7 +75,6 @@
 							class="border-t border-outline-variant bg-surface-container-lowest px-6 py-5"
 						>
 							<p class="text-sm leading-relaxed text-on-surface-variant">
-								<span class="font-mono text-primary">{'>'}</span>
 								{faq.a}
 							</p>
 						</div>

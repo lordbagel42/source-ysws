@@ -24,7 +24,7 @@
 >
 	<div class="px-4 py-6">
 		<span class="font-headline text-2xl font-black text-primary uppercase">SOURCE</span>
-		<p class="font-mono text-[10px] tracking-widest text-on-surface-variant">REBUILD_PROTOCOL</p>
+		<p class="font-mono text-[10px] tracking-widest text-on-surface-variant">Hack Club YSWS</p>
 	</div>
 
 	<nav class="flex flex-1 flex-col gap-1 px-2">
@@ -69,7 +69,7 @@
 				href="/login"
 				class="hard-shadow block w-full bg-primary py-3 text-center font-mono text-xs font-bold text-primary-foreground uppercase"
 			>
-				INIT_SEQUENCE
+				Sign in
 			</a>
 		{/if}
 	</div>

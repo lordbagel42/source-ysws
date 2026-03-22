@@ -6,11 +6,10 @@
 			name: 'OpenBell',
 			description:
 				'Open-source alternative to Ring Doorbell — local AI processing, night vision, and encrypted storage. No cloud subscriptions needed, you own your data.',
-			tags: ['ESP32-CAM', 'PIR_SENSOR', 'ONVIF'],
-			status: 'DEPLOYED',
+			tags: ['ESP32-CAM', 'PIR', 'ONVIF'],
+			status: 'Shipped',
 			statusClass: 'bg-primary text-primary-foreground',
-			timestamp: '08:42:11',
-			reward: 'REWARD: $275',
+			reward: '$275 earned',
 			image:
 				'https://images.unsplash.com/photo-1641853256879-bd786e77d852?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080'
 		},
@@ -18,11 +17,10 @@
 			name: 'LibreVox',
 			description:
 				'Open-source alternative to Amazon Echo / Google Home — wake-word detection, local LLM processing, and modular audio. Your smart speaker, your rules.',
-			tags: ['RPI_ZERO_2W', 'I2S_AMP', 'WAKE_WORD'],
-			status: 'IN_PROGRESS',
+			tags: ['RPi Zero 2W', 'I2S Amp', 'Wake word'],
+			status: 'Building',
 			statusClass: 'bg-secondary text-secondary-foreground',
-			timestamp: '12:15:00',
-			reward: 'BUDGET: $210/275',
+			reward: '$210 / $275 spent',
 			image:
 				'https://images.unsplash.com/photo-1519558260268-cde7e03a0152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080'
 		},
@@ -30,11 +28,10 @@
 			name: 'OpenDeck',
 			description:
 				'Open-source alternative to Elgato Stream Deck — programmable macro pad with OLED keys, built on a Raspberry Pi Pico. Fully customizable, no proprietary software.',
-			tags: ['RPI_PICO', 'OLED_KEYS', 'USB_HID'],
-			status: 'QUEUED',
+			tags: ['RPi Pico', 'OLED keys', 'USB HID'],
+			status: 'Planned',
 			statusClass: 'border border-outline bg-surface-container-highest text-foreground',
-			timestamp: '--:--:--',
-			reward: 'ALLOCATION_PENDING',
+			reward: 'Not started',
 			image:
 				'https://images.unsplash.com/photo-1649899913123-90bb33c8a66a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080'
 		}
@@ -45,11 +42,10 @@
 	<div class="mx-auto max-w-7xl">
 		<!-- Header -->
 		<div class="mb-8 border-l-4 border-primary pl-6">
-			<span class="font-mono text-xs tracking-[0.2em] text-on-surface-variant uppercase"
-				>TRANSMISSION_FEED</span
+			<h2
+				class="font-headline text-3xl font-black tracking-tight text-foreground uppercase md:text-4xl"
 			>
-			<h2 class="font-headline text-4xl font-black tracking-tight text-foreground uppercase">
-				RECENT_SHIPMENTS
+				Community builds
 			</h2>
 		</div>
 
@@ -68,20 +64,16 @@
 						/>
 						<div class="absolute top-0 right-0 p-4">
 							<Badge class="font-mono text-[10px] font-bold {ship.statusClass}">
-								[{ship.status}]
+								{ship.status}
 							</Badge>
 						</div>
 					</div>
 
 					<!-- Content -->
 					<div class="p-4 md:p-6">
-						<div class="mb-4 flex items-start justify-between">
-							<h3 class="font-headline text-xl font-bold tracking-tight text-foreground uppercase">
-								{ship.name}
-							</h3>
-							<span class="font-mono text-[10px] text-on-surface-variant">TS: {ship.timestamp}</span
-							>
-						</div>
+						<h3 class="mb-4 font-headline text-xl font-bold tracking-tight text-foreground">
+							{ship.name}
+						</h3>
 
 						<div class="space-y-4">
 							<!-- Tags -->
