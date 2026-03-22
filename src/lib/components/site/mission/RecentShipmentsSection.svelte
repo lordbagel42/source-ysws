@@ -51,7 +51,7 @@
 		</div>
 
 		<!-- Cards grid -->
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+		<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 			{#each shipments as ship (ship.name)}
 				<article
 					class="group border-2 border-outline-variant bg-surface-container-low transition-colors hover:border-primary"

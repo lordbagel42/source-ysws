@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { ArrowRight } from 'lucide-svelte';
 
 	const terminalLines = [
 		{ prefix: '$', text: 'source init --project-alpha', color: 'text-primary' },
@@ -26,13 +27,17 @@
 	aria-labelledby="hero-heading"
 	class="relative overflow-hidden border-b-2 border-surface-container-high bg-background px-6 py-20 md:py-32"
 >
+	<div
+		class="pointer-events-none absolute inset-0 opacity-10"
+		style="background-image: radial-gradient(circle, #00ff41 1px, transparent 1px); background-size: 24px 24px;"
+	></div>
 	<div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:grid-cols-12">
 		<!-- Left column -->
 		<div class="space-y-8 md:col-span-7">
 			<!-- System badge -->
 			<div class="inline-block border border-outline-variant bg-surface-container-high px-3 py-1">
 				<span class="font-mono text-xs tracking-widest text-primary uppercase"
-					>SYSTEM_LEVEL: ADMIN // NODE_01</span
+					>ESTABLISHED_2024 // HACK_CLUB</span
 				>
 			</div>
 
@@ -64,7 +69,7 @@
 					variant="outline"
 					class="min-h-[44px] border-2 border-primary bg-transparent px-8 py-4 font-mono text-lg font-bold text-primary uppercase transition-all hover:bg-surface-container-low"
 				>
-					VIEW_DOCS
+					VIEW_NODES <ArrowRight class="ml-1 inline h-4 w-4" />
 				</Button>
 			</div>
 		</div>

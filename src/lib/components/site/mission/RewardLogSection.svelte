@@ -39,7 +39,7 @@
 					>LEDGER_SYSTEM</span
 				>
 				<h2 class="font-headline text-4xl font-black tracking-tight text-foreground uppercase">
-					REWARD_LOG_FILE
+					TARGET_REWARDS
 				</h2>
 			</div>
 			<div class="flex gap-8 border border-outline-variant bg-surface-container-low p-4">
@@ -111,5 +111,9 @@
 				</tbody>
 			</table>
 		</div>
+		<button
+			class="mt-4 w-full border-2 border-primary bg-primary py-2 font-mono text-xs font-bold text-primary-foreground uppercase hover:bg-primary/90"
+			>CLAIM_ALL</button
+		>
 	</div>
 </section>

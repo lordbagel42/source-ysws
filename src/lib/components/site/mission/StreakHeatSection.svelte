@@ -35,7 +35,7 @@
 					>SENSOR_READOUT</span
 				>
 				<h2 class="font-headline text-3xl font-black tracking-tight text-foreground uppercase">
-					STREAK_THERMAL_STATUS
+					PROTOCOL_CONTRIBUTIONS
 				</h2>
 			</div>
 			<div class="flex items-center gap-2 font-mono text-[10px] text-on-surface-variant">

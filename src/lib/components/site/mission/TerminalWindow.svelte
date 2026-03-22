@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { title = 'SOURCE_OS // SYSTEM_LOG' }: { title?: string } = $props();
+	let { title = 'SYSTEM_RUNTIME_LOG' }: { title?: string } = $props();
 
 	const logEntries = [
 		{ time: '08:42:11', text: 'INITIALIZING HARDWARE PROTOCOLS...', color: 'text-primary' },
