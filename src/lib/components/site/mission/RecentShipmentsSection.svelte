@@ -12,7 +12,7 @@
 			timestamp: '08:42:11',
 			reward: 'REWARD: $275',
 			image:
-				'https://lh3.googleusercontent.com/aida-public/AB6AXuDMcRN_9dq2GzHoPysCYD9If6D2dBRng2R0pWqMqpIwiRklnR7YdXWBKXx-uVkNYcRt7vE2M4pUauuv6kBlun7kYhHOpu64LHV2mSKkPZGExidqMdmMLHMiqae9NTiXzLKTzv6rS10S7DOZxhlWqlOwLeFTg96GycpbstWJr3lu8k6KCc2jfTbnzaiVYHwnwb4sgTgm3_UifN46yotZvkc5vpiOcRUvBxdWkpqOwVKr_ZWT_fUV1KB5-qgoJ2JUqf1-nNDMWfLYZiVW'
+				'https://images.unsplash.com/photo-1641853256879-bd786e77d852?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080'
 		},
 		{
 			name: 'LibreVox',
@@ -24,7 +24,7 @@
 			timestamp: '12:15:00',
 			reward: 'BUDGET: $210/275',
 			image:
-				'https://lh3.googleusercontent.com/aida-public/AB6AXuDSmp7-_3Mrd_p6KTCvulGh_pV4go9g2fRnriOjeKtgRnkSOESCoeuBNWIjWTdZHhsf09zEem_HQ97OJQxPg6g43THoCHhDpLLkDuf4v6OzEK1AXvqX0gJypGbY8aHy66UG0UDFgSNRhPAnzcTiT88ncWupebaSyu7XPgryqVYcSfSLhV6EtKClY4LD-T9QmKQ0ZH4kxqzEOp36Br87_cHV95h8h6MgNeXeL5VXFOItvR_cCDlUUrldC7RQNtOiBuMkeb7tmNFsAlJr'
+				'https://images.unsplash.com/photo-1519558260268-cde7e03a0152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080'
 		},
 		{
 			name: 'OpenDeck',
@@ -36,7 +36,7 @@
 			timestamp: '--:--:--',
 			reward: 'ALLOCATION_PENDING',
 			image:
-				'https://lh3.googleusercontent.com/aida-public/AB6AXuCUpYdzyaCQCNjQTG-FvR_xDFGKHg3b2rM29OPJNcSTnG89gcfCIiYyrOk834D73j45ULTURwXSqNgYe-lOdL0JZNaj-PzlU3i6v9Itgw03m7D99Urb3UqQHTNDab_fRh0T6VHww5HrZDijJl7As1ay7eMtaorScihmMW1fpVF1mcexGZGYSltO5ZPesnGJJYPCrW4kzDNEYCZf4DepmdOIiAgga2gzl3FzghmUcsvkYi97MG-V90dpngZ696VZJYOI2FzTNMVvc0FB'
+				'https://images.unsplash.com/photo-1649899913123-90bb33c8a66a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080'
 		}
 	];
 </script>
