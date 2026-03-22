@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import { resolve } from '$app/paths';
 	import { authClient } from '$lib/auth-client';
 	import { Button } from '$lib/components/ui/button';
 
@@ -22,7 +23,7 @@
 				success = 'OTP SENT — CHECK YOUR INBOX';
 				step = 'otp';
 			}
-		} catch (e) {
+		} catch {
 			error = 'NETWORK ERROR — TRY AGAIN';
 		} finally {
 			loading = false;
@@ -38,9 +39,9 @@
 			if (res.error) {
 				error = res.error.message ?? 'Invalid OTP';
 			} else {
-				await goto('/');
+				await goto(resolve('/'));
 			}
-		} catch (e) {
+		} catch {
 			error = 'NETWORK ERROR — TRY AGAIN';
 		} finally {
 			loading = false;
