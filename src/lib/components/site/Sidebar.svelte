@@ -12,7 +12,12 @@
 	let { user }: { user: User } = $props();
 
 	const navItems = [
-		{ label: 'Dashboard', path: '/', routeId: '/(app)' as const, icon: ClipboardList },
+		{
+			label: 'Dashboard',
+			path: '/dashboard',
+			routeId: '/(app)/dashboard' as const,
+			icon: ClipboardList
+		},
 		{ label: 'Streaks', path: '/streak', routeId: '/(app)/streak' as const, icon: Zap },
 		{ label: 'Hardware', path: '/hardware', routeId: '/(app)/hardware' as const, icon: Cpu },
 		{ label: 'Gallery', path: '/vault', routeId: '/(app)/vault' as const, icon: Archive }
@@ -21,7 +26,6 @@
 	let currentPath = $derived($page.url.pathname);
 
 	function isActive(path: string): boolean {
-		if (path === '/') return currentPath === '/';
 		return currentPath.startsWith(path);
 	}
 

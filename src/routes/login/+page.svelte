@@ -24,7 +24,5 @@
 				Sign in with Hack Club
 			</Button>
 		</div>
-
-
 	</div>
 </div>

@@ -19,9 +19,7 @@
 		<div
 			class="mb-4 inline-block border-2 border-outline-variant bg-surface-container-high px-3 py-1"
 		>
-			<span class="text-xs font-bold tracking-widest text-primary uppercase"
-				>Your dashboard</span
-			>
+			<span class="text-xs font-bold tracking-widest text-primary uppercase">Your dashboard</span>
 		</div>
 
 		<!-- Main headline -->

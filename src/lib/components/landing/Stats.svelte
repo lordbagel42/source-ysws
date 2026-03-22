@@ -2,19 +2,19 @@
 	<div class="grid gap-6 md:grid-cols-3">
 		<div class="border-2 border-outline-variant bg-surface-container-low p-6">
 			<p class="font-headline text-5xl font-black text-primary">42</p>
-			<p class="mt-2 font-mono text-xs uppercase tracking-widest text-on-surface-variant">
+			<p class="mt-2 font-mono text-xs tracking-widest text-on-surface-variant uppercase">
 				teens building
 			</p>
 		</div>
 		<div class="border-2 border-outline-variant bg-surface-container-low p-6">
 			<p class="font-headline text-5xl font-black text-primary">12</p>
-			<p class="mt-2 font-mono text-xs uppercase tracking-widest text-on-surface-variant">
+			<p class="mt-2 font-mono text-xs tracking-widest text-on-surface-variant uppercase">
 				projects shipped
 			</p>
 		</div>
 		<div class="border-2 border-outline-variant bg-surface-container-low p-6">
 			<p class="font-headline text-5xl font-black text-primary">8</p>
-			<p class="mt-2 font-mono text-xs uppercase tracking-widest text-on-surface-variant">
+			<p class="mt-2 font-mono text-xs tracking-widest text-on-surface-variant uppercase">
 				T-Decks sent
 			</p>
 		</div>

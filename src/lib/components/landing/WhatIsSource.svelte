@@ -12,8 +12,8 @@
 		<div class="border-2 border-outline-variant bg-surface-container-low p-6">
 			<h3 class="mb-2 font-headline text-lg font-bold text-foreground">What you get</h3>
 			<p class="text-sm text-on-surface-variant">
-				A LilyGo T-Deck (ESP32-S3, QWERTY keyboard, 2.8" screen, WiFi, Bluetooth, LoRa) + $275
-				in parts.
+				A LilyGo T-Deck (ESP32-S3, QWERTY keyboard, 2.8" screen, WiFi, Bluetooth, LoRa) + $275 in
+				parts.
 			</p>
 		</div>
 		<div class="border-2 border-outline-variant bg-surface-container-low p-6">

@@ -11,6 +11,8 @@
 		Coming soon<span class="blinking-cursor"></span>
 	</p>
 	<div class="mt-8 border-2 border-outline-variant bg-surface-container-low p-8 text-center">
-		<p class="font-mono text-on-surface-variant">Shipped projects will show up here — be the first!</p>
+		<p class="font-mono text-on-surface-variant">
+			Shipped projects will show up here — be the first!
+		</p>
 	</div>
 </div>
