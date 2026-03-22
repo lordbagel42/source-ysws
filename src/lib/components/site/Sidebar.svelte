@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { authClient } from '$lib/auth-client';
 	import { Monitor, Users, Database, Flame } from 'lucide-svelte';
+	import { toast } from 'svelte-sonner';
 
 	let { user }: { user?: { name?: string | null; image?: string | null } | null } = $props();
 
@@ -13,8 +14,15 @@
 	];
 
 	async function signOut() {
-		await authClient.signOut();
-		window.location.href = '/';
+		try {
+			await authClient.signOut();
+			toast.success('Signed out');
+			setTimeout(() => {
+				window.location.href = '/';
+			}, 500);
+		} catch {
+			toast.error('Sign out failed', { description: 'Try again or clear your cookies.' });
+		}
 	}
 </script>
 
@@ -23,7 +31,6 @@
 >
 	<div class="px-4 py-6">
 		<span class="font-headline text-2xl font-black text-primary uppercase">SOURCE</span>
-	
 	</div>
 
 	<nav class="flex flex-1 flex-col gap-1 px-2">

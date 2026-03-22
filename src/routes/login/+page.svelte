@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { authClient } from '$lib/auth-client';
 	import { Button } from '$lib/components/ui/button';
+	import { toast } from 'svelte-sonner';
+
+	let signingIn = $state(false);
 </script>
 
 <div class="relative flex min-h-screen items-center justify-center px-4">
@@ -22,22 +25,29 @@
 		<div class="flex flex-col gap-4">
 			<Button
 				type="button"
+				disabled={signingIn}
 				onclick={async () => {
-					await authClient.signIn.social({
-						provider: 'hackclub',
-						callbackURL: '/'
-					});
+					signingIn = true;
+					try {
+						await authClient.signIn.social({
+							provider: 'hackclub',
+							callbackURL: '/?welcome=1'
+						});
+					} catch {
+						toast.error('Sign in failed', {
+							description: 'Could not reach Hack Club. Try again.'
+						});
+						signingIn = false;
+					}
 				}}
 				class="hard-shadow w-full bg-primary py-6 font-headline text-lg font-bold tracking-wider text-primary-foreground hover:bg-primary/90"
 			>
-				SIGN IN WITH HACK CLUB
+				{signingIn ? 'Redirecting...' : 'SIGN IN WITH HACK CLUB'}
 			</Button>
 		</div>
 
 		<div class="mt-6 text-center">
-			<p class="font-mono text-xs text-on-surface-variant">
-				SECURE TERMINAL v1.0
-			</p>
+			<p class="font-mono text-xs text-on-surface-variant">SECURE TERMINAL v1.0</p>
 		</div>
 	</div>
 </div>

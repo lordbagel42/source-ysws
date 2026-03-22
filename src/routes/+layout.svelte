@@ -4,8 +4,21 @@
 	import SkipToContent from '$lib/components/site/SkipToContent.svelte';
 	import Sidebar from '$lib/components/site/Sidebar.svelte';
 	import MobileNav from '$lib/components/site/MobileNav.svelte';
+	import { Toaster } from '$lib/components/ui/sonner/index.js';
+	import { toast } from 'svelte-sonner';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	let { data, children } = $props();
+
+	let welcomed = false;
+	$effect(() => {
+		if ($page.url.searchParams.has('welcome') && data.user && !welcomed) {
+			welcomed = true;
+			toast.success(`Welcome, ${data.user.name ?? 'builder'}`);
+			goto('/', { replaceState: true });
+		}
+	});
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
@@ -17,3 +30,4 @@
 	</div>
 	<MobileNav />
 </div>
+<Toaster />

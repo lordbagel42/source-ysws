@@ -17,9 +17,7 @@
 	</h1>
 
 	<!-- Subtitle -->
-	<p class="font-mono text-sm text-on-surface-variant">
-		Peer review and validation network
-	</p>
+	<p class="font-mono text-sm text-on-surface-variant">Peer review and validation network</p>
 
 	<!-- Stats bar -->
 	<div
