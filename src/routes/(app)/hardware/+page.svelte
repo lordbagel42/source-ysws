@@ -1,36 +1,89 @@
 <script lang="ts">
 	import PageHeader from '$lib/components/site/hardware/PageHeader.svelte';
-	import ActiveInventory from '$lib/components/site/hardware/ActiveInventory.svelte';
-	import BomRequestLog from '$lib/components/site/hardware/BomRequestLog.svelte';
+	import ProjectCard from '$lib/components/site/hardware/ProjectCard.svelte';
+	import ComponentInventory from '$lib/components/site/hardware/ComponentInventory.svelte';
 	import RequestPartForm from '$lib/components/site/hardware/RequestPartForm.svelte';
-	import ProtocolReminders from '$lib/components/site/hardware/ProtocolReminders.svelte';
-</script>
 
-<!-- Note: the (app) layout already wraps us in <main class="flex-1 p-6"> -->
-<!-- So we add pt-2 for extra top spacing and pb-6 for bottom -->
+	const projects = [
+		{
+			codename: 'SENTINEL_CAM_V2',
+			title: 'Custom Video Doorbell',
+			status: 'VERIFIED' as const,
+			difficulty: 'INTERMEDIATE' as const,
+			description:
+				'Custom video doorbell with local AI processing, night vision IR LEDs, PIR motion detection, and encrypted local storage. Zero cloud dependency.',
+			bom: [
+				{ name: 'ESP32-CAM', cost: 8 },
+				{ name: 'PIR Sensor', cost: 2 },
+				{ name: 'IR LEDs', cost: 3 },
+				{ name: 'PCB', cost: 5 },
+				{ name: 'Enclosure', cost: 12 },
+				{ name: 'Power Supply', cost: 8 }
+			],
+			progress: 100,
+			timeEstimate: 12
+		},
+		{
+			codename: 'ECHO_CORE_V1',
+			title: 'Smart Speaker',
+			status: 'IN_PROGRESS' as const,
+			difficulty: 'ADVANCED' as const,
+			description:
+				'Open-source smart speaker with local wake-word detection, on-device LLM, modular I2S audio drivers, custom 3D-printed enclosure. Privacy-first, no cloud.',
+			bom: [
+				{ name: 'RPi Zero 2W', cost: 15 },
+				{ name: 'I2S Amplifier', cost: 6 },
+				{ name: 'Speaker Driver', cost: 8 },
+				{ name: 'Microphone Array', cost: 12 },
+				{ name: '3D-Printed Shell', cost: 5 },
+				{ name: 'Misc', cost: 4 }
+			],
+			progress: 65,
+			timeEstimate: 20
+		},
+		{
+			codename: 'ARID_DRY_X1',
+			title: '3D Printer Filament Dryer',
+			status: 'QUEUED' as const,
+			difficulty: 'BEGINNER' as const,
+			description:
+				'3D printer filament dryer with PID-controlled PTC heating, BME280 humidity/temp monitoring, OLED status display, multi-spool capacity.',
+			bom: [
+				{ name: 'PTC Heater', cost: 6 },
+				{ name: 'BME280', cost: 3 },
+				{ name: 'OLED 0.96"', cost: 4 },
+				{ name: 'Arduino Nano', cost: 5 },
+				{ name: 'Enclosure', cost: 8 },
+				{ name: 'Misc', cost: 3 }
+			],
+			progress: 0,
+			timeEstimate: 8
+		}
+	];
+</script>
 
 <!-- PageHeader (title + budget) -->
 <PageHeader />
 
 <!-- 12-col grid layout: 8 left + 4 right -->
 <div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
-	<!-- Left Column: Inventory + BOM -->
+	<!-- Left Column: Project Cards -->
 	<div class="space-y-8 lg:col-span-8">
-		<ActiveInventory />
-		<BomRequestLog />
+		{#each projects as project (project.codename)}
+			<ProjectCard {...project} />
+		{/each}
 	</div>
 
-	<!-- Right Column: Request Form + Protocol -->
+	<!-- Right Column: Inventory + Request Form -->
 	<div class="lg:col-span-4">
 		<div class="sticky top-8 space-y-6">
+			<ComponentInventory />
 			<RequestPartForm />
-			<ProtocolReminders />
 		</div>
 	</div>
 </div>
 
 <!-- System Logs Footer -->
-<!-- Matches Stitch HTML lines 259-276 -->
 <div class="mt-20 border-t-2 border-outline-variant pt-12">
 	<div class="grid grid-cols-1 gap-8 md:grid-cols-4">
 		<div class="md:col-span-1">
