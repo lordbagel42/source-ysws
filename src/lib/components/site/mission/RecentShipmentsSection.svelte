@@ -3,9 +3,10 @@
 
 	const shipments = [
 		{
-			name: 'ONYX_DECK_V4',
-			description: 'Sub-GHz communication array with haptic interface for mesh-net resilience.',
-			tags: ['ESP32-S3', 'LORA_915MHZ'],
+			name: 'SENTINEL_CAM_V2',
+			description:
+				'Custom video doorbell with local AI processing, night vision, and encrypted local storage. No cloud dependency.',
+			tags: ['ESP32-CAM', 'PIR_SENSOR', 'ONVIF'],
 			status: 'DEPLOYED',
 			statusClass: 'bg-primary text-primary-foreground',
 			timestamp: '08:42:11',
@@ -14,9 +15,10 @@
 				'https://lh3.googleusercontent.com/aida-public/AB6AXuDMcRN_9dq2GzHoPysCYD9If6D2dBRng2R0pWqMqpIwiRklnR7YdXWBKXx-uVkNYcRt7vE2M4pUauuv6kBlun7kYhHOpu64LHV2mSKkPZGExidqMdmMLHMiqae9NTiXzLKTzv6rS10S7DOZxhlWqlOwLeFTg96GycpbstWJr3lu8k6KCc2jfTbnzaiVYHwnwb4sgTgm3_UifN46yotZvkc5vpiOcRUvBxdWkpqOwVKr_ZWT_fUV1KB5-qgoJ2JUqf1-nNDMWfLYZiVW'
 		},
 		{
-			name: 'NEURAL_LINK_V1',
-			description: 'Biometric data logging with encrypted local storage and biometric lock.',
-			tags: ['EEG_SCANNER', 'BIPHASIC'],
+			name: 'ECHO_CORE_V1',
+			description:
+				'Open-source smart speaker with wake-word detection, local LLM processing, and modular audio drivers. Privacy-first design.',
+			tags: ['RPI_ZERO_2W', 'I2S_AMP', 'WAKE_WORD'],
 			status: 'IN_PROGRESS',
 			statusClass: 'bg-secondary text-secondary-foreground',
 			timestamp: '12:15:00',
@@ -25,9 +27,10 @@
 				'https://lh3.googleusercontent.com/aida-public/AB6AXuDSmp7-_3Mrd_p6KTCvulGh_pV4go9g2fRnriOjeKtgRnkSOESCoeuBNWIjWTdZHhsf09zEem_HQ97OJQxPg6g43THoCHhDpLLkDuf4v6OzEK1AXvqX0gJypGbY8aHy66UG0UDFgSNRhPAnzcTiT88ncWupebaSyu7XPgryqVYcSfSLhV6EtKClY4LD-T9QmKQ0ZH4kxqzEOp36Br87_cHV95h8h6MgNeXeL5VXFOItvR_cCDlUUrldC7RQNtOiBuMkeb7tmNFsAlJr'
 		},
 		{
-			name: 'VOID_SCANNER_X',
-			description: 'Broadband radio scanner for signal analysis in restricted zones.',
-			tags: ['SDR_RADIO', 'OPEN_TX'],
+			name: 'ARID_DRY_X1',
+			description:
+				'3D printer filament dryer with PID-controlled heating, humidity monitoring, and multi-spool capacity. Precision moisture removal.',
+			tags: ['PTC_HEATER', 'BME280', 'OLED_UI'],
 			status: 'QUEUED',
 			statusClass: 'bg-surface-container-highest text-foreground',
 			timestamp: '--:--:--',

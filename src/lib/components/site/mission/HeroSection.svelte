@@ -69,7 +69,7 @@
 					variant="outline"
 					class="min-h-[44px] border-2 border-primary bg-transparent px-8 py-4 font-mono text-lg font-bold text-primary uppercase transition-all hover:bg-surface-container-low"
 				>
-					VIEW_NODES <ArrowRight class="ml-1 inline h-4 w-4" />
+					VIEW_DOCS <ArrowRight class="ml-1 inline h-4 w-4" />
 				</Button>
 			</div>
 		</div>
