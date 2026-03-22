@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { authClient } from '$lib/auth-client';
 	import { Button } from '$lib/components/ui/button';
 </script>
 
@@ -10,16 +10,20 @@
 			<p class="mt-2 font-mono text-sm text-on-surface-variant">ACCESS PROTOCOL // SOURCE YSWS</p>
 		</div>
 
-		<form method="POST" action="?/signInOAuth" use:enhance>
-			<input type="hidden" name="providerId" value="hackclub" />
-			<input type="hidden" name="callbackURL" value="/" />
+		<div class="flex flex-col gap-4">
 			<Button
-				type="submit"
+				type="button"
+				onclick={async () => {
+					await authClient.signIn.social({
+						provider: 'hackclub',
+						callbackURL: '/'
+					});
+				}}
 				class="hard-shadow w-full bg-primary py-6 font-headline text-lg font-bold tracking-wider text-primary-foreground hover:bg-primary/90"
 			>
 				SIGN IN WITH HACK CLUB
 			</Button>
-		</form>
+		</div>
 
 		<div class="mt-6 text-center">
 			<p class="font-mono text-xs text-on-surface-variant">
