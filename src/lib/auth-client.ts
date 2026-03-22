@@ -1,8 +1,7 @@
 import { createAuthClient } from 'better-auth/svelte';
-import { emailOTPClient, genericOAuthClient } from 'better-auth/client/plugins';
-import { dashClient } from '@better-auth/infra/client';
+import { genericOAuthClient } from 'better-auth/client/plugins';
 
 export const authClient = createAuthClient({
 	baseURL: typeof window !== 'undefined' ? window.location.origin : undefined,
-	plugins: [genericOAuthClient(), dashClient(), emailOTPClient()]
+	plugins: [genericOAuthClient()]
 });

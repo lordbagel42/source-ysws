@@ -1,8 +1,7 @@
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { sveltekitCookies } from 'better-auth/svelte-kit';
-import { emailOTP, genericOAuth } from 'better-auth/plugins';
-import { dash } from '@better-auth/infra';
+import { genericOAuth } from 'better-auth/plugins';
 import { getRequestEvent } from '$app/server';
 import { db } from '$lib/server/db';
 
@@ -10,8 +9,6 @@ const BETTER_AUTH_SECRET = process.env.BETTER_AUTH_SECRET || 'build-time-secret-
 const ORIGIN = process.env.ORIGIN || 'http://localhost:5173';
 const HACKCLUB_CLIENT_ID = process.env.HACKCLUB_CLIENT_ID || '';
 const HACKCLUB_CLIENT_SECRET = process.env.HACKCLUB_CLIENT_SECRET || '';
-const BETTER_AUTH_API_KEY = process.env.BETTER_AUTH_API_KEY || '';
-
 export const auth = betterAuth({
 	baseURL: ORIGIN,
 	secret: BETTER_AUTH_SECRET,
@@ -28,13 +25,6 @@ export const auth = betterAuth({
 					scopes: ['openid', 'profile', 'email', 'verification_status']
 				}
 			]
-		}),
-		dash({ apiKey: BETTER_AUTH_API_KEY }),
-		emailOTP({
-			async sendVerificationOTP({ email, otp }: { email: string; otp: string }) {
-				// TODO: replace with a real email sender in production
-				console.log(`[emailOtp] OTP for ${email}: ${otp}`);
-			}
 		}),
 		sveltekitCookies(getRequestEvent) // must be last
 	]
