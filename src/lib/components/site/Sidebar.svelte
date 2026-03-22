@@ -74,7 +74,7 @@
 		<Tooltip.Root>
 			<Tooltip.Trigger>
 				<a
-					href={resolve('/settings')}
+					href="#"
 					class="flex h-10 w-10 items-center justify-center border-l-2 border-transparent text-on-surface-variant transition-colors hover:bg-surface-container hover:text-on-surface"
 				>
 					<Settings class="h-5 w-5" />
@@ -92,7 +92,7 @@
 
 		<Tooltip.Root>
 			<Tooltip.Trigger>
-				<a href={resolve('/settings')} class="flex items-center justify-center">
+				<a href="#" class="flex items-center justify-center">
 					<Avatar class="h-8 w-8 border border-outline-variant">
 						<AvatarImage src={user.image ?? ''} alt={user.name} />
 						<AvatarFallback
