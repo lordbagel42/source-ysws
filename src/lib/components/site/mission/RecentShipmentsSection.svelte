@@ -3,9 +3,9 @@
 
 	const shipments = [
 		{
-			name: 'SENTINEL_CAM_V2',
+			name: 'DIY Ring Doorbell',
 			description:
-				'Custom video doorbell with local AI processing, night vision, and encrypted local storage. No cloud dependency.',
+				'A DIY video doorbell with local AI processing, night vision, and encrypted local storage. No cloud subscriptions needed — you own your data.',
 			tags: ['ESP32-CAM', 'PIR_SENSOR', 'ONVIF'],
 			status: 'DEPLOYED',
 			statusClass: 'bg-primary text-primary-foreground',
@@ -15,9 +15,9 @@
 				'https://lh3.googleusercontent.com/aida-public/AB6AXuDMcRN_9dq2GzHoPysCYD9If6D2dBRng2R0pWqMqpIwiRklnR7YdXWBKXx-uVkNYcRt7vE2M4pUauuv6kBlun7kYhHOpu64LHV2mSKkPZGExidqMdmMLHMiqae9NTiXzLKTzv6rS10S7DOZxhlWqlOwLeFTg96GycpbstWJr3lu8k6KCc2jfTbnzaiVYHwnwb4sgTgm3_UifN46yotZvkc5vpiOcRUvBxdWkpqOwVKr_ZWT_fUV1KB5-qgoJ2JUqf1-nNDMWfLYZiVW'
 		},
 		{
-			name: 'ECHO_CORE_V1',
+			name: 'Open Source Google Home',
 			description:
-				'Open-source smart speaker with wake-word detection, local LLM processing, and modular audio drivers. Privacy-first design.',
+				'An open-source smart speaker with wake-word detection, local LLM processing, and modular audio. Like Google Home, but you control everything.',
 			tags: ['RPI_ZERO_2W', 'I2S_AMP', 'WAKE_WORD'],
 			status: 'IN_PROGRESS',
 			statusClass: 'bg-secondary text-secondary-foreground',
@@ -27,9 +27,9 @@
 				'https://lh3.googleusercontent.com/aida-public/AB6AXuDSmp7-_3Mrd_p6KTCvulGh_pV4go9g2fRnriOjeKtgRnkSOESCoeuBNWIjWTdZHhsf09zEem_HQ97OJQxPg6g43THoCHhDpLLkDuf4v6OzEK1AXvqX0gJypGbY8aHy66UG0UDFgSNRhPAnzcTiT88ncWupebaSyu7XPgryqVYcSfSLhV6EtKClY4LD-T9QmKQ0ZH4kxqzEOp36Br87_cHV95h8h6MgNeXeL5VXFOItvR_cCDlUUrldC7RQNtOiBuMkeb7tmNFsAlJr'
 		},
 		{
-			name: 'ARID_DRY_X1',
+			name: '3D Printer Filament Dryer',
 			description:
-				'3D printer filament dryer with PID-controlled heating, humidity monitoring, and multi-spool capacity. Precision moisture removal.',
+				'A filament dryer for your 3D printer with PID-controlled heating, humidity monitoring, and multi-spool capacity. Keep your prints crispy.',
 			tags: ['PTC_HEATER', 'BME280', 'OLED_UI'],
 			status: 'QUEUED',
 			statusClass: 'bg-surface-container-highest text-foreground',

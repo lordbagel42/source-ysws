@@ -77,7 +77,7 @@
 			<Input
 				id="justification"
 				type="text"
-				placeholder="Required for SENTINEL_CAM_V2 build..."
+				placeholder="Required for DIY Ring Doorbell build..."
 				class="h-8 font-mono text-xs"
 				bind:value={justification}
 				required

@@ -6,12 +6,12 @@
 
 	const projects = [
 		{
-			codename: 'SENTINEL_CAM_V2',
-			title: 'Custom Video Doorbell',
+			codename: 'DIY Ring Doorbell',
+			title: 'DIY Ring Doorbell',
 			status: 'VERIFIED' as const,
 			difficulty: 'INTERMEDIATE' as const,
 			description:
-				'Custom video doorbell with local AI processing, night vision IR LEDs, PIR motion detection, and encrypted local storage. Zero cloud dependency.',
+				'A DIY video doorbell with local AI processing, night vision, and encrypted local storage. No cloud subscriptions needed — you own your data.',
 			bom: [
 				{ name: 'ESP32-CAM', cost: 8 },
 				{ name: 'PIR Sensor', cost: 2 },
@@ -24,12 +24,12 @@
 			timeEstimate: 12
 		},
 		{
-			codename: 'ECHO_CORE_V1',
-			title: 'Smart Speaker',
+			codename: 'Open Source Google Home',
+			title: 'Open Source Google Home',
 			status: 'IN_PROGRESS' as const,
 			difficulty: 'ADVANCED' as const,
 			description:
-				'Open-source smart speaker with local wake-word detection, on-device LLM, modular I2S audio drivers, custom 3D-printed enclosure. Privacy-first, no cloud.',
+				'An open-source smart speaker with wake-word detection, local LLM processing, and modular audio. Like Google Home, but you control everything.',
 			bom: [
 				{ name: 'RPi Zero 2W', cost: 15 },
 				{ name: 'I2S Amplifier', cost: 6 },
@@ -42,12 +42,12 @@
 			timeEstimate: 20
 		},
 		{
-			codename: 'ARID_DRY_X1',
+			codename: '3D Printer Filament Dryer',
 			title: '3D Printer Filament Dryer',
 			status: 'QUEUED' as const,
 			difficulty: 'BEGINNER' as const,
 			description:
-				'3D printer filament dryer with PID-controlled PTC heating, BME280 humidity/temp monitoring, OLED status display, multi-spool capacity.',
+				'A filament dryer for your 3D printer with PID-controlled heating, humidity monitoring, and multi-spool capacity. Keep your prints crispy.',
 			bom: [
 				{ name: 'PTC Heater', cost: 6 },
 				{ name: 'BME280', cost: 3 },
