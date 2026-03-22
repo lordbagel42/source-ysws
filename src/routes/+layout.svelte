@@ -14,7 +14,7 @@
 <div class="min-h-screen bg-background text-foreground">
 	<Sidebar user={data.user} />
 	<TopBar />
-	<div class="mt-14 min-h-[calc(100vh-3.5rem)] pb-16 md:ml-64 md:pb-0">
+	<div class="mt-14 min-h-[calc(100vh-3.5rem)] overflow-x-hidden pb-16 md:ml-64 md:pb-0">
 		{@render children()}
 	</div>
 	<MobileNav />
