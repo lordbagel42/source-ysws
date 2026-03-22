@@ -12,6 +12,12 @@
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
 	},
+	"hyperdrive": [
+		{
+			"binding": "HYPERDRIVE",
+			"id": "9fd007e28c51463e865712955a234eb1"
+		}
+	],
 	"observability": {
 		"enabled": false,
 		"head_sampling_rate": 1,
