@@ -2,6 +2,7 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { genericOAuth } from 'better-auth/plugins';
+import { dash } from '@better-auth/infra';
 import { getRequestEvent } from '$app/server';
 import { db } from '$lib/server/db';
 
@@ -35,6 +36,7 @@ export const auth = betterAuth({
 				}
 			]
 		}),
+		dash(),
 		sveltekitCookies(getRequestEvent) // must be last
 	]
 });
