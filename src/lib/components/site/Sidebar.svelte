@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
 	import { authClient } from '$lib/auth-client';
 	import { Monitor, Users, Database, Flame } from 'lucide-svelte';
 
@@ -15,7 +14,7 @@
 
 	async function signOut() {
 		await authClient.signOut();
-		goto('/login');
+		window.location.href = '/login';
 	}
 </script>
 
