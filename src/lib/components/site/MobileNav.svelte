@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { Monitor, Users, Database, Lock } from 'lucide-svelte';
+	import { Monitor, Users, Database, Flame } from 'lucide-svelte';
 
 	const navItems = [
-		{ label: 'TERM', path: '/', icon: Monitor },
-		{ label: 'NET', path: '/network', icon: Users },
-		{ label: 'DATA', path: '/hardware', icon: Database },
-		{ label: 'SEC', path: '/vault', icon: Lock }
+		{ label: 'HOME', path: '/', icon: Monitor },
+		{ label: 'HEAT', path: '/streak', icon: Flame },
+		{ label: 'BUILD', path: '/hardware', icon: Database },
+		{ label: 'VOTE', path: '/network', icon: Users }
 	];
 </script>
 

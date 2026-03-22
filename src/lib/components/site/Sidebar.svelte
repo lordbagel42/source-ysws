@@ -2,15 +2,15 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { authClient } from '$lib/auth-client';
-	import { Monitor, Users, Database, Lock } from 'lucide-svelte';
+	import { Monitor, Users, Database, Flame } from 'lucide-svelte';
 
 	let { user }: { user?: { name?: string | null; image?: string | null } | null } = $props();
 
 	const navItems = [
-		{ label: 'TERMINAL', path: '/', icon: Monitor },
-		{ label: 'NETWORK', path: '/network', icon: Users },
-		{ label: 'REGISTRY', path: '/hardware', icon: Database },
-		{ label: 'VAULT', path: '/vault', icon: Lock }
+		{ label: 'DASHBOARD', path: '/', icon: Monitor },
+		{ label: 'CORE HEAT', path: '/streak', icon: Flame },
+		{ label: 'HARDWARE', path: '/hardware', icon: Database },
+		{ label: 'COMMUNITY', path: '/network', icon: Users }
 	];
 
 	async function signOut() {
