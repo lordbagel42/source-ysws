@@ -2,17 +2,17 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { genericOAuth } from 'better-auth/plugins';
-import { dash } from '@better-auth/infra';
 import { getRequestEvent } from '$app/server';
 import { db } from '$lib/server/db';
 
 const BETTER_AUTH_SECRET = process.env.BETTER_AUTH_SECRET || 'build-time-secret-only';
-const ORIGIN = process.env.ORIGIN || 'http://localhost:5173';
 const HACKCLUB_CLIENT_ID = process.env.HACKCLUB_CLIENT_ID || '';
 const HACKCLUB_CLIENT_SECRET = process.env.HACKCLUB_CLIENT_SECRET || '';
 
+// better-auth reads BETTER_AUTH_URL automatically for baseURL.
+// When unset, svelteKitHandler falls back to the request origin,
+// which avoids port-mismatch 404s during local development.
 export const auth = betterAuth({
-	baseURL: ORIGIN,
 	secret: BETTER_AUTH_SECRET,
 	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
@@ -28,7 +28,6 @@ export const auth = betterAuth({
 				}
 			]
 		}),
-		dash(),
 		sveltekitCookies(getRequestEvent) // must be last
 	]
 });

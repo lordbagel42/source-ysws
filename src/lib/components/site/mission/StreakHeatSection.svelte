@@ -3,9 +3,8 @@
 </script>
 
 <section
-	class="relative overflow-hidden border-b-2 border-outline-variant bg-surface-dim px-8 py-24 md:px-16"
+	class="scanline relative overflow-hidden border-b-2 border-outline-variant bg-surface-dim px-8 py-24 md:px-16"
 >
-	<div class="scanline"></div>
 	<div class="relative z-10 mx-auto max-w-6xl">
 		<div class="flex flex-col items-center gap-12 lg:flex-row">
 			<!-- Left column -->
@@ -69,6 +68,7 @@
 				>
 					<div
 						class="pointer-events-none absolute inset-0 flex flex-col justify-between p-2 opacity-10"
+						aria-hidden="true"
 					>
 						<div class="w-full border-b border-outline"></div>
 						<div class="w-full border-b border-outline"></div>
