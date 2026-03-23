@@ -25,16 +25,18 @@
 
 <section
 	aria-label="Build activity"
-	class="scanline border-b-2 border-surface-container-high bg-surface-container-low px-6 py-12"
+	class="scanline border-b-2 border-surface-container-high bg-surface-container-low px-6 py-10 md:px-8 md:py-12"
 >
 	<div class="mx-auto max-w-7xl">
 		<!-- Header -->
 		<div class="mb-8 flex items-end justify-between">
 			<div>
-				<span class="font-mono text-[10px] tracking-[0.2em] text-on-surface-variant uppercase"
+				<span class="font-mono text-xs tracking-[0.2em] text-on-surface-variant uppercase"
 					>SENSOR_READOUT</span
 				>
-				<h2 class="font-headline text-3xl font-black tracking-tight text-foreground uppercase">
+				<h2
+					class="font-headline text-3xl font-black tracking-tight text-foreground uppercase md:text-4xl"
+				>
 					PROTOCOL_CONTRIBUTIONS
 				</h2>
 			</div>
@@ -55,11 +57,11 @@
 		</p>
 		<div
 			aria-describedby="heatmap-desc"
-			class="grid grid-cols-7 gap-1 sm:grid-cols-14 md:grid-cols-21 lg:grid-cols-28"
+			class="grid grid-cols-14 gap-0.5 sm:gap-1 md:grid-cols-21 lg:grid-cols-28"
 		>
 			{#each cells as cell, i (i)}
 				<div
-					class="aspect-square cursor-crosshair opacity-80 transition-opacity hover:opacity-100 {cell.color}"
+					class="h-2.5 w-2.5 cursor-crosshair opacity-80 transition-opacity hover:opacity-100 sm:aspect-square sm:h-auto sm:w-auto {cell.color}"
 					title="Day {i + 1}: {cell.label} activity"
 				></div>
 			{/each}
