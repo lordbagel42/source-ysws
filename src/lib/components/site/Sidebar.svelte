@@ -6,6 +6,8 @@
 
 	let { user }: { user?: { name?: string | null; image?: string | null } | null } = $props();
 
+	let isSigningOut = $state(false);
+
 	const navItems = [
 		{ label: 'DASHBOARD', path: '/', icon: Monitor },
 		{ label: 'CORE HEAT', path: '/streak', icon: Flame },
@@ -14,6 +16,8 @@
 	];
 
 	async function signOut() {
+		if (isSigningOut) return;
+		isSigningOut = true;
 		try {
 			await authClient.signOut();
 			toast.success('Signed out');
@@ -22,6 +26,7 @@
 			}, 500);
 		} catch {
 			toast.error('Sign out failed', { description: 'Try again or clear your cookies.' });
+			isSigningOut = false;
 		}
 	}
 </script>
@@ -65,9 +70,11 @@
 				</span>
 				<button
 					onclick={signOut}
-					class="font-mono text-[10px] text-on-surface-variant uppercase hover:text-primary"
+					disabled={isSigningOut}
+					aria-label="Sign out"
+					class="font-mono text-[10px] text-on-surface-variant uppercase hover:text-primary disabled:cursor-not-allowed disabled:opacity-50"
 				>
-					OUT
+					{isSigningOut ? '...' : 'OUT'}
 				</button>
 			</div>
 		{:else}
