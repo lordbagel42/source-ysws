@@ -35,7 +35,7 @@ export function getDb(): ReturnType<typeof drizzle> {
 	if (!_localDb) {
 		const databaseUrl = env.DATABASE_URL;
 		if (!databaseUrl) {
-			throw new Error('DATABASE_URL is not defined in environment variables');
+			throw new Error('DATABASE_URL environment variable is not set');
 		}
 		const client = postgres(databaseUrl, { prepare: false });
 		_localDb = drizzle(client, { schema });
