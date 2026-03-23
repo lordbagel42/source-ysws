@@ -79,6 +79,7 @@
 
 	function providerLabel(providerId: string): string {
 		const labels: Record<string, string> = {
+			hackclub: 'Hack Club',
 			github: 'GitHub',
 			credential: 'Email / Password'
 		};
