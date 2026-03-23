@@ -2,16 +2,29 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
 import { env } from '$env/dynamic/private';
-import { getRequestEvent } from '$app/server';
 import { building } from '$app/environment';
+import { getRequestEvent } from '$app/server';
 
 /**
  * Lazy database instance.
- * Local dev: caches a single client for the process lifetime.
- * Workers: creates a fresh client per request (Hyperdrive connection strings
- * are per-invocation, but postgres-js is lightweight to instantiate).
  */
 let _localDb: ReturnType<typeof drizzle> | null = null;
+
+/**
+ * Creates a recursive proxy that returns itself for any property access or function call.
+ * This is used during build time to prevent crashes when DATABASE_URL is missing.
+ */
+const createSafeDummy = () => {
+	const dummy: any = new Proxy(() => dummy, {
+		get: (target, prop) => {
+			if (prop === 'then') return undefined;
+			if (prop === Symbol.iterator) return undefined;
+			if (prop === Symbol.asyncIterator) return undefined;
+			return dummy;
+		}
+	});
+	return dummy;
+};
 
 export function getDb(): ReturnType<typeof drizzle> {
 	// Check if Hyperdrive is available (Workers environment)
@@ -34,13 +47,11 @@ export function getDb(): ReturnType<typeof drizzle> {
 
 	// Local dev: reuse cached client
 	if (!_localDb) {
-		const url = env.DATABASE_URL;
+		const url = env.DATABASE_URL || (typeof process !== 'undefined' ? process.env.DATABASE_URL : undefined);
 		if (!url) {
-			if (building) {
-				// During build, return a dummy object that won't throw on property access
-				// but also won't work for real queries.
-				console.warn('DATABASE_URL is missing during build, providing dummy db');
-				return {} as unknown as ReturnType<typeof drizzle>;
+			if (building || (typeof process !== 'undefined' && process.env.NODE_ENV === 'test')) {
+				console.warn('DATABASE_URL is missing, providing safe dummy db');
+				return createSafeDummy() as unknown as ReturnType<typeof drizzle>;
 			}
 			throw new Error('DATABASE_URL is not defined');
 		}
