@@ -105,7 +105,7 @@
 		<div class="md:col-span-3">
 			<div class="flex h-full flex-col justify-end md:border-l md:border-outline-variant md:pl-8">
 				<p
-					class="font-headline text-xl md:text-3xl leading-none font-black tracking-tighter text-surface-container-highest uppercase opacity-50"
+					class="font-headline text-xl leading-none font-black tracking-tighter text-surface-container-highest uppercase opacity-50 md:text-3xl"
 				>
 					Sovereign_Hardware_Supply_Chain_v2024
 				</p>
