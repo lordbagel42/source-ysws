@@ -2,6 +2,7 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { sveltekitCookies } from 'better-auth/svelte-kit';
 import { admin, genericOAuth } from 'better-auth/plugins';
+import { passkey } from '@better-auth/passkey';
 import { dash } from '@better-auth/infra';
 import { getRequestEvent } from '$app/server';
 import { db } from '$lib/server/db';
@@ -11,6 +12,7 @@ const BETTER_AUTH_SECRET = env.BETTER_AUTH_SECRET || 'build-time-secret-only';
 const HACKCLUB_CLIENT_ID = env.HACKCLUB_CLIENT_ID || '';
 const HACKCLUB_CLIENT_SECRET = env.HACKCLUB_CLIENT_SECRET || '';
 const BETTER_AUTH_URL = env.BETTER_AUTH_URL || '';
+const PASSKEY_RP_ID = env.PASSKEY_RP_ID || 'localhost';
 
 export const auth = betterAuth({
 	baseURL: BETTER_AUTH_URL || undefined,
@@ -47,6 +49,11 @@ export const auth = betterAuth({
 			]
 		}),
 		admin(),
+		passkey({
+			rpID: PASSKEY_RP_ID,
+			rpName: 'Source YSWS',
+			origin: BETTER_AUTH_URL || 'http://localhost:5173'
+		}),
 		dash(),
 		sveltekitCookies(getRequestEvent) // must be last
 	]

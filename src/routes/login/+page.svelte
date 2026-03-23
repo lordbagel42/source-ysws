@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { authClient } from '$lib/auth-client';
 	import { Button } from '$lib/components/ui/button';
+	import KeyRound from 'lucide-svelte/icons/key-round';
 	import { toast } from 'svelte-sonner';
 
 	let signingIn = $state(false);
+	let signingInPasskey = $state(false);
 </script>
 
 <div class="relative flex min-h-screen items-center justify-center px-4">
@@ -43,6 +45,35 @@
 				class="hard-shadow w-full bg-primary py-6 font-headline text-lg font-bold tracking-wider text-primary-foreground hover:bg-primary/90"
 			>
 				{signingIn ? 'Redirecting...' : 'SIGN IN WITH HACK CLUB'}
+			</Button>
+
+			<div class="flex items-center gap-3 font-mono text-xs text-on-surface-variant">
+				<span class="h-px flex-1 bg-outline-variant"></span>
+				<span>— or —</span>
+				<span class="h-px flex-1 bg-outline-variant"></span>
+			</div>
+
+			<Button
+				type="button"
+				disabled={signingInPasskey}
+				onclick={async () => {
+					signingInPasskey = true;
+					await authClient.signIn.passkey({
+						fetchOptions: {
+							onSuccess: () => {
+								window.location.href = '/?welcome=1';
+							},
+							onError: (ctx: { error: { message: string } }) => {
+								toast.error(ctx.error.message);
+								signingInPasskey = false;
+							}
+						}
+					});
+				}}
+				class="hard-shadow w-full border-2 border-amber-400 bg-transparent py-6 font-headline text-lg font-bold tracking-wider text-amber-400 hover:bg-amber-400/10"
+			>
+				<KeyRound class="mr-2 size-5" />
+				{signingInPasskey ? 'Authenticating...' : 'SIGN IN WITH PASSKEY'}
 			</Button>
 		</div>
 

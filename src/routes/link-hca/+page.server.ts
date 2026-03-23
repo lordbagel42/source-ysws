@@ -1,10 +1,10 @@
 import { redirect } from '@sveltejs/kit';
 import { and, eq } from 'drizzle-orm';
-import type { LayoutServerLoad } from './$types';
+import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
 import { account } from '$lib/server/db/schema';
 
-export const load: LayoutServerLoad = async (event) => {
+export const load: PageServerLoad = async (event) => {
 	if (!event.locals.user) {
 		throw redirect(302, '/login');
 	}
@@ -15,8 +15,8 @@ export const load: LayoutServerLoad = async (event) => {
 		.where(and(eq(account.userId, event.locals.user.id), eq(account.providerId, 'hackclub')))
 		.limit(1);
 
-	if (hcaAccounts.length === 0) {
-		throw redirect(302, '/link-hca');
+	if (hcaAccounts.length > 0) {
+		throw redirect(302, '/');
 	}
 
 	return { user: event.locals.user };

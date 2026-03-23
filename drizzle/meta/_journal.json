@@ -15,6 +15,13 @@
       "when": 1774226028304,
       "tag": "0001_careless_ozymandias",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1774228346954,
+      "tag": "0002_clever_marrow",
+      "breakpoints": true
     }
   ]
 }
