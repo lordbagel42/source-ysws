@@ -34,7 +34,7 @@
 	</div>
 
 	<nav class="flex flex-1 flex-col gap-1 px-2">
-		{#each navItems as item}
+		{#each navItems as item (item.path)}
 			{@const active = $page.url.pathname === item.path}
 			<a
 				href={item.path}

@@ -29,7 +29,7 @@
 
 		<!-- Log entries -->
 		<div role="log" aria-live="polite" class="flex flex-col gap-1">
-			{#each logEntries as entry, i (entry.time)}
+			{#each logEntries as entry (entry.time)}
 				<div class="flex gap-4">
 					<span class="text-on-surface-variant">[{entry.time}]</span>
 					<span class="{entry.color} uppercase">

@@ -7,7 +7,6 @@
 	import { Toaster } from '$lib/components/ui/sonner/index.js';
 	import { toast } from 'svelte-sonner';
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
 
 	let { data, children } = $props();
 
@@ -16,7 +15,8 @@
 		if ($page.url.searchParams.has('welcome') && data.user && !welcomed) {
 			welcomed = true;
 			toast.success(`Welcome, ${data.user.name ?? 'builder'}`);
-			goto('/', { replaceState: true });
+			// Clean the ?welcome param without a SvelteKit navigation
+			history.replaceState(null, '', '/');
 		}
 	});
 </script>
