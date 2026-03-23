@@ -34,16 +34,10 @@ export function getDb(): ReturnType<typeof drizzle> {
 
 	// Local dev: reuse cached client
 	if (!_localDb) {
-		const databaseUrl = env.DATABASE_URL;
-
-		if (!databaseUrl && !building) {
+		if (!env.DATABASE_URL) {
 			throw new Error('DATABASE_URL environment variable is not set');
 		}
-
-		// Provide a fallback during build to prevent crashing the SvelteKit loader
-		const client = postgres(databaseUrl || 'postgres://build:build@localhost:5432/build', {
-			prepare: false
-		});
+		const client = postgres(env.DATABASE_URL, { prepare: false });
 		_localDb = drizzle(client, { schema });
 	}
 	return _localDb;
