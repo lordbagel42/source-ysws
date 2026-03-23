@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { authClient } from '$lib/auth-client';
-	import { Monitor, Users, Database, Flame } from 'lucide-svelte';
+	import { Monitor, Users, Database, Flame, Settings } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
 
 	let { user }: { user?: { name?: string | null; image?: string | null } | null } = $props();
@@ -10,7 +10,8 @@
 		{ label: 'DASHBOARD', path: '/', icon: Monitor },
 		{ label: 'CORE HEAT', path: '/streak', icon: Flame },
 		{ label: 'HARDWARE', path: '/hardware', icon: Database },
-		{ label: 'COMMUNITY', path: '/network', icon: Users }
+		{ label: 'COMMUNITY', path: '/network', icon: Users },
+		{ label: 'SETTINGS', path: '/settings', icon: Settings }
 	];
 
 	async function signOut() {
