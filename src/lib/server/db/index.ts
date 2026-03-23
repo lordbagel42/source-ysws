@@ -2,8 +2,8 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import * as schema from './schema';
 import { env } from '$env/dynamic/private';
-import { building } from '$app/environment';
-import { getRequestEvent } from '$app/server';
+import * as appEnv from '$app/environment';
+import * as appServer from '$app/server';
 
 /**
  * Lazy database instance.
@@ -18,25 +18,32 @@ const createSafeDummy = () => {
 	const dummy: any = new Proxy(() => dummy, {
 		get: (target, prop) => {
 			if (prop === 'then') return undefined;
-			if (prop === Symbol.iterator) return undefined;
-			if (prop === Symbol.asyncIterator) return undefined;
+			if (prop === Symbol.iterator) return [][Symbol.iterator];
+			if (prop === Symbol.asyncIterator) return (async function* () {})()[Symbol.asyncIterator];
 			return dummy;
-		}
+		},
+		apply: () => dummy
 	});
 	return dummy;
 };
 
 export function getDb(): ReturnType<typeof drizzle> {
+	const building = appEnv?.building;
+	const getRequestEvent = appServer?.getRequestEvent;
+
 	// Check if Hyperdrive is available (Workers environment)
 	let hyperdriveUrl: string | undefined;
-	try {
-		const event = getRequestEvent();
-		const hyperdrive = (event?.platform?.env as unknown as Record<string, unknown>)?.HYPERDRIVE as
-			| { connectionString?: string }
-			| undefined;
-		hyperdriveUrl = hyperdrive?.connectionString;
-	} catch {
-		// Not in request context
+	let event: any = null;
+	if (getRequestEvent) {
+		try {
+			event = getRequestEvent();
+			const hyperdrive = (event?.platform?.env as unknown as Record<string, unknown>)?.HYPERDRIVE as
+				| { connectionString?: string }
+				| undefined;
+			hyperdriveUrl = hyperdrive?.connectionString;
+		} catch {
+			// Not in request context
+		}
 	}
 
 	if (hyperdriveUrl) {
@@ -45,11 +52,11 @@ export function getDb(): ReturnType<typeof drizzle> {
 		return drizzle(client, { schema });
 	}
 
-	// Local dev: reuse cached client
+	// Local dev / Build time / CLI: reuse cached client
 	if (!_localDb) {
 		const url = env.DATABASE_URL || (typeof process !== 'undefined' ? process.env.DATABASE_URL : undefined);
 		if (!url) {
-			if (building || (typeof process !== 'undefined' && process.env.NODE_ENV === 'test')) {
+			if (building || !event || (typeof process !== 'undefined' && process.env.NODE_ENV === 'test')) {
 				console.warn('DATABASE_URL is missing, providing safe dummy db');
 				return createSafeDummy() as unknown as ReturnType<typeof drizzle>;
 			}
