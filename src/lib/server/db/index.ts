@@ -3,6 +3,7 @@ import postgres from 'postgres';
 import * as schema from './schema';
 import { env } from '$env/dynamic/private';
 import { getRequestEvent } from '$app/server';
+import { building } from '$app/environment';
 
 /**
  * Lazy database instance.
@@ -33,8 +34,17 @@ export function getDb(): ReturnType<typeof drizzle> {
 
 	// Local dev: reuse cached client
 	if (!_localDb) {
-		if (!env.DATABASE_URL) throw new Error('DATABASE_URL is not defined');
-		const client = postgres(env.DATABASE_URL, { prepare: false });
+		const url = env.DATABASE_URL;
+		if (!url) {
+			if (building) {
+				// During build, return a dummy object that won't throw on property access
+				// but also won't work for real queries.
+				console.warn('DATABASE_URL is missing during build, providing dummy db');
+				return {} as unknown as ReturnType<typeof drizzle>;
+			}
+			throw new Error('DATABASE_URL is not defined');
+		}
+		const client = postgres(url, { prepare: false });
 		_localDb = drizzle(client, { schema });
 	}
 	return _localDb;
@@ -44,6 +54,7 @@ export function getDb(): ReturnType<typeof drizzle> {
 // are forwarded to the lazily-resolved db instance
 export const db = new Proxy({} as ReturnType<typeof drizzle>, {
 	get(_target, prop) {
-		return (getDb() as unknown as Record<string | symbol, unknown>)[prop];
+		const resolvedDb = getDb();
+		return (resolvedDb as unknown as Record<string | symbol, unknown>)[prop];
 	}
 });
