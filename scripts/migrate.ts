@@ -1,6 +1,6 @@
-import { drizzle } from 'drizzle-orm/postgres-js';
-import { migrate } from 'drizzle-orm/postgres-js/migrator';
-import postgres from 'postgres';
+import { drizzle } from 'drizzle-orm/neon-http';
+import { migrate } from 'drizzle-orm/neon-http/migrator';
+import { neon } from '@neondatabase/serverless';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -14,10 +14,10 @@ if (!databaseUrl) {
 
 // Log a masked version of the connection string to confirm the host
 const maskedUrl = databaseUrl.replace(/:([^@]+)@/, ':****@');
-console.log(`Connecting to database: ${maskedUrl}`);
+console.log(`Connecting to database for migration: ${maskedUrl}`);
 
 const runMigrate = async () => {
-	const sql = postgres(databaseUrl, { max: 1 });
+	const sql = neon(databaseUrl);
 	const db = drizzle(sql);
 
 	console.log('Running migrations...');
@@ -28,15 +28,17 @@ const runMigrate = async () => {
 		await migrate(db, { migrationsFolder: 'drizzle' });
 		const end = Date.now();
 		console.log(`Migrations completed in ${end - start}ms`);
-	} finally {
-		await sql.end();
+	} catch (err) {
+		console.error('Migrations failed');
+		console.error(err);
+		process.exit(1);
 	}
 
 	process.exit(0);
 };
 
 runMigrate().catch((err) => {
-	console.error('Migrations failed');
+	console.error('Unhandled migration error');
 	console.error(err);
 	process.exit(1);
 });

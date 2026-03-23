@@ -1,49 +1,41 @@
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
+import { drizzle } from 'drizzle-orm/neon-http';
+import { neon } from '@neondatabase/serverless';
 import * as schema from './schema';
 import { env } from '$env/dynamic/private';
 import { getRequestEvent } from '$app/server';
 
 /**
- * Lazy database instance.
- * Local dev: caches a single client for the process lifetime.
- * Workers: creates a fresh client per request (Hyperdrive connection strings
- * are per-invocation, but postgres-js is lightweight to instantiate).
+ * Get the database instance.
+ * Workers: creates a fresh client per request.
  */
-let _localDb: ReturnType<typeof drizzle> | null = null;
-
 export function getDb(): ReturnType<typeof drizzle> {
-	// Check if Hyperdrive is available (Workers environment)
-	let hyperdriveUrl: string | undefined;
+	// Check if Hyperdrive or a direct connection string is available
+	let databaseUrl: string | undefined;
+
 	try {
 		const event = getRequestEvent();
-		const hyperdrive = (event?.platform?.env as unknown as Record<string, unknown>)?.HYPERDRIVE as
-			| { connectionString?: string }
-			| undefined;
-		hyperdriveUrl = hyperdrive?.connectionString;
+		// In Workers environment, we check platform.env
+		const platformEnv = event?.platform?.env as unknown as Record<string, unknown>;
+		const hyperdrive = platformEnv?.HYPERDRIVE as { connectionString?: string } | undefined;
+		databaseUrl = hyperdrive?.connectionString || (platformEnv?.DATABASE_URL as string);
 	} catch {
 		// Not in request context
 	}
 
-	if (hyperdriveUrl) {
-		// Workers: fresh client per request using Hyperdrive
-		const client = postgres(hyperdriveUrl, { prepare: false });
-		return drizzle(client, { schema });
+	// Fallback to environment variable (local dev or build time)
+	if (!databaseUrl) {
+		databaseUrl = env.DATABASE_URL;
 	}
 
-	// Local dev: reuse cached client
-	if (!_localDb) {
-		if (!env.DATABASE_URL) {
-			throw new Error('DATABASE_URL environment variable is not set');
-		}
-		const client = postgres(env.DATABASE_URL, { prepare: false });
-		_localDb = drizzle(client, { schema });
+	if (!databaseUrl) {
+		throw new Error('DATABASE_URL environment variable is not set');
 	}
-	return _localDb;
+
+	const client = neon(databaseUrl);
+	return drizzle(client, { schema });
 }
 
-// Proxy export for backwards compatibility — all property accesses
-// are forwarded to the lazily-resolved db instance
+// Proxy export for backwards compatibility
 export const db = new Proxy({} as ReturnType<typeof drizzle>, {
 	get(_target, prop) {
 		return (getDb() as unknown as Record<string | symbol, unknown>)[prop];
