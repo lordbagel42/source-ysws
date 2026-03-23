@@ -13,11 +13,9 @@ const BETTER_AUTH_URL = process.env.BETTER_AUTH_URL || '';
 export const auth = betterAuth({
 	baseURL: BETTER_AUTH_URL || undefined,
 	secret: BETTER_AUTH_SECRET,
-	trustedOrigins: [
-		BETTER_AUTH_URL,
-		'http://localhost:5173',
-		'http://localhost:4173'
-	].filter(Boolean),
+	trustedOrigins: [BETTER_AUTH_URL, 'http://localhost:5173', 'http://localhost:4173'].filter(
+		Boolean
+	),
 	database: drizzleAdapter(db, { provider: 'pg' }),
 	emailAndPassword: { enabled: true },
 	plugins: [
