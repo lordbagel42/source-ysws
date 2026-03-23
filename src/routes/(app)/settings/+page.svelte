@@ -11,7 +11,16 @@
 
 	let { data } = $props();
 
+	// svelte-ignore state_referenced_locally
 	let newName = $state(data.user.name ?? '');
+
+	$effect(() => {
+		const name = data.user.name ?? '';
+		if (newName !== name) {
+			newName = name;
+		}
+	});
+
 	let savingProfile = $state(false);
 	let addingPasskey = $state(false);
 	let passkeyName = $state('');
