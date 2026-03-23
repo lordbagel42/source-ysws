@@ -13,7 +13,7 @@
 			BUILD:
 			{#if commitSha !== 'dev'}
 				<a
-					href="https://github.com/lordbagel42/source-ysws/commit/{commitSha}"
+					href="https://github.com/hackclub/source-ysws/commit/{commitSha}"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="hover:underline"

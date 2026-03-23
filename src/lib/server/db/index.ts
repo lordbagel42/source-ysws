@@ -3,6 +3,7 @@ import postgres from 'postgres';
 import * as schema from './schema';
 import { env } from '$env/dynamic/private';
 import { getRequestEvent } from '$app/server';
+import { building } from '$app/environment';
 
 /**
  * Lazy database instance.
@@ -34,10 +35,15 @@ export function getDb(): ReturnType<typeof drizzle> {
 	// Local dev: reuse cached client
 	if (!_localDb) {
 		const databaseUrl = env.DATABASE_URL;
-		if (!databaseUrl) {
+
+		if (!databaseUrl && !building) {
 			throw new Error('DATABASE_URL environment variable is not set');
 		}
-		const client = postgres(databaseUrl, { prepare: false });
+
+		// Provide a fallback during build to prevent crashing the SvelteKit loader
+		const client = postgres(databaseUrl || 'postgres://build:build@localhost:5432/build', {
+			prepare: false
+		});
 		_localDb = drizzle(client, { schema });
 	}
 	return _localDb;
