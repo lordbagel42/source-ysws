@@ -11,7 +11,7 @@
 			statusClass: 'bg-primary text-primary-foreground',
 			reward: '$275 earned',
 			image:
-				'https://images.unsplash.com/photo-1641853256879-bd786e77d852?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080'
+				'https://images.unsplash.com/photo-1641853256879-bd786e77d852?auto=format&fit=crop&q=80&w=600'
 		},
 		{
 			name: 'LibreVox',
@@ -22,7 +22,7 @@
 			statusClass: 'bg-secondary text-secondary-foreground',
 			reward: '$210 / $275 spent',
 			image:
-				'https://images.unsplash.com/photo-1519558260268-cde7e03a0152?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080'
+				'https://images.unsplash.com/photo-1519558260268-cde7e03a0152?auto=format&fit=crop&q=80&w=600'
 		},
 		{
 			name: 'OpenDeck',
@@ -33,7 +33,7 @@
 			statusClass: 'border border-outline bg-surface-container-highest text-foreground',
 			reward: 'Not started',
 			image:
-				'https://images.unsplash.com/photo-1649899913123-90bb33c8a66a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080'
+				'https://images.unsplash.com/photo-1649899913123-90bb33c8a66a?auto=format&fit=crop&q=80&w=600'
 		}
 	];
 </script>
@@ -61,6 +61,8 @@
 							class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
 							src={ship.image}
 							alt={ship.name}
+							loading="lazy"
+							decoding="async"
 						/>
 						<div class="absolute top-0 right-0 p-4">
 							<Badge class="font-mono text-[10px] font-bold {ship.statusClass}">

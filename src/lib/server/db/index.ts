@@ -4,45 +4,52 @@ import * as schema from './schema';
 import { env } from '$env/dynamic/private';
 import { getRequestEvent } from '$app/server';
 
-/**
- * Lazy database instance.
- * Local dev: caches a single client for the process lifetime.
- * Workers: creates a fresh client per request (Hyperdrive connection strings
- * are per-invocation, but postgres-js is lightweight to instantiate).
- */
-let _localDb: ReturnType<typeof drizzle> | null = null;
+type DrizzleInstance = ReturnType<typeof drizzle<typeof schema>>;
 
-export function getDb(): ReturnType<typeof drizzle> {
+/**
+ * Cache for database instances to enable connection pooling.
+ * Caching by connection string handles both local dev and Hyperdrive
+ * (which may provide different strings across invocations).
+ */
+const dbCache = new Map<string, DrizzleInstance>();
+
+export function getDb(): DrizzleInstance {
+	let connectionString = env.DATABASE_URL || '';
+
 	// Check if Hyperdrive is available (Workers environment)
-	let hyperdriveUrl: string | undefined;
 	try {
 		const event = getRequestEvent();
 		const hyperdrive = (event?.platform?.env as unknown as Record<string, unknown>)?.HYPERDRIVE as
 			| { connectionString?: string }
 			| undefined;
-		hyperdriveUrl = hyperdrive?.connectionString;
+
+		if (hyperdrive?.connectionString) {
+			connectionString = hyperdrive.connectionString;
+		}
 	} catch {
-		// Not in request context
+		// Not in request context, fallback to env.DATABASE_URL
 	}
 
-	if (hyperdriveUrl) {
-		// Workers: fresh client per request using Hyperdrive
-		const client = postgres(hyperdriveUrl, { prepare: false });
-		return drizzle(client, { schema });
+	let cached = dbCache.get(connectionString);
+	if (!cached) {
+		// Initialize fresh client and Drizzle instance
+		const client = postgres(connectionString, { prepare: false });
+		cached = drizzle(client, { schema });
+		dbCache.set(connectionString, cached);
 	}
 
-	// Local dev: reuse cached client
-	if (!_localDb) {
-		const client = postgres(env.DATABASE_URL, { prepare: false });
-		_localDb = drizzle(client, { schema });
-	}
-	return _localDb;
+	return cached;
 }
 
-// Proxy export for backwards compatibility — all property accesses
-// are forwarded to the lazily-resolved db instance
-export const db = new Proxy({} as ReturnType<typeof drizzle>, {
+/**
+ * Proxy export for lazy database resolution.
+ * All property accesses are forwarded to the cached db instance.
+ * Using a cache ensures we reuse the same postgres-js client for
+ * connection pooling, even on Cloudflare Workers.
+ */
+export const db = new Proxy({} as DrizzleInstance, {
 	get(_target, prop) {
-		return (getDb() as unknown as Record<string | symbol, unknown>)[prop];
+		const targetDb = getDb();
+		return targetDb[prop as keyof DrizzleInstance];
 	}
 });
