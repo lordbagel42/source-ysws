@@ -63,7 +63,7 @@
 							onSuccess: () => {
 								window.location.href = '/?welcome=1';
 							},
-							onError: (ctx) => {
+							onError: (ctx: { error: { message: string } }) => {
 								toast.error(ctx.error.message);
 								signingInPasskey = false;
 							}
