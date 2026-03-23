@@ -3,6 +3,7 @@ import postgres from 'postgres';
 import * as schema from './schema';
 import { env } from '$env/dynamic/private';
 import { getRequestEvent } from '$app/server';
+import { building } from '$app/environment';
 
 /**
  * Lazy database instance.
