@@ -12,17 +12,17 @@
 </script>
 
 <nav
-	class="fixed right-0 bottom-0 left-0 z-40 flex items-center justify-around border-t-2 border-outline-variant bg-surface-container-lowest py-2 md:hidden"
+	class="fixed right-0 bottom-0 left-0 z-40 flex items-center border-t-2 border-outline-variant bg-surface-container-lowest md:hidden"
 >
 	{#each navItems as item (item.path)}
+		{@const active = $page.url.pathname === item.path}
 		<a
 			href={item.path}
-			class="flex flex-col items-center gap-1 px-3 py-2 font-mono text-[10px] tracking-wider uppercase {$page
-				.url.pathname === item.path
-				? 'border-t-2 border-primary text-primary'
-				: 'text-on-surface-variant'}"
+			class="flex flex-1 flex-col items-center gap-1 border-t-2 px-1 pt-2 pb-3 font-mono text-[9px] tracking-wider uppercase transition-colors {active
+				? 'border-primary text-primary'
+				: 'border-transparent text-on-surface-variant'}"
 		>
-			<item.icon size={20} />
+			<item.icon size={18} />
 			{item.label}
 		</a>
 	{/each}

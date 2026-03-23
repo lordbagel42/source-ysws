@@ -14,7 +14,7 @@
 				MANIFEST_ID: 0x2A7F_HARDWARE
 			</span>
 			<h1
-				class="crt-glow font-headline text-5xl leading-none font-black tracking-tighter text-primary uppercase md:text-6xl"
+				class="crt-glow font-headline text-3xl leading-none font-black tracking-tighter text-primary uppercase md:text-5xl lg:text-6xl"
 			>
 				HARDWARE_REGISTRY
 			</h1>

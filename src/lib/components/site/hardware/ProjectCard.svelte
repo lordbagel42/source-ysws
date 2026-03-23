@@ -115,7 +115,7 @@
 					<Table.Body>
 						{#each bom as item (item.name)}
 							<Table.Row class="border-b border-outline/50 hover:bg-surface-container">
-								<Table.Cell class="font-mono text-xs text-foreground">
+								<Table.Cell class="truncate font-mono text-xs text-foreground">
 									{item.name}
 								</Table.Cell>
 								<Table.Cell class="text-right font-mono text-xs text-[#F0FF00]">
