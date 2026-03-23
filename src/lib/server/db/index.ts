@@ -31,10 +31,12 @@ export function getDb(): ReturnType<typeof drizzle> {
 		return drizzle(client, { schema });
 	}
 
-	// Local dev / build-time: reuse cached client
+	// Local dev: reuse cached client
 	if (!_localDb) {
-		const databaseUrl = env.DATABASE_URL || 'postgres://localhost/placeholder';
-		const client = postgres(databaseUrl, { prepare: false });
+		if (!env.DATABASE_URL) {
+			throw new Error('DATABASE_URL environment variable is not set');
+		}
+		const client = postgres(env.DATABASE_URL, { prepare: false });
 		_localDb = drizzle(client, { schema });
 	}
 	return _localDb;
